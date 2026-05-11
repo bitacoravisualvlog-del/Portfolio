@@ -1,0 +1,82 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && 
+             request.auth.token.email == 'veronica.pereyracarneiro01@gmail.com';
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_-]+$');
+    }
+
+    // Posts
+    match /posts/{postId} {
+      function isValidPost(data) {
+        return data.title is string && data.title.size() <= 200 &&
+               data.content is string &&
+               data.slug is string && data.slug.size() <= 200;
+      }
+
+      allow read: if true;
+      allow create: if isAdmin() && isValidPost(request.resource.data);
+      allow update: if isAdmin() && isValidPost(request.resource.data);
+      allow delete: if isAdmin();
+
+      // Comments subcollection
+      match /comments/{commentId} {
+        function isValidComment(data) {
+          return data.postId == postId &&
+                 data.userName is string && data.userName.size() <= 100 &&
+                 data.content is string && data.content.size() <= 1000 &&
+                 data.createdAt is timestamp;
+        }
+
+        allow read: if true;
+        allow create: if isValidComment(request.resource.data) &&
+                        (request.resource.data.createdAt == request.time);
+        allow delete, update: if isAdmin();
+      }
+    }
+
+    // Recommendations
+    match /recommendations/{recId} {
+      function isValidRecommendation(data) {
+        return data.userName is string && data.userName.size() <= 100 &&
+               data.content is string && data.content.size() <= 1000 &&
+               data.createdAt is timestamp;
+      }
+
+      allow read: if true;
+      allow create: if isValidRecommendation(request.resource.data) &&
+                      (request.resource.data.createdAt == request.time);
+      allow delete, update: if isAdmin();
+    }
+
+    // Contact form messages
+    match /messages/{messageId} {
+      function isValidMessage(data) {
+        return data.name is string && data.name.size() <= 100 &&
+               data.email is string && data.email.size() <= 100 &&
+               data.phone is string && data.phone.size() >= 5 && data.phone.size() <= 30 &&
+               data.subject is string && data.subject.size() <= 200 &&
+               data.message is string && data.message.size() <= 2000 &&
+               data.createdAt is timestamp;
+      }
+
+      allow create: if isValidMessage(request.resource.data) && 
+                      request.resource.data.createdAt == request.time;
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}

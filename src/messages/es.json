@@ -1,0 +1,104 @@
+{
+  "nav": {
+    "projects": "Proyectos",
+    "services": "Servicios",
+    "about": "Sobre mí",
+    "podcast": "Podcast",
+    "contact": "Contacto",
+    "blog": "Blog"
+  },
+  "clients": {
+    "title": "Confían en mi visión",
+    "subtitle": "CLIENTES / PARTNERS"
+  },
+  "hero": {
+    "headline": "CREATE DIGITAL",
+    "subline": "DISEÑO / MARKETING",
+    "body": "Creatividad que conecta, estrategias que convierten",
+    "cta": "Ver proyectos →"
+  },
+  "value": {
+    "one": {
+      "title": "Mirada estética",
+      "desc": "Formada en cine, cultura visual y diseño editorial. Cada decisión visual tiene intención: no solo se ve bien, comunica, posiciona y genera percepción de valor."
+    },
+    "two": {
+      "title": "Estrategia y método",
+      "desc": "15 años de análisis corporativo en una multinacional. Detrás de cada proyecto hay estrategia, estructura y procesos claros. Creatividad con dirección."
+    },
+    "three": {
+      "title": "Ejecución completa",
+      "desc": "Concepto, diseño y desarrollo en una misma cabeza. Sin intermediarios ni ruido en la comunicación. Una visión coherente desde el inicio hasta el último detalle."
+    }
+  },
+  "services": {
+    "s1": { "name": "Gestión de Redes", "desc": "Estrategia, contenido y dirección visual para marcas que necesitan presencia digital con identidad y consistencia." },
+    "s2": { "name": "Diseño UX/UI", "desc": "Experiencias digitales pensadas desde la navegación, la claridad y el comportamiento real del usuario." },
+    "s3": { "name": "Meta Ads", "desc": "Campañas en Facebook e Instagram orientadas a performance, optimización y crecimiento sostenible." },
+    "s4": { "name": "Análisis de Datos", "desc": "Lectura estratégica de métricas para detectar oportunidades, optimizar campañas y tomar mejores decisiones." },
+    "s5": { "name": "Edición de Video", "desc": "Edición, motion graphics y piezas audiovisuales diseñadas para captar atención y comunicar con ritmo." },
+    "s6": { "name": "Diseño Web", "desc": "Sitios visualmente sólidos, funcionales y optimizados en WordPress, Tienda Nube y plataformas no-code." },
+    "s7": { "name": "SEO & Posicionamiento", "desc": "Optimización de contenido y estructura web para mejorar visibilidad, búsqueda y posicionamiento orgánico." },
+    "s8": { "name": "E-commerce Management", "desc": "Gestión integral de tiendas online, experiencia de compra y estrategias para potenciar ventas digitales." }
+  },
+  "projects": {
+    "view_site": "Ver sitio →",
+    "view_project": "Ver proyecto →",
+    "view_behance": "Ver en Behance →",
+    "in_progress": "En desarrollo",
+    "p1": {
+      "title": "Ley que Activa",
+      "desc": "Desarrollo integral de identidad y ecosistema digital para un estudio jurídico con visión humanística. El objetivo fue construir una presencia online clara, profesional y cercana.\n\nServicios desarrollados:\n• Estrategia de comunicación digital\n• Desarrollo de identidad visual y branding\n• Diseño y arquitectura web orientada a SEO\n• Dirección creativa y lineamiento estético\n• Optimización de contenido para posicionamiento orgánico\n\nResultados:\nConstrucción de una identidad sólida y crecimiento orgánico de la presencia digital.",
+      "cover": "Diseño Web / Branding / SEO"
+    },
+    "p2": {
+      "title": "Desaburrite",
+      "desc": "Concepto y diseño de producto para una app mobile de entretenimiento. El foco estuvo en simplificar la experiencia de usuario mediante una interfaz intuitiva y una arquitectura clara.\n\nServicios desarrollados:\n• Investigación y arquitectura de información\n• Diseño de wireframes y user flows\n• Prototipado interactivo en Figma\n• Diseño de interfaz y sistema visual escalable\n• Definición de experiencia de usuario (UX)\n\nResultados:\nDiseño funcional listo para validación y futura etapa de desarrollo.",
+      "cover": "App Concept / UX/UI / Figma",
+      "badge": "En desarrollo"
+    },
+    "p3": {
+      "title": "Gestión de Pauta",
+      "desc": "Estrategia de Paid Media para más de 60 marcas de indumentaria, servicios y gastronomía. Un enfoque que combina creatividad, análisis y optimización constante.\n\nServicios desarrollados:\n• Planificación y gestión de campañas en Meta Ads\n• Optimización y escalabilidad de rendimiento\n• Análisis de métricas y performance digital\n• Desarrollo de creatividades orientadas a conversión\n• Estrategias de segmentación y testing continuo\n\nResultados:\nROAS de hasta 8X en e-commerce de moda y hasta 4X en servicios.",
+      "cover": "Meta Ads / Performance / Data Analysis",
+      "badge": "Pauta Ads"
+    }
+  },
+  "portfolio_cta": {
+    "title": "¿Querés ver más?",
+    "desc": "Explorá mi portfolio completo en Behance con todos mis trabajos de diseño.",
+    "button": "Ir a Behance"
+  },
+  "about": {
+    "bio": "Soy una apasionada por el marketing y la publicidad. Llevo años trabajando con marcas y agencias tanto de Argentina como internacionales. \nTransformo ideas creativas en ventas, conectando a las marcas con las personas a través de Storytelling estratégico, diseñando webs optimizadas que faciliten la experiencia de compra del usuario, escalando resultados con campañas en Google y Meta Ads.\nMotivada por nuevos desafíos y el aprendizaje continuo, aplico creatividad y estrategia para impulsar el crecimiento de los negocios.",
+    "stats": {
+      "exp": "profesional",
+      "digital": "marketing digital",
+      "countries": "clientes"
+    }
+  },
+  "podcast": {
+    "title": "MERLO'S PLACE",
+    "tagline": "Entrevistas conurbanas",
+    "desc": "Desarrollo integral de un podcast enfocado en la cultura del conurbano bonaerense. Dirección creativa, producción general, edición audiovisual, identidad visual, estrategia de contenidos y gestión de difusión digital.",
+    "cta": "Escuchar en Spotify"
+  },
+  "contact": {
+    "headline": "HABLEMOS.",
+    "subline": "¿Tenés un proyecto? Contame.",
+    "form": {
+      "name": "Nombre",
+      "email": "Email",
+      "phone": "Teléfono",
+      "subject": "Motivo de la consulta",
+      "message": "Mensaje",
+      "submit": "Enviar mensaje",
+      "sending": "Enviando...",
+      "success": "¡Mensaje enviado con éxito!",
+      "error": "Error al enviar el mensaje. Por favor intenta de nuevo."
+    }
+  },
+  "footer": {
+    "privacy": "Política de Privacidad"
+  }
+}

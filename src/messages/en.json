@@ -1,0 +1,104 @@
+{
+  "nav": {
+    "projects": "Projects",
+    "services": "Services",
+    "about": "About",
+    "podcast": "Podcast",
+    "contact": "Contact",
+    "blog": "Blog"
+  },
+  "clients": {
+    "title": "They trust the vision",
+    "subtitle": "CLIENTS / PARTNERS"
+  },
+  "hero": {
+    "headline": "CREATE DIGITAL",
+    "subline": "DESIGN / MARKETING",
+    "body": "Creativity that connects, strategies that convert",
+    "cta": "See projects →"
+  },
+  "value": {
+    "one": {
+      "title": "Aesthetic Vision",
+      "desc": "Trained in cinema, visual culture, and editorial design. Every visual decision has intent: it doesn't just look good; it communicates, positions, and creates perception of value."
+    },
+    "two": {
+      "title": "Strategy and Method",
+      "desc": "15 years of corporate analysis at a multinational. Behind every project, there is strategy, structure, and clear processes. Creativity with direction."
+    },
+    "three": {
+      "title": "Full Execution",
+      "desc": "Concept, design, and development in the same head. No intermediaries or communication noise. A coherent vision from the beginning down to the smallest detail."
+    }
+  },
+  "services": {
+    "s1": { "name": "Social Media Management", "desc": "Strategy, content, and visual direction for brands that need a digital presence with identity and consistency." },
+    "s2": { "name": "UX/UI Design", "desc": "Digital experiences designed based on navigation, clarity, and real user behavior." },
+    "s3": { "name": "Meta Ads", "desc": "Performance-oriented Facebook and Instagram campaigns, focusing on optimization and sustainable growth." },
+    "s4": { "name": "Data Analysis", "desc": "Strategic reading of metrics to detect opportunities, optimize campaigns, and make better decisions." },
+    "s5": { "name": "Video Editing", "desc": "Editing, motion graphics, and audiovisual pieces designed to capture attention and communicate with rhythm." },
+    "s6": { "name": "Web Design", "desc": "Visually solid, functional, and optimized sites on WordPress, Tienda Nube, and no-code platforms." },
+    "s7": { "name": "SEO & Positioning", "desc": "Content optimization and web structure to improve visibility, search, and organic positioning." },
+    "s8": { "name": "E-commerce Management", "desc": "Comprehensive management of online stores, shopping experience, and strategies to boost digital sales." }
+  },
+  "projects": {
+    "view_site": "View site →",
+    "view_project": "View project →",
+    "view_behance": "View on Behance →",
+    "in_progress": "In progress",
+    "p1": {
+      "title": "Ley que Activa",
+      "desc": "Comprehensive brand development and digital strategy for a law firm with a humanistic vision. The goal was to build a clear, professional, and accessible online presence.\n\nServices developed:\n• Digital communication strategy\n• Visual identity and branding development\n• SEO-oriented web design and architecture\n• Creative direction and aesthetic guidelines\n• Content optimization for organic positioning\n\nResults:\nConstruction of a solid identity and organic growth of the digital presence.",
+      "cover": "Web Design / Branding / SEO"
+    },
+    "p2": {
+      "title": "Desaburrite",
+      "desc": "Product concept and design for an entertainment mobile app. The focus was on simplifying the user experience through an intuitive interface and clear architecture.\n\nServices developed:\n• Research and information architecture\n• Wireframes and user flows design\n• Interactive prototyping in Figma\n• Interface design and scalable visual system\n• User experience (UX) definition\n\nResult:\nFunctional design ready for validation and future development stage.",
+      "cover": "App Concept / UX/UI / Figma",
+      "badge": "In progress"
+    },
+    "p3": {
+      "title": "Paid Media Management",
+      "desc": "Paid Media strategy for more than 60 apparel, services, and gastronomy brands. An approach that combines creativity, analysis, and constant optimization.\n\nServices developed:\n• Planning and management of Meta Ads campaigns\n• Performance optimization and scalability\n• Metrics and digital performance analysis\n• Conversion-oriented creative development\n• Segmentation strategies and continuous testing\n\nResults:\nROAS of up to 8X in fashion e-commerce and up to 4X in services.",
+      "cover": "Meta Ads / Performance / Data Analysis",
+      "badge": "Ads Pauta"
+    }
+  },
+  "portfolio_cta": {
+    "title": "Want to see more?",
+    "desc": "Explore my full portfolio on Behance with all my design work.",
+    "button": "Go to Behance"
+  },
+  "about": {
+    "bio": "I am passionate about marketing and advertising. I have spent years working with both Argentine and international brands and agencies. \nI transform creative ideas into sales, connecting brands with people through strategic storytelling, designing optimized websites that facilitate the user's shopping experience, and scaling results with Google and Meta Ads campaigns.\nMotivated by new challenges and continuous learning, I apply creativity and strategy to drive business growth.",
+    "stats": {
+      "exp": "professional",
+      "digital": "digital marketing",
+      "countries": "clients"
+    }
+  },
+  "podcast": {
+    "title": "MERLO'S PLACE",
+    "tagline": "Conurban Interviews",
+    "desc": "Comprehensive development of a podcast focused on the culture of Greater Buenos Aires. Creative direction, general production, audiovisual editing, visual identity, content strategy, and digital broadcast management.",
+    "cta": "Listen on Spotify"
+  },
+  "contact": {
+    "headline": "LET'S TALK.",
+    "subline": "Got a project? Tell me about it.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "subject": "Subject of inquiry",
+      "message": "Message",
+      "submit": "Send message",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "error": "Error sending message. Please try again."
+    }
+  },
+  "footer": {
+    "privacy": "Privacy Policy"
+  }
+}

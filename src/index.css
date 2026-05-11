@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&family=Bebas+Neue&family=DM+Sans:wght@300;400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-black: #0D0D0D;
+  --color-cream: #F0EBE0;
+  --color-accent: #D278A6; /* Vibrant Pink from PDF */
+  --color-accent-hover: #B7628B;
+  --color-gray-dark: #1A1A1A;
+  --color-gray-mid: #2A2A2A;
+
+  --font-bebas: "Bebas Neue", sans-serif;
+  --font-barlow: "Barlow Condensed", sans-serif;
+  --font-dm: "DM Sans", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-black text-cream font-dm antialiased selection:bg-accent selection:text-white;
+    cursor: none; /* We will use a custom cursor */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bebas tracking-tight;
+  }
+}
+
+@layer utilities {
+  .grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Custom Cursor Styles */
+.custom-cursor {
+  @apply fixed top-0 left-0 w-3 h-3 bg-cream rounded-full pointer-events-none z-[10000] mix-blend-difference transition-transform duration-100 ease-out;
+}
+
+.custom-cursor.hovering {
+  @apply w-12 h-12 bg-accent scale-150;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+

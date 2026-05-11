@@ -1,0 +1,74 @@
+{
+  "entities": {
+    "Post": {
+      "title": "Blog Post",
+      "description": "An article in the portfolio blog.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "slug": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "published": { "type": "boolean" },
+        "authorEmail": { "type": "string" }
+      },
+      "required": ["title", "content", "slug", "createdAt", "published", "authorEmail"]
+    },
+    "Comment": {
+      "title": "Post Comment",
+      "description": "A comment left by a visitor on a blog post.",
+      "type": "object",
+      "properties": {
+        "postId": { "type": "string" },
+        "userName": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["postId", "userName", "content", "createdAt"]
+    },
+    "Recommendation": {
+      "title": "Service Recommendation",
+      "description": "A testimonial or recommendation from a client.",
+      "type": "object",
+      "properties": {
+        "userName": { "type": "string" },
+        "company": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userName", "content", "createdAt"]
+    },
+    "ContactMessage": {
+      "title": "Contact Message",
+      "description": "A message sent through the contact form.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "subject": { "type": "string" },
+        "message": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "phone", "message", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/posts/{postId}": {
+      "schema": "Post",
+      "description": "Collection of blog posts."
+    },
+    "/posts/{postId}/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Subcollection of comments for a specific post."
+    },
+    "/recommendations/{recId}": {
+      "schema": "Recommendation",
+      "description": "Collection of client recommendations."
+    },
+    "/messages/{messageId}": {
+      "schema": "ContactMessage",
+      "description": "Collection of contact messages."
+    }
+  }
+}
