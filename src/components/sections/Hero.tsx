@@ -24,7 +24,7 @@ export default function Hero() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="mb-4"
         >
-          <span className="font-dm text-white text-xs uppercase tracking-widest mb-6 block border-l-2 border-accent pl-4">
+          <span className="hidden md:block font-dm text-white text-xs uppercase tracking-widest mb-6 border-l-2 border-accent pl-4">
             Verónica Pereyra Carneiro
           </span>
           <h1 className="text-[clamp(4.5rem,15vw,12rem)] leading-[0.85] text-white flex flex-col font-bebas mb-6">

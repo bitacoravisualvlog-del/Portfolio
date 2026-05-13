@@ -32,10 +32,10 @@ export default function Footer() {
               {t('contact.subline')}
             </p>
             <a
-              href="mailto:marketingpublicitariodigital4@gmail.com"
+              href="mailto:createdigital.mkt@gmail.com"
               className="font-bebas text-2xl md:text-4xl text-cream hover:text-accent transition-all relative group py-2"
             >
-              marketingpublicitariodigital4@gmail.com
+              createdigital.mkt@gmail.com
               <span className="absolute bottom-1 left-0 w-full h-[2px] bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
             </a>
           </div>

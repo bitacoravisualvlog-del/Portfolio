@@ -67,8 +67,8 @@ export default function Privacy() {
             </h2>
             <p>
               {lang === 'es'
-                ? 'Para cualquier duda sobre esta política, podés escribir a: marketingpublicitariodigital4@gmail.com'
-                : 'For any questions about this policy, you can write to: marketingpublicitariodigital4@gmail.com'}
+                ? 'Para cualquier duda sobre esta política, podés escribir a: createdigital.mkt@gmail.com'
+                : 'For any questions about this policy, you can write to: createdigital.mkt@gmail.com'}
             </p>
           </section>
         </div>
