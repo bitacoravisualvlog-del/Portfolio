@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
+import { Star } from 'lucide-react';
 import { recommendationService, Recommendation } from '../../services/recommendationService';
 
 export default function Recommendations() {
@@ -9,6 +10,7 @@ export default function Recommendations() {
   const [isLoading, setIsLoading] = useState(true);
   const [name, setName] = useState('');
   const [text, setText] = useState('');
+  const [rating, setRating] = useState(5);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -32,10 +34,12 @@ export default function Recommendations() {
     try {
       await recommendationService.addRecommendation({
         userName: name,
-        content: text
+        content: text,
+        rating
       });
       setName('');
       setText('');
+      setRating(5);
       // Refresh
       const refreshed = await recommendationService.getRecommendations();
       if (refreshed) setRecommendations(refreshed);
@@ -74,6 +78,24 @@ export default function Recommendations() {
               onChange={(e) => setText(e.target.value)}
               className="w-full bg-black border border-gray-mid/40 p-4 font-dm text-sm focus:border-accent outline-none transition-colors"
             />
+            <div className="flex items-center gap-4 py-2 border-b border-gray-mid/20">
+              <span className="font-dm text-xs uppercase tracking-widest text-cream/40">Calificación:</span>
+              <div className="flex gap-1">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <button
+                    key={star}
+                    type="button"
+                    onClick={() => setRating(star)}
+                    className="transition-transform hover:scale-110"
+                  >
+                    <Star
+                      size={20}
+                      className={star <= rating ? "fill-accent text-accent" : "text-gray-mid"}
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
             <button
               type="submit"
               disabled={isSubmitting}
@@ -103,6 +125,15 @@ export default function Recommendations() {
                 <p className="font-dm text-cream/80 italic mb-6 leading-relaxed">
                   {rec.content}
                 </p>
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star 
+                      key={i} 
+                      size={14} 
+                      className={i < (rec.rating || 5) ? "fill-accent text-accent" : "text-gray-mid/30"} 
+                    />
+                  ))}
+                </div>
                 <div className="flex justify-between items-end">
                   <span className="font-barlow font-bold uppercase text-cream">{rec.userName}</span>
                   <span className="text-[10px] text-cream/30 font-dm">

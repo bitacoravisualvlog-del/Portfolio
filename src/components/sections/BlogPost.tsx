@@ -5,7 +5,6 @@ import { motion } from 'motion/react';
 import { blogService, Post, Comment } from '../../services/blogService';
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
-import CustomCursor from '../layout/CustomCursor';
 
 export default function BlogPost() {
   const { slug, lang } = useParams<{ slug: string; lang: string }>();
@@ -78,7 +77,6 @@ export default function BlogPost() {
   return (
     <div className="min-h-screen bg-black text-cream">
       <div className="grain-overlay" />
-      <CustomCursor />
       <Header />
 
       <main className="pt-40 pb-20 px-6 md:px-12 max-w-4xl mx-auto">

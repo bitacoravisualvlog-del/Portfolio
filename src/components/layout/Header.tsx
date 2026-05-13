@@ -39,21 +39,23 @@ export default function Header() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 w-full z-50 transition-all duration-300 py-6 px-6 md:px-12 flex justify-between items-center',
-        isScrolled ? 'bg-black/90 backdrop-blur-md py-4 border-b border-gray-mid' : 'bg-transparent'
+        'absolute top-0 left-0 w-full z-50 transition-all duration-300 py-6 px-6 md:px-12 flex justify-between items-center',
+        isScrolled ? 'bg-black/90 py-4 border-b border-gray-mid' : 'bg-transparent'
       )}
     >
-      <a href="#" className="font-bebas text-2xl md:text-3xl text-cream tracking-tight hover:text-accent transition-colors">
-        CREATE DIGITAL
-      </a>
+      <div className="flex items-center shrink-0">
+        <a href="#" className="font-sans text-[10px] md:text-[10px] lg:text-[11px] font-medium text-cream uppercase tracking-[0.1em] hover:text-accent transition-colors whitespace-nowrap">
+          Verónica Pereyra Carneiro
+        </a>
+      </div>
 
       {/* Desktop Nav */}
-      <nav className="hidden md:flex items-center gap-8">
+      <nav className="hidden md:flex items-center gap-4 lg:gap-8 flex-nowrap">
         {navLinks.map((link) => (
           <a
             key={link.name}
             href={link.href}
-            className="font-dm text-sm uppercase tracking-widest text-cream/70 hover:text-accent transition-colors"
+            className="font-dm text-xs lg:text-sm uppercase tracking-widest text-cream/70 hover:text-accent transition-colors whitespace-nowrap"
           >
             {link.name}
           </a>
@@ -88,7 +90,8 @@ export default function Header() {
             exit={{ opacity: 0, x: '100%' }}
             className="fixed inset-0 bg-black z-[60] flex flex-col p-8"
           >
-            <div className="flex justify-end mb-12">
+            <div className="flex justify-between items-center mb-12">
+              <span className="font-sans text-[10px] font-medium text-cream uppercase tracking-widest whitespace-nowrap">Verónica Pereyra Carneiro</span>
               <button onClick={() => setIsMenuOpen(false)} className="text-cream">
                 <X size={32} />
               </button>

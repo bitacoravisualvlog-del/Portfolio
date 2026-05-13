@@ -5,15 +5,9 @@ export default function Hero() {
   const { t } = useTranslation();
 
   return (
-    <section className="min-h-screen flex flex-col justify-end md:justify-center px-6 md:px-12 relative overflow-hidden bg-black pt-20">
+    <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 relative overflow-hidden bg-black pt-8 md:pt-48">
       {/* Background Image - Verónica's Photo */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src="/input_file_0.png" 
-          alt="Verónica Pereyra Carneiro" 
-          className="w-full h-full object-cover object-top opacity-50 grayscale mix-blend-luminosity"
-          referrerPolicy="no-referrer"
-        />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent md:bg-gradient-to-r md:from-black md:via-black/60 md:to-transparent" />
       </div>
 
@@ -24,10 +18,7 @@ export default function Hero() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="mb-4"
         >
-          <span className="hidden md:block font-dm text-white text-xs uppercase tracking-widest mb-6 border-l-2 border-accent pl-4">
-            Verónica Pereyra Carneiro
-          </span>
-          <h1 className="text-[clamp(4.5rem,15vw,12rem)] leading-[0.85] text-white flex flex-col font-bebas mb-6">
+          <h1 className="text-[clamp(4.5rem,15vw,12rem)] leading-[0.85] text-cream flex flex-col font-bebas mb-2 md:mb-6">
             <span className="block">CREATE</span>
             <span className="block text-accent">DIGITAL</span>
           </h1>

@@ -22,7 +22,7 @@ export default function About() {
         {/* Left Column: Bio */}
         <div className="lg:col-span-7 space-y-12">
           <h2 className="font-bebas text-5xl md:text-8xl text-white tracking-tighter leading-none">
-            Verónica Pereyra <span className="text-accent">Carneiro</span>
+            SOBRE <span className="text-accent">MÍ</span>
           </h2>
           <p className="font-dm text-lg md:text-xl text-cream leading-relaxed max-w-3xl">
             {t('about.bio')}

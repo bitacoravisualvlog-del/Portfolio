@@ -13,6 +13,7 @@ export interface Recommendation {
   id?: string;
   userName: string;
   content: string;
+  rating: number;
   createdAt: any;
 }
 

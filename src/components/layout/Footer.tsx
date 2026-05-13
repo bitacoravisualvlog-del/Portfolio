@@ -15,15 +15,15 @@ export default function Footer() {
   ];
 
   return (
-    <footer id="contact" className="py-32 px-6 md:px-12 bg-black border-t border-gray-mid/20">
-      <div className="max-w-7xl mx-auto flex flex-col gap-24">
+    <footer id="contact" className="pt-32 pb-16 md:pt-48 md:pb-32 px-6 md:px-12 bg-black border-t border-gray-mid/20">
+      <div className="max-w-7xl mx-auto flex flex-col gap-32">
         {/* Contact CTA */}
-        <div className="space-y-8 flex flex-col items-center text-center">
+        <div className="space-y-12 flex flex-col items-center text-center">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-bebas text-[clamp(4rem,15vw,10rem)] leading-none text-white tracking-tighter"
+            className="font-bebas text-7xl md:text-[clamp(4rem,15vw,10rem)] leading-none text-white tracking-tighter"
           >
             {t('contact.headline')}
           </motion.h2>

@@ -8,7 +8,6 @@ import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-
 import { useTranslation } from 'react-i18next';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
-import CustomCursor from './components/layout/CustomCursor';
 import Hero from './components/sections/Hero';
 import Clients from './components/sections/Clients';
 import ValueProp from './components/sections/ValueProp';
@@ -36,7 +35,6 @@ function Root() {
     <div className="relative min-h-screen selection:bg-accent selection:text-white bg-black">
       {/* Decorative Textures */}
       <div className="grain-overlay" />
-      <CustomCursor />
       
       <Header />
       
