@@ -367,10 +367,29 @@ export default function UGC() {
                   </AnimatePresence>
                   </div>
 
-                {/* Additional file drag statement underneath the mobile screen preview */}
-                <div className="mt-4 text-center">
-                  <p className="font-dm text-[11px] text-cream/30 uppercase tracking-widest">
-                    {item.id === 1 ? 'loreal1.mp4 • Liftactiv' : 'loreal2.mp4 • Anthelios'}
+                {/* Information Card underneath the smartphone */}
+                <div className="mt-8 text-center px-4 max-w-sm mx-auto w-full group/info">
+                  <h3 className="font-barlow text-2xl text-cream group-hover/info:text-accent font-bold uppercase tracking-wide transition-colors duration-300">
+                    {t(item.titleKey)}
+                  </h3>
+                  
+                  {/* Agency Link & Collaboration details */}
+                  <div className="mt-2.5 flex items-center justify-center gap-1 text-xs">
+                    <span className="font-dm text-cream/40 uppercase tracking-widest text-[10px]">
+                      {t('ugc.agency')}
+                    </span>
+                    <a 
+                      href="https://www.wildfi.com/es/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="font-dm text-accent hover:text-white underline font-extrabold uppercase tracking-widest text-[10px] transition-colors duration-300"
+                    >
+                      WILDFI
+                    </a>
+                  </div>
+
+                  <p className="font-dm text-sm text-cream/60 leading-relaxed mt-4">
+                    {t(item.descKey)}
                   </p>
                 </div>
               </motion.div>
