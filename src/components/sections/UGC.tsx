@@ -397,8 +397,156 @@ export default function UGC() {
           })}
         </div>
 
+        {/* Proposals / Collaborations Section */}
+        <div className="mt-32 mb-16 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="text-xs font-dm uppercase tracking-widest text-accent mb-3 block">Formatos de Colaboración</span>
+            <h3 className="font-bebas text-4xl md:text-6xl text-white tracking-wide uppercase leading-none">
+              Planes y Propuestas UGC
+            </h3>
+            <p className="font-dm text-cream/40 text-xs md:text-sm uppercase tracking-widest mt-4">
+              Encontrá el formato ideal para potenciar la presencia digital de tu marca
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Proposals Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-24 items-stretch px-4">
+          {[
+            {
+              id: 1,
+              title: "COLABORACIÓN POR CANJE",
+              subtitle: "PROPUESTA 1",
+              description: "Me interesa colaborar con marcas alineadas a moda, lifestyle, beauty y tendencias digitales creando contenido auténtico y orgánico para redes sociales.",
+              includes: [
+                "1 Reel UGC / TikTok",
+                "Historias mostrando producto o experiencia",
+                "Edición completa estilo TikTok/Reels",
+                "Entrega del contenido para reutilizar en redes"
+              ],
+              modality: "Canje por productos o experiencia",
+              highlightLabel: "Ideal para:",
+              highlightText: "Marcas emergentes que quieran material fresco, natural y de alta estética para alimentar sus redes.",
+              badge: "CANJE"
+            },
+            {
+              id: 2,
+              title: "PRODUCTO + PAGO",
+              subtitle: "PROPUESTA 2",
+              description: "Una propuesta integral pensada para marcas que buscan contenido dinámico, cuidado estéticamente y alineado a tendencias actuales.",
+              includes: [
+                "2 Reels UGC de alto engagement",
+                "3 a 5 historias en Instagram",
+                "Idea creativa & desarrollo de guión",
+                "Edición dinámica con hooks estratégicos y subtítulos",
+                "Entrega final en formato listo para publicar"
+              ],
+              modality: "Producto + fee de creación de contenido",
+              price: "Desde USD 180 + producto",
+              highlightLabel: "Extra opcional:",
+              highlightText: "Posibilidad de adaptar técnica y legalmente el contenido para campañas de anuncios pagos.",
+              badge: "RECOMENDADO"
+            },
+            {
+              id: 3,
+              title: "PACK MENSUAL",
+              subtitle: "PROPUESTA 3",
+              description: "Pensado para marcas consolidadas que necesitan presencia constante y un flujo regular de videos de calidad para TikTok e Instagram.",
+              includes: [
+                "8 reels verticales por mes",
+                "Historias semanales sobre backstage, productos o experiencia de marca",
+                "Monitoreo de tendencias y bajada creativa",
+                "Edición Premium, ganchos visuales y hooks estratégicos",
+                "Entrega limpia organizada en carpetas de nube"
+              ],
+              modality: "Contratación mensual recurrente",
+              price: "Desde USD 850 mensuales",
+              highlightLabel: "Objetivo:",
+              highlightText: "Garantizar constancia, fidelización de audiencia y material 100% orgánico para campañas publicitarias.",
+              badge: "ESTRATÉGICO"
+            }
+          ].map((prop, idx) => (
+            <motion.div
+              key={prop.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.15 }}
+              className="bg-gray-dark/30 border border-gray-mid/30 hover:border-accent/40 rounded-2xl p-8 flex flex-col justify-between transition-all duration-500 hover:-translate-y-2 backdrop-blur-sm relative group focus-within:ring-1 focus-within:ring-accent/40"
+            >
+              {/* Card Label Tag */}
+              <div className="absolute top-6 right-6">
+                <span className={`text-[9px] font-dm tracking-widest uppercase font-bold px-3 py-1 rounded-full border ${
+                  prop.id === 2 
+                    ? 'border-accent bg-accent/15 text-accent' 
+                    : 'border-white/10 bg-white/5 text-cream/50'
+                }`}>
+                  {prop.badge}
+                </span>
+              </div>
+
+              <div>
+                <span className="text-[10px] font-dm tracking-widest text-accent font-bold uppercase mb-2 block">
+                  {prop.subtitle}
+                </span>
+                <h4 className="font-barlow text-2xl font-bold text-white uppercase tracking-wide mb-4 leading-tight group-hover:text-accent transition-colors duration-300">
+                  {prop.title}
+                </h4>
+                <p className="font-dm text-xs md:text-sm text-cream/60 leading-relaxed mb-6 border-b border-gray-mid/10 pb-6">
+                  {prop.description}
+                </p>
+
+                <div className="space-y-3.5 mb-8">
+                  <span className="text-[10px] font-dm tracking-widest uppercase text-cream/40 block font-bold">
+                    El plan incluye:
+                  </span>
+                  {prop.includes.map((item, i) => (
+                    <div key={i} className="flex items-start gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
+                      <span className="font-dm text-xs md:text-sm text-cream/80 leading-relaxed">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-auto border-t border-gray-mid/10 pt-6">
+                {/* Modality Section */}
+                <div className="mb-4">
+                  <span className="text-[10px] font-dm tracking-widest uppercase text-cream/40 block">Modalidad</span>
+                  <p className="font-dm text-xs md:text-sm font-bold text-cream mt-0.5">{prop.modality}</p>
+                </div>
+
+                {/* Price Section */}
+                {prop.price && (
+                  <div className="mb-5">
+                    <span className="text-[10px] font-dm tracking-widest uppercase text-cream/40 block">Inversión</span>
+                    <p className="font-barlow text-xl font-extrabold text-accent mt-0.5">{prop.price}</p>
+                  </div>
+                )}
+
+                {/* Bottom specific comment */}
+                <div className="bg-white/2 py-3 px-4 rounded-lg border border-white/5 mt-4">
+                  <span className="text-[9px] font-dm tracking-widest uppercase font-bold text-accent block">
+                    {prop.highlightLabel}
+                  </span>
+                  <p className="font-dm text-xs text-cream/60 mt-1 leading-relaxed">
+                    {prop.highlightText}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
         {/* Centered CTA button without the textual prompt card */}
-        <div className="mt-16 flex justify-center">
+        <div className="mt-8 flex justify-center">
           <a
             href="#contact"
             className="inline-flex items-center gap-2 border-2 border-accent hover:bg-accent hover:text-black text-accent font-barlow font-bold uppercase tracking-widest text-sm px-14 py-6 transition-all hover:-translate-y-1 duration-300 rounded-sm interactive cursor-pointer"
