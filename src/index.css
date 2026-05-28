@@ -44,6 +44,24 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  /* Elegant Thin Accent Scrollbar */
+  .elegant-scrollbar::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+  }
+  .elegant-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+  }
+  .elegant-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(210, 120, 166, 0.25);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+  }
+  .elegant-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(210, 120, 166, 0.7);
+  }
 }
 
 /* Custom Cursor Styles */

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
-import { Star } from 'lucide-react';
+import { Star, ChevronUp, ChevronDown } from 'lucide-react';
 import { recommendationService, Recommendation } from '../../services/recommendationService';
 
 export default function Recommendations() {
@@ -12,6 +12,45 @@ export default function Recommendations() {
   const [text, setText] = useState('');
   const [rating, setRating] = useState(5);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [canScroll, setCanScroll] = useState(false);
+
+  const handleScroll = () => {
+    const el = containerRef.current;
+    if (!el) return;
+    const { scrollTop, scrollHeight, clientHeight } = el;
+    const maxScroll = scrollHeight - clientHeight;
+    if (maxScroll <= 0) {
+      setScrollProgress(0);
+      setCanScroll(false);
+    } else {
+      setScrollProgress(scrollTop / maxScroll);
+      setCanScroll(true);
+    }
+  };
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const checkScrollable = () => {
+      if (el.scrollHeight > el.clientHeight) {
+        setCanScroll(true);
+      } else {
+        setCanScroll(false);
+      }
+    };
+
+    // Check after rendering finishes
+    const timeoutId = setTimeout(checkScrollable, 300);
+
+    window.addEventListener('resize', checkScrollable);
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('resize', checkScrollable);
+    };
+  }, [recommendations]);
 
   useEffect(() => {
     const fetchRecs = async () => {
@@ -106,44 +145,68 @@ export default function Recommendations() {
           </form>
         </div>
 
-        <div className="space-y-8 max-h-[600px] overflow-y-auto pr-4 no-scrollbar">
-          {isLoading ? (
-            <div className="flex justify-center p-20">
-              <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+        <div className="relative flex gap-4 md:gap-6 xl:gap-8 items-stretch bg-neutral-950/20 p-2 md:p-4 rounded-xl border border-gray-mid/10">
+          <div 
+            ref={containerRef}
+            onScroll={handleScroll}
+            className="flex-1 space-y-8 max-h-[580px] overflow-y-auto pr-4 no-scrollbar"
+          >
+            {isLoading ? (
+              <div className="flex justify-center p-20">
+                <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+              </div>
+            ) : recommendations.length > 0 ? (
+              recommendations.map((rec, idx) => (
+                <motion.div
+                  key={rec.id}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="bg-gray-dark/50 p-8 border-l-4 border-accent relative"
+                >
+                  <div className="absolute top-4 right-8 font-bebas text-6xl text-accent/10 pointer-events-none">"</div>
+                  <p className="font-dm text-cream/80 italic mb-6 leading-relaxed">
+                    {rec.content}
+                  </p>
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star 
+                        key={i} 
+                        size={14} 
+                        className={i < (rec.rating || 5) ? "fill-accent text-accent" : "text-gray-mid/30"} 
+                      />
+                    ))}
+                  </div>
+                  <div className="flex justify-between items-end">
+                    <span className="font-barlow font-bold uppercase text-cream">{rec.userName}</span>
+                    <span className="text-[10px] text-cream/30 font-dm">
+                      {new Date(rec.createdAt?.toDate()).toLocaleDateString()}
+                    </span>
+                  </div>
+                </motion.div>
+              ))
+            ) : (
+              <p className="text-center font-dm text-cream/20 py-20 uppercase tracking-widest">Aún no hay recomendaciones.</p>
+            )}
+          </div>
+
+          {/* Elegant Custom Subtle Scroll Indicator Bar */}
+          {canScroll && (
+            <div className="hidden sm:flex flex-col items-center justify-between py-6 w-5 self-stretch relative select-none pointer-events-none border-l border-white/5 pl-4">
+              <ChevronUp size={12} className="text-cream/30 animate-bounce" />
+              <div className="flex-1 w-[2px] bg-white/5 my-3 relative rounded-full overflow-hidden">
+                <motion.div 
+                  className="absolute left-0 right-0 bg-accent rounded-full"
+                  style={{ 
+                    top: `${scrollProgress * 80}%`, // Allows 20% height window to slide beautifully
+                    height: '20%' 
+                  }}
+                  transition={{ type: "smooth", duration: 0.1 }}
+                />
+              </div>
+              <ChevronDown size={12} className="text-cream/30 animate-bounce" />
             </div>
-          ) : recommendations.length > 0 ? (
-            recommendations.map((rec, idx) => (
-              <motion.div
-                key={rec.id}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-gray-dark/50 p-8 border-l-4 border-accent relative"
-              >
-                <div className="absolute top-4 right-8 font-bebas text-6xl text-accent/10 pointer-events-none">"</div>
-                <p className="font-dm text-cream/80 italic mb-6 leading-relaxed">
-                  {rec.content}
-                </p>
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star 
-                      key={i} 
-                      size={14} 
-                      className={i < (rec.rating || 5) ? "fill-accent text-accent" : "text-gray-mid/30"} 
-                    />
-                  ))}
-                </div>
-                <div className="flex justify-between items-end">
-                  <span className="font-barlow font-bold uppercase text-cream">{rec.userName}</span>
-                  <span className="text-[10px] text-cream/30 font-dm">
-                    {new Date(rec.createdAt?.toDate()).toLocaleDateString()}
-                  </span>
-                </div>
-              </motion.div>
-            ))
-          ) : (
-            <p className="text-center font-dm text-cream/20 py-20 uppercase tracking-widest">Aún no hay recomendaciones.</p>
           )}
         </div>
       </div>
