@@ -50,7 +50,7 @@ export default function About() {
               <span className="font-bebas text-8xl md:text-9xl text-accent leading-none select-none">
                 {stat.value}
               </span>
-              <p className="font-barlow text-sm md:text-base text-cream/40 uppercase tracking-widest max-w-[120px] leading-tight">
+              <p className="font-barlow text-sm md:text-base text-cream/40 uppercase tracking-widest max-w-[180px] md:max-w-[240px] leading-tight">
                 {stat.label}
               </p>
             </motion.div>

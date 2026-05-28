@@ -79,29 +79,25 @@ export default function UGC() {
         }
       }
 
-      // 2. Check for custom covers/posters in public
+      // 2. Check for custom covers/posters in public using native Image loaders for 100% mobile compatibility
       const posterExtensions = ['png', 'jpg', 'jpeg', 'webp'];
       for (const id of [1, 2]) {
-        for (const ext of posterExtensions) {
+        const tryLoadPoster = (index: number) => {
+          if (index >= posterExtensions.length) return;
+          const ext = posterExtensions[index];
           const path = `/loreal${id}.${ext}`;
-          try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 1000);
-            const res = await fetch(path, { method: 'HEAD', signal: controller.signal });
-            clearTimeout(timeoutId);
-            if (res.ok) {
-              const contentType = res.headers.get('content-type') || '';
-              // Verify it's indeed an image file
-              if (contentType.includes('image') || (!contentType.includes('html') && !contentType.includes('xml'))) {
-                console.log(`UGC Component: Detected custom cover for ID ${id} at ${path}`);
-                setActivePosters(prev => ({ ...prev, [id]: path }));
-                break; // Found matching cover, stop checking other extensions for this id
-              }
-            }
-          } catch (e) {
-            // Ignore fetch errors
-          }
-        }
+          
+          const img = new Image();
+          img.onload = () => {
+            console.log(`UGC Component: Detected custom cover via Image loader for ID ${id} at ${path}`);
+            setActivePosters(prev => ({ ...prev, [id]: path }));
+          };
+          img.onerror = () => {
+            tryLoadPoster(index + 1);
+          };
+          img.src = path;
+        };
+        tryLoadPoster(0);
       }
     };
 
