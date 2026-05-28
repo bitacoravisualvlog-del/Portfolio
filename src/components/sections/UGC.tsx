@@ -378,24 +378,15 @@ export default function UGC() {
           })}
         </div>
 
-        {/* High-fidelity prompt inviting her to drop files */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mt-20 border border-gray-mid/30 bg-gray-dark/50 p-8 rounded-2xl max-w-2xl mx-auto text-center backdrop-blur-sm"
-        >
-          <p className="font-dm text-sm text-cream/75 leading-relaxed mb-6">
-            ¡Disfrutá del excelente resultado final en estos celulares interactivos! Tocá cada pantalla para reproducir los videos de <strong>Vichy (Liftactiv)</strong> y <strong>La Roche-Posay (Anthelios)</strong> realizados mediante la agencia <strong>WILDFI</strong>, y activá el sonido en la esquina superior derecha.<br/><br/>
-            Para ver tus grabaciones personales originales, podés arrastrar y soltar tus archivos <code className="text-accent bg-black/60 px-1.5 py-0.5 rounded font-mono text-xs">loreal1.mp4</code> y <code className="text-accent bg-black/60 px-1.5 py-0.5 rounded font-mono text-xs">loreal2.mp4</code> directamente en el directorio <code className="text-accent bg-black/60 px-1.5 py-0.5 rounded font-mono text-xs">public/</code> de tu barra izquierda en AI Studio. Se reproducirán al instante de manera local y automática.
-          </p>
+        {/* Centered CTA button without the textual prompt card */}
+        <div className="mt-16 flex justify-center">
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 border border-accent hover:bg-accent hover:text-black text-accent font-barlow font-bold uppercase tracking-widest text-xs px-6 py-3.5 transition-all"
+            className="inline-flex items-center gap-2 border-2 border-accent hover:bg-accent hover:text-black text-accent font-barlow font-bold uppercase tracking-widest text-sm px-14 py-6 transition-all hover:-translate-y-1 duration-300 rounded-sm interactive cursor-pointer"
           >
             {t('ugc.cta')}
           </a>
-        </motion.div>
+        </div>
 
       </div>
     </section>
