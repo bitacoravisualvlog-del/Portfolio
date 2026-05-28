@@ -9,6 +9,7 @@ export default function Blog() {
   const { lang } = useParams<{ lang: string }>();
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -23,6 +24,8 @@ export default function Blog() {
     };
     fetchPosts();
   }, []);
+
+  const displayedPosts = showAll ? posts : posts.slice(0, 3);
 
   return (
     <section id="blog" className="py-32 px-6 md:px-12 bg-black">
@@ -40,32 +43,45 @@ export default function Blog() {
           <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
         </div>
       ) : posts.length > 0 ? (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post, idx) => (
-            <motion.div
-              key={post.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="group border border-gray-mid/20 p-8 hover:border-accent transition-all bg-gray-dark/30"
-            >
-              <Link to={`/${lang}/blog/${post.slug}`} className="block space-y-4">
-                <span className="text-[10px] font-dm uppercase tracking-widest text-accent">
-                  {new Date(post.createdAt?.toDate()).toLocaleDateString()}
-                </span>
-                <h3 className="font-barlow text-2xl text-cream group-hover:text-white transition-colors leading-tight uppercase">
-                  {post.title}
-                </h3>
-                <p className="font-dm text-sm text-cream/50 line-clamp-3">
-                  {post.content.substring(0, 150)}...
-                </p>
-                <span className="inline-block pt-4 text-xs font-dm uppercase tracking-[0.2em] text-white/50 group-hover:text-white transition-colors">
-                  Leer más →
-                </span>
-              </Link>
-            </motion.div>
-          ))}
+        <div className="space-y-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {displayedPosts.map((post, idx) => (
+              <motion.div
+                key={post.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="group border border-gray-mid/20 p-8 hover:border-accent transition-all bg-gray-dark/30"
+              >
+                <Link to={`/${lang}/blog/${post.slug}`} className="block space-y-4">
+                  <span className="text-[10px] font-dm uppercase tracking-widest text-accent">
+                    {new Date(post.createdAt?.toDate()).toLocaleDateString()}
+                  </span>
+                  <h3 className="font-barlow text-2xl text-cream group-hover:text-white transition-colors leading-tight uppercase">
+                    {post.title}
+                  </h3>
+                  <p className="font-dm text-sm text-cream/50 line-clamp-3">
+                    {post.content.substring(0, 150)}...
+                  </p>
+                  <span className="inline-block pt-4 text-xs font-dm uppercase tracking-[0.2em] text-white/50 group-hover:text-white transition-colors">
+                    Leer más →
+                  </span>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          {posts.length > 3 && (
+            <div className="flex justify-center pt-4">
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="border border-accent hover:bg-accent hover:text-black text-accent px-10 py-5 font-barlow font-bold uppercase tracking-widest text-xs transition-all hover:-translate-y-1 duration-300 rounded-sm interactive cursor-pointer"
+              >
+                {showAll ? t('blog.show_less', 'Ver menos') : t('blog.show_more', 'Ver más artículos')}
+              </button>
+            </div>
+          )}
         </div>
       ) : (
         <div className="text-center py-20 border border-dashed border-gray-mid/30">

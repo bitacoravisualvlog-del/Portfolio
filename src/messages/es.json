@@ -4,6 +4,7 @@
     "services": "Servicios",
     "about": "Sobre mí",
     "podcast": "Podcast",
+    "ugc": "UGC",
     "contact": "Contacto",
     "blog": "Blog"
   },
@@ -97,6 +98,21 @@
       "success": "¡Mensaje enviado con éxito!",
       "error": "Error al enviar el mensaje. Por favor intenta de nuevo."
     }
+  },
+  "ugc": {
+    "title": "UGC & Colaboraciones",
+    "subtitle": "USER GENERATED CONTENT",
+    "desc1": "Creación de contenido estratégico y auténtico enfocado en engagement orgánico y storytelling de producto. Resaltando los beneficios clínicos del serum antiedad Vichy Liftactiv de manera dinámica y cercana.",
+    "desc2": "Campaña educativa y de posicionamiento orgánico para el protector solar Anthelios, demostrando la importancia de proteger la piel frente al sol y las pantallas digitales diariamente.",
+    "loreal1": "Vichy • Liftactiv Collagen Specialist 16",
+    "loreal2": "La Roche-Posay • Anthelios 50 - UVmune 400",
+    "agency": "Colaboración realizada mediante ",
+    "formats": "Formatos optimizados para TikTok, Reels e Instagram Stories",
+    "cta": "Hablemos de tu marca"
+  },
+  "blog": {
+    "show_more": "Ver más artículos",
+    "show_less": "Ver menos"
   },
   "footer": {
     "privacy": "Política de Privacidad"

@@ -30,6 +30,7 @@ export default function Header() {
   const navLinks = [
     { name: t('nav.projects'), href: '#projects' },
     { name: t('nav.services'), href: '#services' },
+    { name: t('nav.ugc'), href: '#ugc' },
     { name: t('nav.about'), href: '#about' },
     { name: t('nav.podcast'), href: '#podcast' },
     { name: t('nav.blog'), href: '#blog' },
