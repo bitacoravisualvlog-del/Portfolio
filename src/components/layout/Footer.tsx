@@ -49,7 +49,7 @@ export default function Footer() {
         {/* Social & Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-12 pt-24 border-t border-gray-mid/10">
           <p className="font-dm text-[10px] uppercase tracking-widest text-cream/20">
-            © 2026 CREATE DIGITAL · BUENOS AIRES, AR · <Link to="/es/admin" className="hover:text-accent">ADMIN</Link> · <Link to="/es/privacy" className="hover:text-accent uppercase">{t('footer.privacy')}</Link>
+            © 2026 CREATE DIGITAL · BUENOS AIRES, AR · <Link to="/es/privacy" className="hover:text-accent uppercase">{t('footer.privacy')}</Link>
           </p>
           
           <div className="hidden md:block flex-grow h-[1px] bg-cream/10 mx-12" />
