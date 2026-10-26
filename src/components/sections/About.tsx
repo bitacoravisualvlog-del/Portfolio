@@ -1,5 +1,42 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
+import { useEffect, useRef } from 'react';
+
+function AutoPlayVideo({ src, label }: { src: string; label: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return;
+    video.muted = true;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      className="absolute inset-0 w-full h-full object-contain"
+      src={src}
+      muted
+      controls
+      playsInline
+      preload="metadata"
+      aria-label={label}
+    />
+  );
+}
+
 
 export default function About() {
   const { t } = useTranslation();
@@ -69,13 +106,9 @@ export default function About() {
           Mi CV <span className="text-accent">animado</span>
         </p>
         <div className="relative w-full aspect-[16/10] border border-gray-mid/20 bg-gray-dark/30 overflow-hidden">
-          <video
-            className="absolute inset-0 w-full h-full object-contain"
+          <AutoPlayVideo
             src="/linkedin-video-2008kbps.mp4#t=0.8"
-            controls
-            playsInline
-            preload="metadata"
-            aria-label="CV animado de Verónica Pereyra Carneiro"
+            label="CV animado de Verónica Pereyra Carneiro"
           />
         </div>
       </motion.div>
