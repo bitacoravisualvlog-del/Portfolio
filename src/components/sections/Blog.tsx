@@ -1,29 +1,93 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { blogService, Post } from '../../services/blogService';
 import { useParams, Link } from 'react-router-dom';
 
+const SUBSTACK_URL = 'https://createdigital.substack.com';
+
+interface SubstackPost {
+  title: string;
+  description: string;
+  url: string;
+  date: string;
+}
+
+interface BlogItem {
+  key: string;
+  title: string;
+  excerpt: string;
+  date: Date | null;
+  href: string;
+  external: boolean;
+}
+
+function CardLink({ item, children }: { item: BlogItem; children: ReactNode }) {
+  if (item.external) {
+    return (
+      <a href={item.href} target="_blank" rel="noopener noreferrer" className="block space-y-4">
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link to={item.href} className="block space-y-4">
+      {children}
+    </Link>
+  );
+}
+
 export default function Blog() {
   const { t } = useTranslation();
   const { lang } = useParams<{ lang: string }>();
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<BlogItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchSitePosts = async (): Promise<BlogItem[]> => {
       try {
-        const data = await blogService.getPosts();
-        if (data) setPosts(data);
+        const data = (await blogService.getPosts()) || [];
+        return data.map((post: Post) => ({
+          key: post.id || post.slug,
+          title: post.title,
+          excerpt: `${post.content.substring(0, 150)}...`,
+          date: post.createdAt?.toDate ? post.createdAt.toDate() : null,
+          href: `/${lang}/blog/${post.slug}`,
+          external: false,
+        }));
       } catch (error) {
         console.error("Failed to fetch posts", error);
-      } finally {
-        setIsLoading(false);
+        return [];
       }
     };
-    fetchPosts();
-  }, []);
+
+    const fetchSubstackPosts = async (): Promise<BlogItem[]> => {
+      try {
+        const res = await fetch('/api/substack');
+        const data = await res.json();
+        return (data.posts || []).map((post: SubstackPost) => ({
+          key: post.url,
+          title: post.title,
+          excerpt: post.description,
+          date: new Date(post.date),
+          href: post.url,
+          external: true,
+        }));
+      } catch (error) {
+        console.error("Failed to fetch Substack posts", error);
+        return [];
+      }
+    };
+
+    Promise.all([fetchSitePosts(), fetchSubstackPosts()]).then(([site, substack]) => {
+      const all = [...site, ...substack].sort(
+        (a, b) => (b.date?.getTime() || 0) - (a.date?.getTime() || 0)
+      );
+      setPosts(all);
+      setIsLoading(false);
+    });
+  }, [lang]);
 
   const displayedPosts = showAll ? posts : posts.slice(0, 3);
 
@@ -33,9 +97,19 @@ export default function Blog() {
         <h2 className="font-bebas text-5xl md:text-7xl text-white tracking-tight leading-none">
           Blog <span className="text-gray-mid">/</span> Artículos
         </h2>
-        <p className="font-dm text-xs uppercase tracking-[0.3em] text-cream/40 max-w-xs md:text-right">
-          Pensamientos sobre diseño, marketing y estrategia digital.
-        </p>
+        <div className="space-y-3 md:text-right">
+          <p className="font-dm text-xs uppercase tracking-[0.3em] text-cream/40 max-w-xs md:ml-auto">
+            Pensamientos sobre diseño, marketing y estrategia digital.
+          </p>
+          <a
+            href={`${SUBSTACK_URL}/subscribe`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block font-dm text-xs uppercase tracking-[0.2em] text-accent hover:text-white transition-colors"
+          >
+            Suscribite al newsletter en Substack →
+          </a>
+        </div>
       </div>
 
       {isLoading ? (
@@ -47,27 +121,28 @@ export default function Blog() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {displayedPosts.map((post, idx) => (
               <motion.div
-                key={post.id}
+                key={post.key}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
                 className="group border border-gray-mid/20 p-8 hover:border-accent transition-all bg-gray-dark/30"
               >
-                <Link to={`/${lang}/blog/${post.slug}`} className="block space-y-4">
+                <CardLink item={post}>
                   <span className="text-[10px] font-dm uppercase tracking-widest text-accent">
-                    {new Date(post.createdAt?.toDate()).toLocaleDateString()}
+                    {post.date ? post.date.toLocaleDateString('es-AR') : ''}
+                    {post.external && <span className="text-cream/40"> · Substack</span>}
                   </span>
                   <h3 className="font-barlow text-2xl text-cream group-hover:text-white transition-colors leading-tight uppercase">
                     {post.title}
                   </h3>
                   <p className="font-dm text-sm text-cream/50 line-clamp-3">
-                    {post.content.substring(0, 150)}...
+                    {post.excerpt}
                   </p>
                   <span className="inline-block pt-4 text-xs font-dm uppercase tracking-[0.2em] text-white/50 group-hover:text-white transition-colors">
-                    Leer más →
+                    {post.external ? 'Leer en Substack →' : 'Leer más →'}
                   </span>
-                </Link>
+                </CardLink>
               </motion.div>
             ))}
           </div>
