@@ -5,7 +5,7 @@ export default function Clients() {
   const { t } = useTranslation();
   
   const clients = [
-    'Shori Suhi',
+    'Shori Sushi',
     'Tienda Luba',
     'Juan Asensi microcapilar',
     'Ley que Activa',
