@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Instagram, Linkedin, Mail, Twitter, Video } from 'lucide-react';
+import { Instagram, Linkedin, Mail, Twitter, Video, Youtube } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import ContactForm from '../sections/ContactForm';
@@ -11,7 +11,8 @@ export default function Footer() {
     { name: 'Instagram', icon: <Instagram size={20} />, url: 'https://instagram.com/createdigital_marketing' },
     { name: 'LinkedIn', icon: <Linkedin size={20} />, url: 'https://linkedin.com/in/veronicapereyracarneiro' },
     { name: 'Behance', icon: <Twitter size={20} />, url: 'https://www.behance.net/veronicacarneiro' },
-    { name: 'TikTok', icon: <Video size={20} />, url: 'https://tiktok.com/@create.digital.mkt' }
+    { name: 'TikTok', icon: <Video size={20} />, url: 'https://www.tiktok.com/@createdigital.mkt' },
+    { name: 'YouTube', icon: <Youtube size={20} />, url: 'https://www.youtube.com/@createdigitalok' }
   ];
 
   return (
