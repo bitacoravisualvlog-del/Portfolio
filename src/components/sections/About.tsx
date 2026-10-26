@@ -29,6 +29,7 @@ function AutoPlayVideo({ src, label }: { src: string; label: string }) {
       className="absolute inset-0 w-full h-full object-contain"
       src={src}
       muted
+      loop
       controls
       playsInline
       preload="metadata"
