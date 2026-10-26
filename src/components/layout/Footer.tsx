@@ -8,6 +8,7 @@ export default function Footer() {
   const { t } = useTranslation();
 
   const socialLinks = [
+    { name: 'Portfolio', icon: <Video size={20} />, url: 'https://tinyurl.com/veronicapereyra-portfolio' },
     { name: 'Instagram', icon: <Instagram size={20} />, url: 'https://instagram.com/createdigital_marketing' },
     { name: 'LinkedIn', icon: <Linkedin size={20} />, url: 'https://linkedin.com/in/veronicapereyracarneiro' },
     { name: 'Behance', icon: <Twitter size={20} />, url: 'https://www.behance.net/veronicacarneiro' },
