@@ -12,7 +12,8 @@ export default function Footer() {
     { name: 'LinkedIn', icon: <Linkedin size={20} />, url: 'https://linkedin.com/in/veronicapereyracarneiro' },
     { name: 'Behance', icon: <Twitter size={20} />, url: 'https://www.behance.net/veronicacarneiro' },
     { name: 'TikTok', icon: <Video size={20} />, url: 'https://www.tiktok.com/@createdigital.mkt' },
-    { name: 'YouTube', icon: <Youtube size={20} />, url: 'https://www.youtube.com/@createdigitalok' }
+    { name: 'YouTube', icon: <Youtube size={20} />, url: 'https://www.youtube.com/@createdigitalok' },
+    { name: 'Substack', icon: <Mail size={20} />, url: 'https://createdigital.substack.com' }
   ];
 
   return (
