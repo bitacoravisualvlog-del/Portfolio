@@ -57,6 +57,29 @@ export default function About() {
           ))}
         </div>
       </div>
+
+      {/* CV animado */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mt-24 max-w-5xl mx-auto space-y-6"
+      >
+        <p className="font-dm text-xs uppercase tracking-[0.3em] text-cream/40">
+          Mi CV <span className="text-accent">animado</span>
+        </p>
+        <div className="relative w-full aspect-video border border-gray-mid/20 bg-gray-dark/30 overflow-hidden">
+          <iframe
+            className="absolute inset-0 w-full h-full"
+            src="https://www.youtube-nocookie.com/embed/SaEZH8tLrGc?rel=0"
+            title="CV animado de Verónica Pereyra Carneiro"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+        </div>
+      </motion.div>
     </section>
   );
 }
