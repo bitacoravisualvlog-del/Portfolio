@@ -68,15 +68,14 @@ export default function About() {
         <p className="font-dm text-xs uppercase tracking-[0.3em] text-cream/40">
           Mi CV <span className="text-accent">animado</span>
         </p>
-        <div className="relative w-full aspect-video border border-gray-mid/20 bg-gray-dark/30 overflow-hidden">
-          <iframe
-            className="absolute inset-0 w-full h-full"
-            src="https://www.youtube-nocookie.com/embed/SaEZH8tLrGc?rel=0"
-            title="CV animado de Verónica Pereyra Carneiro"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
+        <div className="relative w-full aspect-[16/10] border border-gray-mid/20 bg-gray-dark/30 overflow-hidden">
+          <video
+            className="absolute inset-0 w-full h-full object-contain"
+            src="/linkedin-video-2008kbps.mp4#t=0.8"
+            controls
+            playsInline
+            preload="metadata"
+            aria-label="CV animado de Verónica Pereyra Carneiro"
           />
         </div>
       </motion.div>
