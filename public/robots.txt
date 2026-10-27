@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /es/admin
+Disallow: /en/admin
 
-Sitemap: https://create-digital.vercel.app/sitemap.xml
+Sitemap: https://www.createdigital.com.ar/sitemap.xml
