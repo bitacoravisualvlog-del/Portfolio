@@ -13,8 +13,8 @@ export default function Clients() {
   ];
 
   return (
-    <section className="py-20 bg-black border-y border-gray-mid/10 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-12">
+    <section className="py-12 md:py-20 bg-black border-y border-gray-mid/10 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-6 md:mb-12">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -31,7 +31,7 @@ export default function Clients() {
       </div>
 
       <div className="relative flex overflow-x-hidden">
-        <div className="py-12 animate-marquee whitespace-nowrap flex items-center">
+        <div className="py-6 md:py-12 animate-marquee whitespace-nowrap flex items-center">
           {[...clients, ...clients, ...clients].map((client, idx) => (
             <span 
               key={idx} 

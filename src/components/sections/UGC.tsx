@@ -156,7 +156,7 @@ export default function UGC() {
   };
 
   return (
-    <section id="ugc" className="py-24 px-6 md:px-12 bg-black relative overflow-hidden">
+    <section id="ugc" className="py-16 md:py-24 px-6 md:px-12 bg-black relative overflow-hidden">
       {/* Decorative ambient background blur */}
       <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
@@ -164,7 +164,7 @@ export default function UGC() {
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col mb-16 md:mb-20">
+        <div className="flex flex-col mb-10 md:mb-20">
           <div className="flex items-center gap-2 text-accent mb-4">
             <Film size={18} className="animate-pulse" />
             <span className="text-xs font-dm uppercase tracking-widest">{t('ugc.subtitle')}</span>
@@ -178,7 +178,7 @@ export default function UGC() {
         </div>
 
         {/* Vertical Video Showcase Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
           {videos.map((item) => {
             const isPlaying = playingId === item.id;
             const isMuted = mutedStates[item.id];
@@ -394,7 +394,7 @@ export default function UGC() {
         </div>
 
         {/* Proposals / Collaborations Section */}
-        <div className="mt-32 mb-16 text-center">
+        <div className="mt-16 mb-10 md:mt-32 md:mb-16 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -412,7 +412,7 @@ export default function UGC() {
         </div>
 
         {/* Proposals Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-24 items-stretch px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12 md:mb-24 items-stretch px-4">
           {[
             {
               id: 1,

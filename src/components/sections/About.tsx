@@ -55,10 +55,10 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-32 px-6 md:px-12 bg-black overflow-hidden">
-      <div className="grid lg:grid-cols-12 gap-20 items-center">
+    <section id="about" className="py-16 md:py-32 px-6 md:px-12 bg-black overflow-hidden">
+      <div className="grid lg:grid-cols-12 gap-12 md:gap-20 items-center">
         {/* Left Column: Bio */}
-        <div className="lg:col-span-7 space-y-12">
+        <div className="lg:col-span-7 space-y-8 md:space-y-12">
           <h2 className="font-bebas text-5xl md:text-8xl text-white tracking-tighter leading-none">
             SOBRE <span className="text-accent">MÍ</span>
           </h2>
@@ -75,7 +75,7 @@ export default function About() {
         </div>
 
         {/* Right Column: Stats */}
-        <div className="lg:col-span-5 flex flex-col gap-12 lg:pl-12 lg:border-l border-gray-mid/20">
+        <div className="lg:col-span-5 flex flex-col gap-8 md:gap-12 lg:pl-12 lg:border-l border-gray-mid/20">
           {stats.map((stat, idx) => (
             <motion.div
               key={idx}
@@ -101,7 +101,7 @@ export default function About() {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="mt-24 max-w-5xl mx-auto space-y-6"
+        className="mt-14 md:mt-24 max-w-5xl mx-auto space-y-6"
       >
         <p className="font-dm text-xs uppercase tracking-[0.3em] text-cream/40">
           Mi CV <span className="text-accent">animado</span>

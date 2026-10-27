@@ -35,8 +35,8 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="py-32 px-6 md:px-12 bg-black">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+    <section id="projects" className="py-16 md:py-32 px-6 md:px-12 bg-black">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10 md:mb-20">
         <h2 className="font-bebas text-5xl md:text-7xl text-white tracking-tight leading-none">
           Proyectos <span className="text-gray-mid">/</span> Projects
         </h2>
@@ -45,7 +45,7 @@ export default function Projects() {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-24">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-12 md:mb-24">
         {projects.map((p, idx) => {
           return (
             <motion.a

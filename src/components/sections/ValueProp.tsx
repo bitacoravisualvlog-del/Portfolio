@@ -12,8 +12,8 @@ export default function ValueProp() {
   ];
 
   return (
-    <section className="py-32 px-6 md:px-12 bg-black border-y border-gray-mid/10">
-      <div className="grid md:grid-cols-3 gap-16 md:gap-0">
+    <section className="py-16 md:py-32 px-6 md:px-12 bg-black border-y border-gray-mid/10">
+      <div className="grid md:grid-cols-3 gap-10 md:gap-0">
         {props.map((prop, idx) => (
           <motion.div
             key={prop.id}

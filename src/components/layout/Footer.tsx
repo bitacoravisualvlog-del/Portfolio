@@ -18,7 +18,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer id="contact" className="pt-32 pb-16 md:pt-48 md:pb-32 px-6 md:px-12 bg-black border-t border-gray-mid/20">
+    <footer id="contact" className="pt-20 pb-12 md:pt-48 md:pb-32 px-6 md:px-12 bg-black border-t border-gray-mid/20">
       <div className="max-w-7xl mx-auto flex flex-col gap-32">
         {/* Contact CTA */}
         <div className="space-y-12 flex flex-col items-center text-center">

@@ -7,13 +7,13 @@ export default function Podcast() {
   const spotifyUrl = "https://open.spotify.com/show/03j0ceu1IrqUYqXmWHPX3Y?si=Vg9JQ9rOTAO7jgyZIchSuw";
 
   return (
-    <section id="podcast" className="py-32 px-6 md:px-12 bg-gray-dark border-y border-gray-mid/20 relative overflow-hidden">
+    <section id="podcast" className="py-16 md:py-32 px-6 md:px-12 bg-gray-dark border-y border-gray-mid/20 relative overflow-hidden">
       {/* Background Graphic */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bebas text-[20rem] text-accent/5 pointer-events-none select-none whitespace-nowrap">
         MERLO'S PLACE
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+      <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-16">
         <div className="w-full md:w-1/2">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}

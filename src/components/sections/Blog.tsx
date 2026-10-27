@@ -93,8 +93,8 @@ export default function Blog() {
   const displayedPosts = showAll ? posts : posts.slice(0, 3);
 
   return (
-    <section id="blog" className="py-32 px-6 md:px-12 bg-black">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+    <section id="blog" className="py-16 md:py-32 px-6 md:px-12 bg-black">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10 md:mb-20">
         <h2 className="font-bebas text-5xl md:text-7xl text-white tracking-tight leading-none">
           Blog <span className="text-gray-mid">/</span> Artículos
         </h2>
@@ -118,7 +118,7 @@ export default function Blog() {
           <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
         </div>
       ) : posts.length > 0 ? (
-        <div className="space-y-12">
+        <div className="space-y-8 md:space-y-12">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {displayedPosts.map((post, idx) => (
               <motion.div

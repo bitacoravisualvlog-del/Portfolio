@@ -90,9 +90,9 @@ export default function Recommendations() {
   };
 
   return (
-    <section id="recommendations" className="py-32 px-6 md:px-12 bg-black border-t border-gray-mid/10">
-      <div className="grid lg:grid-cols-2 gap-20">
-        <div className="space-y-12">
+    <section id="recommendations" className="py-16 md:py-32 px-6 md:px-12 bg-black border-t border-gray-mid/10">
+      <div className="grid lg:grid-cols-2 gap-12 md:gap-20">
+        <div className="space-y-8 md:space-y-12">
           <h2 className="font-bebas text-5xl md:text-7xl text-white tracking-tight leading-none uppercase">
             Recomendaciones <span className="text-gray-mid">/</span> Feedback
           </h2>
