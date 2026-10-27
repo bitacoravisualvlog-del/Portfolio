@@ -4,8 +4,9 @@ import { motion } from 'motion/react';
 export default function Hero() {
   const { t } = useTranslation();
 
+  // En celular el alto se ajusta al contenido (menos aire bajo el botón); desde md ocupa la pantalla completa.
   return (
-    <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 relative overflow-hidden bg-black pt-8 md:pt-48">
+    <section className="flex flex-col md:min-h-screen md:justify-center px-6 md:px-12 relative overflow-hidden bg-black pt-36 pb-10 md:pt-48 md:pb-0">
       {/* Background Image - Verónica's Photo */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent md:bg-gradient-to-r md:from-black md:via-black/60 md:to-transparent" />
