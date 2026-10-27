@@ -2,6 +2,7 @@ import { useState, useEffect, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { blogService, Post } from '../../services/blogService';
+import { excerpt } from '../../lib/markdown';
 import { useParams, Link } from 'react-router-dom';
 
 const SUBSTACK_URL = 'https://createdigital.substack.com';
@@ -51,7 +52,7 @@ export default function Blog() {
         return data.map((post: Post) => ({
           key: post.id || post.slug,
           title: post.title,
-          excerpt: `${post.content.substring(0, 150)}...`,
+          excerpt: post.metaDescription?.trim() || excerpt(post.content, 150),
           date: post.createdAt?.toDate ? post.createdAt.toDate() : null,
           href: `/${lang}/blog/${post.slug}`,
           external: false,

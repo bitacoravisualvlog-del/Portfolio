@@ -21,6 +21,7 @@ export default function Admin() {
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
   const [content, setContent] = useState('');
+  const [metaDescription, setMetaDescription] = useState('');
   const [editingId, setEditingId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
@@ -86,6 +87,7 @@ export default function Admin() {
           title,
           slug,
           content,
+          metaDescription: metaDescription.trim(),
         });
         alert('Post actualizado con éxito!');
       } else {
@@ -93,6 +95,7 @@ export default function Admin() {
           title,
           slug,
           content,
+          metaDescription: metaDescription.trim(),
           published: true
         });
         alert('Post publicado con éxito!');
@@ -112,6 +115,7 @@ export default function Admin() {
     setTitle(post.title);
     setSlug(post.slug);
     setContent(post.content);
+    setMetaDescription(post.metaDescription || '');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -120,6 +124,7 @@ export default function Admin() {
     setTitle('');
     setSlug('');
     setContent('');
+    setMetaDescription('');
   };
 
   const handleDelete = async (postId: string) => {
@@ -207,7 +212,13 @@ export default function Admin() {
                       type="text"
                       required
                       value={slug}
-                      onChange={(e) => setSlug(e.target.value.toLowerCase().replace(/\s+/g, '-'))}
+                      onChange={(e) => setSlug(
+                        e.target.value
+                          .toLowerCase()
+                          .normalize('NFD').replace(/[̀-ͯ]/g, '') // saca tildes
+                          .replace(/[^a-z0-9-\s]/g, '')
+                          .replace(/\s+/g, '-')
+                      )}
                       className="w-full bg-black border border-gray-mid/30 p-4 font-dm text-cream focus:border-accent outline-none"
                       placeholder="el-futuro-del-diseno"
                     />
@@ -215,15 +226,34 @@ export default function Admin() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-widest text-cream/40 font-dm">Contenido</label>
+                  <div className="flex justify-between items-end">
+                    <label className="text-[10px] uppercase tracking-widest text-cream/40 font-dm">Meta descripción (Google)</label>
+                    <span className={`text-[10px] font-dm ${metaDescription.length > 160 ? 'text-accent' : 'text-cream/30'}`}>
+                      {metaDescription.length}/160
+                    </span>
+                  </div>
+                  <textarea
+                    rows={2}
+                    value={metaDescription}
+                    onChange={(e) => setMetaDescription(e.target.value)}
+                    className="w-full bg-black border border-gray-mid/30 p-4 font-dm text-cream focus:border-accent outline-none"
+                    placeholder="Opcional. El texto que aparece debajo del título en Google. Si lo dejás vacío, se usa el comienzo del artículo."
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[10px] uppercase tracking-widest text-cream/40 font-dm">Contenido (Markdown)</label>
                   <textarea
                     required
-                    rows={10}
+                    rows={18}
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
-                    className="w-full bg-black border border-gray-mid/30 p-4 font-dm text-cream focus:border-accent outline-none font-sans"
-                    placeholder="Escribe el contenido de tu artículo aquí..."
+                    className="w-full bg-black border border-gray-mid/30 p-4 text-cream focus:border-accent outline-none font-mono text-sm leading-relaxed"
+                    placeholder={'Escribí el artículo acá.\n\n## Subtítulo (H2)\n### Sub-subtítulo (H3)\n\n**negrita**, *cursiva*, [texto del link](https://...)\n\n- viñeta\n- otra viñeta\n\n![descripción de la imagen](https://url-de-la-imagen.jpg)'}
                   />
+                  <p className="text-[10px] font-dm text-cream/30 leading-relaxed">
+                    El título del artículo ya es el H1: dentro del texto usá ## para H2 y ### para H3. Dejá una línea en blanco entre párrafos.
+                  </p>
                 </div>
 
                 <div className="flex gap-4">

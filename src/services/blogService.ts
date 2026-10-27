@@ -57,6 +57,7 @@ export interface Post {
   published: boolean;
   authorEmail: string;
   createdAt: any;
+  metaDescription?: string;  // opcional: descripción para Google (≈155 caracteres)
 }
 
 export interface Comment {

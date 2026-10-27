@@ -2,9 +2,45 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
+import ReactMarkdown, { type Components } from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { blogService, Post, Comment } from '../../services/blogService';
+import { excerpt } from '../../lib/markdown';
+import { useSeo } from '../../lib/seo';
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
+
+// Estilos de cada elemento Markdown. El "#" se muestra como H2 para que
+// el título del artículo siga siendo el único H1 de la página.
+const markdownComponents: Components = {
+  h1: ({ children }) => <h2 className="font-bebas text-4xl md:text-5xl text-white mt-14 mb-4 leading-none">{children}</h2>,
+  h2: ({ children }) => <h2 className="font-bebas text-4xl md:text-5xl text-white mt-14 mb-4 leading-none">{children}</h2>,
+  h3: ({ children }) => <h3 className="font-barlow font-bold text-2xl uppercase text-cream mt-10 mb-3">{children}</h3>,
+  h4: ({ children }) => <h4 className="font-barlow font-bold text-xl uppercase text-cream mt-8 mb-2">{children}</h4>,
+  p: ({ children }) => <p className="mb-6">{children}</p>,
+  a: ({ href, children }) => {
+    const external = href?.startsWith('http') && !href.includes('createdigital.com.ar');
+    return (
+      <a
+        href={href}
+        className="text-accent underline underline-offset-4 hover:text-white transition-colors"
+        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      >
+        {children}
+      </a>
+    );
+  },
+  strong: ({ children }) => <strong className="text-white font-semibold">{children}</strong>,
+  ul: ({ children }) => <ul className="list-disc pl-6 mb-6 space-y-2 marker:text-accent">{children}</ul>,
+  ol: ({ children }) => <ol className="list-decimal pl-6 mb-6 space-y-2 marker:text-accent">{children}</ol>,
+  blockquote: ({ children }) => <blockquote className="border-l-2 border-accent pl-6 my-8 italic text-cream/60">{children}</blockquote>,
+  img: ({ src, alt }) => <img src={src} alt={alt || ''} loading="lazy" className="w-full my-10 border border-gray-mid/20" />,
+  hr: () => <hr className="my-12 border-gray-mid/20" />,
+  code: ({ children }) => <code className="bg-gray-dark px-1.5 py-0.5 text-sm text-cream">{children}</code>,
+  table: ({ children }) => <div className="overflow-x-auto my-8"><table className="w-full text-sm border-collapse">{children}</table></div>,
+  th: ({ children }) => <th className="border border-gray-mid/30 p-3 text-left text-white">{children}</th>,
+  td: ({ children }) => <td className="border border-gray-mid/30 p-3">{children}</td>,
+};
 
 export default function BlogPost() {
   const { slug, lang } = useParams<{ slug: string; lang: string }>();
@@ -35,6 +71,22 @@ export default function BlogPost() {
     };
     fetchData();
   }, [slug]);
+
+  // Título, descripción y canonical propios del artículo. Los artículos están
+  // en español, así que la versión /en apunta como canonical a la /es.
+  const publishedAt = post?.createdAt?.toDate ? post.createdAt.toDate() : null;
+  useSeo(
+    post
+      ? {
+          title: `${post.title} | CREATE DIGITAL`,
+          description: post.metaDescription?.trim() || excerpt(post.content),
+          path: `/es/blog/${post.slug}`,
+          type: 'article',
+          lang: 'es',
+          publishedTime: publishedAt ? publishedAt.toISOString() : undefined,
+        }
+      : null
+  );
 
   const handleCommentSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -87,7 +139,7 @@ export default function BlogPost() {
         >
           <div className="space-y-4">
             <span className="text-accent font-dm text-xs uppercase tracking-widest">
-              {new Date(post.createdAt?.toDate()).toLocaleDateString()}
+              {publishedAt ? publishedAt.toLocaleDateString('es-AR') : ''}
             </span>
             <h1 className="font-bebas text-6xl md:text-8xl leading-[0.9] text-white">
               {post.title}
@@ -96,9 +148,11 @@ export default function BlogPost() {
 
           <div className="w-full h-[1px] bg-gray-mid/20" />
 
-          <div className="font-dm text-lg leading-relaxed text-cream/80 whitespace-pre-wrap py-8">
-            {post.content}
-          </div>
+          <article className="font-dm text-lg leading-relaxed text-cream/80 py-8">
+            <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+              {post.content}
+            </ReactMarkdown>
+          </article>
 
           <div className="w-full h-[1px] bg-gray-mid/20" />
 
