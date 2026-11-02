@@ -40,7 +40,7 @@ export default function Resources() {
               <img
                 src={resource.cover}
                 alt={`Tapa: ${resource.title}`}
-                loading="lazy"
+                decoding="async"
                 width={909}
                 height={1287}
                 className="w-full max-w-[240px] sm:max-w-none mx-auto aspect-[909/1287] object-cover shadow-2xl shadow-accent/10 transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-[-1deg]"
