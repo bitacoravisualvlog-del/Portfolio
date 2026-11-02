@@ -1,11 +1,27 @@
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { Download, FileText } from 'lucide-react';
-import { resources } from '../../data/resources';
+import { resources, type Resource } from '../../data/resources';
+import { getSavedLead } from '../../services/leadService';
+import ResourceDownloadDialog, { recordLead, startDownload } from './ResourceDownloadDialog';
 
 export default function Resources() {
   const { t, i18n } = useTranslation();
   const isEnglish = i18n.language?.startsWith('en');
+  const [selected, setSelected] = useState<Resource | null>(null);
+  const closeDialog = useCallback(() => setSelected(null), []);
+
+  // Si ya dejó su email en este navegador, descarga directo y registra el recurso.
+  const handleDownload = (resource: Resource) => {
+    const saved = getSavedLead();
+    if (saved?.email) {
+      startDownload(resource);
+      recordLead(resource, saved);
+    } else {
+      setSelected(resource);
+    }
+  };
 
   if (resources.length === 0) return null;
 
@@ -31,11 +47,11 @@ export default function Resources() {
             className="group grid sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] border border-gray-mid/20 bg-gray-dark/30 hover:border-accent transition-colors"
           >
             {/* Tapa del recurso */}
-            <a
-              href={resource.file}
-              download
+            <button
+              type="button"
+              onClick={() => handleDownload(resource)}
               aria-label={`${t('resources.download', 'Descargar gratis')}: ${resource.title}`}
-              className="relative block overflow-hidden bg-black p-6 sm:p-8 border-b sm:border-b-0 sm:border-r border-gray-mid/20"
+              className="relative block w-full overflow-hidden bg-black p-6 sm:p-8 border-b sm:border-b-0 sm:border-r border-gray-mid/20 cursor-pointer"
             >
               <img
                 src={resource.cover}
@@ -45,7 +61,7 @@ export default function Resources() {
                 height={1287}
                 className="w-full max-w-[240px] sm:max-w-none mx-auto aspect-[909/1287] object-cover shadow-2xl shadow-accent/10 transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-[-1deg]"
               />
-            </a>
+            </button>
 
             {/* Información y descarga */}
             <div className="flex flex-col justify-between gap-8 p-6 sm:p-8 md:p-10">
@@ -76,19 +92,21 @@ export default function Resources() {
                   {resource.pages ? ` · ${resource.pages} ${t('resources.pages', 'páginas')}` : ''}
                   {` · ${t('resources.free', 'Gratis')}`}
                 </span>
-                <a
-                  href={resource.file}
-                  download
-                  className="inline-flex items-center gap-3 bg-accent hover:bg-accent-hover text-black px-8 py-4 font-barlow font-bold uppercase tracking-widest text-sm transition-all hover:-translate-y-1 duration-300 interactive w-fit"
+                <button
+                  type="button"
+                  onClick={() => handleDownload(resource)}
+                  className="inline-flex items-center gap-3 bg-accent hover:bg-accent-hover text-black px-8 py-4 font-barlow font-bold uppercase tracking-widest text-sm transition-all hover:-translate-y-1 duration-300 interactive w-fit cursor-pointer"
                 >
                   <Download size={18} />
                   {t('resources.download', 'Descargar gratis')}
-                </a>
+                </button>
               </div>
             </div>
           </motion.article>
         ))}
       </div>
+
+      <ResourceDownloadDialog resource={selected} onClose={closeDialog} />
     </section>
   );
 }

@@ -34,8 +34,8 @@ export default function Privacy() {
             </h2>
             <p>
               {lang === 'es' 
-                ? 'Este sitio es un portfolio profesional. No recopilamos datos personales a menos que decidas contactarnos voluntariamente a través de las opciones proporcionadas.' 
-                : 'This site is a professional portfolio. We do not collect personal data unless you voluntarily choose to contact us through the provided options.'}
+                ? 'Este sitio es un portfolio profesional. Solo recopilamos los datos que nos das voluntariamente: al escribirnos por el formulario de contacto, o tu email y, si querés, tu nombre al descargar un recurso gratuito.' 
+                : 'This site is a professional portfolio. We only collect the data you voluntarily provide: when you write to us through the contact form, or your email and, optionally, your name when you download a free resource.'}
             </p>
           </section>
 
@@ -45,8 +45,8 @@ export default function Privacy() {
             </h2>
             <p>
               {lang === 'es'
-                ? 'Cualquier información proporcionada se utilizará exclusivamente para responder a tus consultas profesionales.'
-                : 'Any information provided will be used exclusively to respond to your professional inquiries.'}
+                ? 'Usamos tus datos para responder tus consultas y para enviarte los recursos que descargaste. Solo te enviamos novedades y nuevos recursos por email si lo aceptaste expresamente, y podés pedir la baja o la eliminación de tus datos cuando quieras escribiendo a createdigital.mkt@gmail.com. No compartimos ni vendemos tus datos a terceros.'
+                : 'We use your data to answer your inquiries and to deliver the resources you downloaded. We only send you news and new resources by email if you expressly agreed to it, and you can unsubscribe or ask for your data to be deleted at any time by writing to createdigital.mkt@gmail.com. We do not share or sell your data to third parties.'}
             </p>
           </section>
 

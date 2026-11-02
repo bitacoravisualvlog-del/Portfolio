@@ -38,6 +38,20 @@
       },
       "required": ["userName", "content", "createdAt"]
     },
+    "Lead": {
+      "title": "Resource Lead",
+      "description": "A visitor who left their email to download a free resource.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "resourceId": { "type": "string" },
+        "resourceTitle": { "type": "string" },
+        "marketingOptIn": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "resourceId", "resourceTitle", "marketingOptIn", "createdAt"]
+    },
     "ContactMessage": {
       "title": "Contact Message",
       "description": "A message sent through the contact form.",
@@ -69,6 +83,10 @@
     "/messages/{messageId}": {
       "schema": "ContactMessage",
       "description": "Collection of contact messages."
+    },
+    "/leads/{leadId}": {
+      "schema": "Lead",
+      "description": "Collection of resource download leads."
     }
   }
 }

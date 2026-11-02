@@ -78,5 +78,23 @@ service cloud.firestore {
                       request.resource.data.createdAt == request.time;
       allow read, update, delete: if isAdmin();
     }
+
+    // Leads: personas que dejan su email para descargar un recurso
+    match /leads/{leadId} {
+      function isValidLead(data) {
+        return data.keys().hasOnly(['name', 'email', 'resourceId', 'resourceTitle', 'marketingOptIn', 'createdAt']) &&
+               data.name is string && data.name.size() <= 100 &&
+               data.email is string && data.email.size() <= 100 &&
+               data.email.matches('^[^@ ]+@[^@ ]+[.][^@ ]+$') &&
+               data.resourceId is string && data.resourceId.size() <= 100 &&
+               data.resourceTitle is string && data.resourceTitle.size() <= 200 &&
+               data.marketingOptIn is bool &&
+               data.createdAt is timestamp;
+      }
+
+      allow create: if isValidLead(request.resource.data) &&
+                      request.resource.data.createdAt == request.time;
+      allow read, delete: if isAdmin();
+    }
   }
 }

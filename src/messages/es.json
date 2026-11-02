@@ -122,7 +122,18 @@
     "download": "Descargar gratis",
     "pages": "páginas",
     "free": "Gratis",
-    "spanish": "En español"
+    "spanish": "En español",
+    "close": "Cerrar",
+    "form_intro": "Dejame tu email y la descarga empieza al instante.",
+    "name": "Nombre",
+    "optional": "opcional",
+    "name_placeholder": "Tu nombre",
+    "optin": "Quiero recibir nuevos recursos y novedades de CREATE DIGITAL por email.",
+    "preparing": "Preparando…",
+    "privacy_note": "Uso tus datos solo para enviarte este recurso y, si lo marcaste, novedades. Podés pedir la baja cuando quieras.",
+    "thanks": "¡Gracias! Tu descarga empezó",
+    "fallback": "¿No arrancó?",
+    "fallback_link": "Descargalo desde acá"
   },
   "footer": {
     "privacy": "Política de Privacidad"

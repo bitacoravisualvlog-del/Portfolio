@@ -41,7 +41,7 @@ export default function Header() {
   return (
     <header
       className={cn(
-        'absolute top-0 left-0 w-full z-50 transition-all duration-300 py-6 px-6 md:px-12 flex justify-between items-center',
+        'absolute top-0 left-0 w-full z-50 transition-all duration-300 py-6 px-6 md:px-8 lg:px-12 flex justify-between items-center',
         isScrolled ? 'bg-black/90 py-4 border-b border-gray-mid' : 'bg-transparent'
       )}
     >
@@ -52,26 +52,26 @@ export default function Header() {
       </div>
 
       {/* Desktop Nav */}
-      <nav className="hidden xl:flex items-center gap-8 flex-nowrap">
+      <nav className="hidden md:flex items-center gap-3 lg:gap-5 xl:gap-8 flex-nowrap">
         {navLinks.map((link) => (
           <a
             key={link.name}
             href={link.href}
-            className="font-dm text-xs lg:text-sm uppercase tracking-widest text-cream/70 hover:text-accent transition-colors whitespace-nowrap"
+            className="font-dm text-[10px] lg:text-xs xl:text-sm uppercase tracking-wide lg:tracking-wider xl:tracking-widest text-cream/70 hover:text-accent transition-colors whitespace-nowrap"
           >
             {link.name}
           </a>
         ))}
         <button
           onClick={toggleLanguage}
-          className="font-dm text-xs uppercase tracking-widest bg-gray-dark px-3 py-1 border border-gray-mid hover:border-accent transition-all"
+          className="font-dm text-[10px] lg:text-xs uppercase tracking-widest bg-gray-dark px-2 lg:px-3 py-1 border border-gray-mid hover:border-accent transition-all"
         >
           {i18n.language === 'es' ? 'EN' : 'ES'}
         </button>
       </nav>
 
       {/* Mobile Menu Toggle */}
-      <div className="flex items-center gap-4 xl:hidden text-cream">
+      <div className="flex items-center gap-4 md:hidden text-cream">
         <button
           onClick={toggleLanguage}
           className="font-dm text-xs uppercase tracking-widest bg-gray-dark px-2 py-1 border border-gray-mid"

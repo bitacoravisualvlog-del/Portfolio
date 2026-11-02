@@ -35,6 +35,11 @@ const HOME_SEO = {
   },
 } as const;
 
+function BlogRedirect() {
+  const { slug } = useParams<{ slug: string }>();
+  return <Navigate to={`/es/blog/${slug}`} replace />;
+}
+
 function Root() {
   const { lang } = useParams<{ lang: string }>();
   const { i18n } = useTranslation();
@@ -47,6 +52,9 @@ function Root() {
   }, [lang, i18n]);
 
   useSeo({ ...HOME_SEO[seoLang], path: `/${seoLang}`, lang: seoLang });
+
+  // Cualquier otra cosa en lugar del idioma (ej: /loquesea) vuelve a la home en español.
+  if (lang !== 'es' && lang !== 'en') return <Navigate to="/es" replace />;
 
   return (
     <div className="relative min-h-screen selection:bg-accent selection:text-white bg-black">
@@ -82,6 +90,10 @@ export default function App() {
         <Route path="/:lang/blog/:slug" element={<BlogPost />} />
         <Route path="/:lang/privacy" element={<Privacy />} />
         <Route path="/:lang/admin" element={<Admin />} />
+        {/* Atajos sin idioma: /admin, /privacy y /blog/... llevan a la versión en español */}
+        <Route path="/admin" element={<Navigate to="/es/admin" replace />} />
+        <Route path="/privacy" element={<Navigate to="/es/privacy" replace />} />
+        <Route path="/blog/:slug" element={<BlogRedirect />} />
         <Route path="/" element={<Navigate to="/es" replace />} />
         {/* Fallback for invalid locales */}
         <Route path="*" element={<Navigate to="/es" replace />} />

@@ -122,7 +122,18 @@
     "download": "Free download",
     "pages": "pages",
     "free": "Free",
-    "spanish": "In Spanish"
+    "spanish": "In Spanish",
+    "close": "Close",
+    "form_intro": "Leave your email and the download starts right away.",
+    "name": "Name",
+    "optional": "optional",
+    "name_placeholder": "Your name",
+    "optin": "I want to receive new resources and news from CREATE DIGITAL by email.",
+    "preparing": "Preparing…",
+    "privacy_note": "I only use your data to send you this resource and, if you checked the box, news. You can unsubscribe anytime.",
+    "thanks": "Thanks! Your download has started",
+    "fallback": "Didn't start?",
+    "fallback_link": "Download it here"
   },
   "footer": {
     "privacy": "Privacy Policy"

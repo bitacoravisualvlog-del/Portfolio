@@ -4,9 +4,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { auth, loginWithGoogle, logout, subscribeToAuth } from '../../lib/firebase';
 import { blogService, Post } from '../../services/blogService';
 import { contactService, ContactMessage } from '../../services/contactService';
+import { leadService, Lead } from '../../services/leadService';
 import { User } from 'firebase/auth';
 import { motion } from 'motion/react';
-import { Trash2 } from 'lucide-react';
+import { Download, Trash2 } from 'lucide-react';
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
 
@@ -27,6 +28,9 @@ export default function Admin() {
   const [isAuthLoading, setIsAuthLoading] = useState(true);
   const [isLoadingPosts, setIsLoadingPosts] = useState(false);
   const [isLoadingMessages, setIsLoadingMessages] = useState(false);
+  const [leads, setLeads] = useState<Lead[]>([]);
+  const [isLoadingLeads, setIsLoadingLeads] = useState(false);
+  const [leadsError, setLeadsError] = useState(false);
 
   const isAdmin = user?.email === ADMIN_EMAIL && user?.emailVerified;
 
@@ -42,8 +46,55 @@ export default function Admin() {
     if (isAdmin) {
       loadPosts();
       loadMessages();
+      loadLeads();
     }
   }, [isAdmin]);
+
+  const loadLeads = async () => {
+    setIsLoadingLeads(true);
+    setLeadsError(false);
+    try {
+      const data = await leadService.getAllLeads();
+      setLeads(data || []);
+    } catch (error) {
+      console.error("Error loading leads", error);
+      setLeadsError(true);
+    } finally {
+      setIsLoadingLeads(false);
+    }
+  };
+
+  const handleDeleteLead = async (leadId: string) => {
+    if (!window.confirm('¿Borrar este contacto de la lista?')) return;
+    try {
+      await leadService.deleteLead(leadId);
+      setLeads(leads.filter(l => l.id !== leadId));
+    } catch (error) {
+      alert('No se pudo borrar: ' + (error instanceof Error ? error.message : String(error)));
+    }
+  };
+
+  // Exporta los leads a CSV (separado por ";" para que Excel en español lo abra en columnas).
+  const exportLeadsCsv = () => {
+    const cell = (v: unknown) => `"${String(v ?? '').replace(/"/g, '""')}"`;
+    const rows = [
+      ['Fecha', 'Email', 'Nombre', 'Recurso', 'Acepta novedades'],
+      ...leads.map(l => [
+        l.createdAt?.toDate ? l.createdAt.toDate().toLocaleString('es-AR') : '',
+        l.email,
+        l.name,
+        l.resourceTitle,
+        l.marketingOptIn ? 'Sí' : 'No',
+      ]),
+    ];
+    const csv = '﻿' + rows.map(r => r.map(cell).join(';')).join('\r\n');
+    const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `leads-recursos-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
 
   const loadPosts = async () => {
     setIsLoadingPosts(true);
@@ -340,6 +391,70 @@ export default function Admin() {
                       </p>
                     </div>
                   ))}
+                </div>
+              )}
+            </section>
+
+            <section className="space-y-8">
+              <div className="flex flex-wrap justify-between items-end gap-4 border-b border-accent/20 pb-2">
+                <h2 className="font-bebas text-3xl">
+                  Descargas de Recursos {leads.length > 0 && <span className="text-cream/40">({leads.length})</span>}
+                </h2>
+                {leads.length > 0 && (
+                  <button
+                    onClick={exportLeadsCsv}
+                    className="inline-flex items-center gap-2 text-accent hover:text-white font-dm text-xs uppercase tracking-widest pb-1 transition-colors"
+                  >
+                    <Download size={14} /> Exportar CSV
+                  </button>
+                )}
+              </div>
+              {isLoadingLeads ? (
+                <p className="font-dm text-cream/40">Cargando descargas...</p>
+              ) : leadsError ? (
+                <p className="font-dm text-cream/40 italic">No se pudieron cargar las descargas. Revisá que la regla de "leads" esté publicada en Firebase.</p>
+              ) : leads.length === 0 ? (
+                <p className="font-dm text-cream/40 italic">Todavía nadie descargó recursos.</p>
+              ) : (
+                <div className="overflow-x-auto border border-gray-mid/20">
+                  <table className="w-full font-dm text-sm">
+                    <thead className="bg-gray-dark text-[10px] uppercase tracking-widest text-cream/40 text-left">
+                      <tr>
+                        <th className="p-4 font-normal">Fecha</th>
+                        <th className="p-4 font-normal">Email</th>
+                        <th className="p-4 font-normal">Nombre</th>
+                        <th className="p-4 font-normal">Recurso</th>
+                        <th className="p-4 font-normal">Novedades</th>
+                        <th className="p-4" />
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {leads.map(l => (
+                        <tr key={l.id} className="border-t border-gray-mid/20">
+                          <td className="p-4 text-cream/50 whitespace-nowrap">
+                            {l.createdAt?.toDate ? l.createdAt.toDate().toLocaleDateString('es-AR') : '—'}
+                          </td>
+                          <td className="p-4 text-cream">
+                            <a href={`mailto:${l.email}`} className="hover:text-accent">{l.email}</a>
+                          </td>
+                          <td className="p-4 text-cream/70">{l.name || '—'}</td>
+                          <td className="p-4 text-cream/70">{l.resourceTitle}</td>
+                          <td className="p-4">
+                            <span className={l.marketingOptIn ? 'text-accent' : 'text-cream/30'}>{l.marketingOptIn ? 'Sí' : 'No'}</span>
+                          </td>
+                          <td className="p-4 text-right">
+                            <button
+                              onClick={() => l.id && handleDeleteLead(l.id)}
+                              className="p-2 text-cream/30 hover:text-red-500 transition-colors"
+                              title="Borrar"
+                            >
+                              <Trash2 size={16} />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               )}
             </section>
