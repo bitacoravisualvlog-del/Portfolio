@@ -18,6 +18,7 @@ import About from './components/sections/About';
 import Podcast from './components/sections/Podcast';
 import Privacy from './components/sections/Privacy';
 import Blog from './components/sections/Blog';
+import Resources from './components/sections/Resources';
 import Recommendations from './components/sections/Recommendations';
 import BlogPost from './components/sections/BlogPost';
 import Admin from './components/sections/Admin';
@@ -64,6 +65,7 @@ function Root() {
         <About />
         <Podcast />
         <Blog />
+        <Resources />
         <Recommendations />
       </main>
 

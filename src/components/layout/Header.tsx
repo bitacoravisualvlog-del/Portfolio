@@ -34,6 +34,7 @@ export default function Header() {
     { name: t('nav.about'), href: '#about' },
     { name: t('nav.podcast'), href: '#podcast' },
     { name: t('nav.blog'), href: '#blog' },
+    { name: t('nav.resources'), href: '#recursos' },
     { name: t('nav.contact'), href: '#contact' },
   ];
 
@@ -51,7 +52,7 @@ export default function Header() {
       </div>
 
       {/* Desktop Nav */}
-      <nav className="hidden md:flex items-center gap-4 lg:gap-8 flex-nowrap">
+      <nav className="hidden xl:flex items-center gap-8 flex-nowrap">
         {navLinks.map((link) => (
           <a
             key={link.name}
@@ -70,7 +71,7 @@ export default function Header() {
       </nav>
 
       {/* Mobile Menu Toggle */}
-      <div className="flex items-center gap-4 md:hidden text-cream">
+      <div className="flex items-center gap-4 xl:hidden text-cream">
         <button
           onClick={toggleLanguage}
           className="font-dm text-xs uppercase tracking-widest bg-gray-dark px-2 py-1 border border-gray-mid"

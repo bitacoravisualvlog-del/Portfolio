@@ -6,7 +6,8 @@
     "podcast": "Podcast",
     "ugc": "UGC",
     "contact": "Contact",
-    "blog": "Blog"
+    "blog": "Blog",
+    "resources": "Resources"
   },
   "clients": {
     "title": "They trust the vision",
@@ -113,6 +114,15 @@
   "blog": {
     "show_more": "Show more articles",
     "show_less": "Show less"
+  },
+  "resources": {
+    "title": "Resources",
+    "subtitle": "Downloads",
+    "tagline": "Free tools to help your brand grow.",
+    "download": "Free download",
+    "pages": "pages",
+    "free": "Free",
+    "spanish": "In Spanish"
   },
   "footer": {
     "privacy": "Privacy Policy"

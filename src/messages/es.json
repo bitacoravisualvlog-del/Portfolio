@@ -6,7 +6,8 @@
     "podcast": "Podcast",
     "ugc": "UGC",
     "contact": "Contacto",
-    "blog": "Blog"
+    "blog": "Blog",
+    "resources": "Recursos"
   },
   "clients": {
     "title": "Confían en mi visión",
@@ -113,6 +114,15 @@
   "blog": {
     "show_more": "Ver más artículos",
     "show_less": "Ver menos"
+  },
+  "resources": {
+    "title": "Recursos",
+    "subtitle": "Descargables",
+    "tagline": "Herramientas gratuitas para que hagas crecer tu marca.",
+    "download": "Descargar gratis",
+    "pages": "páginas",
+    "free": "Gratis",
+    "spanish": "En español"
   },
   "footer": {
     "privacy": "Política de Privacidad"
