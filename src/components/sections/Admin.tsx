@@ -125,6 +125,14 @@ export default function Admin() {
       await loginWithGoogle();
     } catch (error) {
       console.error("Login failed", error);
+      const code = (error as { code?: string })?.code || '';
+      if (code === 'auth/popup-closed-by-user' || code === 'auth/cancelled-popup-request') return;
+      const messages: Record<string, string> = {
+        'auth/popup-blocked': 'El navegador bloqueó la ventana de Google. Permití las ventanas emergentes para este sitio y volvé a intentar.',
+        'auth/unauthorized-domain': 'Este dominio no está autorizado en Firebase (Authentication → Configuración → Dominios autorizados).',
+        'auth/network-request-failed': 'No hay conexión. Revisá internet y volvé a intentar.',
+      };
+      alert(messages[code] || `No se pudo iniciar sesión${code ? ` (${code})` : ''}. Volvé a intentar.`);
     }
   };
 
