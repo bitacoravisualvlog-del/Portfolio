@@ -57,7 +57,7 @@ export default function Footer() {
           
           <div className="hidden md:block flex-grow h-[1px] bg-cream/10 mx-12" />
 
-          <div className="flex items-center gap-8">
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-6 gap-y-3 md:gap-8">
             {socialLinks.map(link => (
               <a
                 key={link.name}
