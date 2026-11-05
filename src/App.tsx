@@ -14,6 +14,7 @@ import ValueProp from './components/sections/ValueProp';
 import Services from './components/sections/Services';
 import Projects from './components/sections/Projects';
 import UGC from './components/sections/UGC';
+import AIContent from './components/sections/AIContent';
 import About from './components/sections/About';
 import Podcast from './components/sections/Podcast';
 import Privacy from './components/sections/Privacy';
@@ -70,6 +71,7 @@ function Root() {
         <Services />
         <Projects />
         <UGC />
+        <AIContent />
         <About />
         <Podcast />
         <Blog />

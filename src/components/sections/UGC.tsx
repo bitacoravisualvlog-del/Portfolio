@@ -1,30 +1,21 @@
-import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion, AnimatePresence } from 'motion/react';
-import { Play, Volume2, VolumeX, Sparkles, Film } from 'lucide-react';
+import { motion } from 'motion/react';
+import { Film } from 'lucide-react';
+import VideoFrame, { type VideoItem, useVideoPlayback } from '../ui/VideoFrame';
 
 // Trabajos UGC agrupados por categoría.
 // Para sumar uno nuevo: subí el video (.mp4) y su tapa a /public, agregá un objeto acá
 // y sus textos en src/messages (es.json y en.json, dentro de "ugc").
-type CategoryId = 'beauty' | 'hospitality' | 'ai';
+// Los spec ads hechos con IA van en la sección aparte AIContent.
+type CategoryId = 'beauty' | 'hospitality';
 
-interface UgcItem {
-  id: string;
+interface UgcItem extends VideoItem {
   category: CategoryId;
-  badge: string;
-  titleKey: string;
-  descKey: string;
-  video: string;
-  poster: string;
-  agency?: { name: string; url: string };
-  format?: 'vertical' | 'horizontal';  // por defecto vertical (9:16)
-  noteKey?: string;                     // aclaración debajo de la descripción
 }
 
 const CATEGORIES: { id: CategoryId; labelKey: string; fallback: string }[] = [
   { id: 'beauty', labelKey: 'ugc.cat_beauty', fallback: 'Productos · Belleza y cuidado de la piel' },
   { id: 'hospitality', labelKey: 'ugc.cat_hospitality', fallback: 'Hotelería y turismo' },
-  { id: 'ai', labelKey: 'ugc.cat_ai', fallback: 'Creación de contenido con IA · Spec ads' },
 ];
 
 const WILDFI = { name: 'WILDFI', url: 'https://www.wildfi.com/es/' };
@@ -59,230 +50,54 @@ const UGC_ITEMS: UgcItem[] = [
     video: '/ugc-hotel-emperador.mp4',
     poster: '/ugc-hotel-emperador.webp',
   },
-  {
-    id: 'spec-plusbelle',
-    category: 'ai',
-    badge: 'SPEC AD · PLUSBELLE',
-    titleKey: 'ugc.spec_plusbelle',
-    descKey: 'ugc.desc_spec_plusbelle',
-    video: '/spec-ad-plusbelle.mp4',
-    poster: '/spec-ad-plusbelle.webp',
-    format: 'horizontal',
-    noteKey: 'ugc.spec_note',
-  },
-  {
-    id: 'spec-mostaza',
-    category: 'ai',
-    badge: 'SPEC AD · MOSTAZA',
-    titleKey: 'ugc.spec_mostaza',
-    descKey: 'ugc.desc_spec_mostaza',
-    video: '/spec-ad-mostaza.mp4',
-    poster: '/spec-ad-mostaza.webp',
-    noteKey: 'ugc.spec_note',
-  },
 ];
 
 export default function UGC() {
   const { t } = useTranslation();
-  const [playingId, setPlayingId] = useState<string | null>(null);
-  const [mutedStates, setMutedStates] = useState<Record<string, boolean>>({});
-  const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
+  const { frameProps } = useVideoPlayback();
 
-  const isMuted = (id: string) => mutedStates[id] ?? true;
+  const renderItem = (item: UgcItem, index: number) => (
+    <motion.div
+      key={item.id}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-100px' }}
+      transition={{ duration: 0.6, delay: index * 0.15 }}
+      className="flex flex-col"
+    >
+      <VideoFrame item={item} {...frameProps(item.id)} />
 
-  const handlePlayToggle = (id: string) => {
-    const video = videoRefs.current[id];
-    if (!video) return;
+      {/* Ficha debajo del celular */}
+      <div className="mt-8 text-center px-4 mx-auto w-full group/info max-w-sm">
+        <h3 className="font-barlow text-2xl text-cream group-hover/info:text-accent font-bold uppercase tracking-wide transition-colors duration-300">
+          {t(item.titleKey)}
+        </h3>
 
-    if (playingId === id) {
-      video.pause();
-      setPlayingId(null);
-      return;
-    }
-
-    // Pausa el video que estuviera sonando
-    if (playingId) videoRefs.current[playingId]?.pause();
-
-    video.play().then(() => setPlayingId(id)).catch(() => {
-      // Si el navegador bloquea el audio, reproduce en silencio
-      video.muted = true;
-      setMutedStates(prev => ({ ...prev, [id]: true }));
-      video.play().then(() => setPlayingId(id)).catch(() => {});
-    });
-  };
-
-  const handleMuteToggle = (e: React.MouseEvent, id: string) => {
-    e.stopPropagation();
-    const video = videoRefs.current[id];
-    if (!video) return;
-    const next = !isMuted(id);
-    video.muted = next;
-    setMutedStates(prev => ({ ...prev, [id]: next }));
-  };
-
-  const renderItem = (item: UgcItem, index: number) => {
-    const isPlaying = playingId === item.id;
-    const muted = isMuted(item.id);
-    const horizontal = item.format === 'horizontal';
-
-    return (
-      <motion.div
-        key={item.id}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6, delay: index * 0.15 }}
-        className={`flex flex-col ${horizontal ? 'lg:col-span-2' : ''}`}
-      >
-        {/* Marco vertical tipo celular */}
-        <div
-          onClick={() => handlePlayToggle(item.id)}
-          className={`relative w-full mx-auto bg-gray-dark border border-gray-mid/60 hover:border-accent/40 overflow-hidden cursor-pointer group shadow-2xl transition-all duration-500 ${horizontal ? 'aspect-video rounded-2xl' : 'aspect-[9/16] max-w-sm rounded-3xl'}`}
-        >
-          {/* Isla del celular (solo formato vertical) */}
-          {!horizontal && (
-            <div className="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-4 bg-black rounded-lg z-30 flex items-center justify-center opacity-80 border border-gray-mid/20">
-              <div className="w-2 h-2 rounded-full bg-gray-dark" />
-            </div>
-          )}
-
-          <video
-            ref={el => { videoRefs.current[item.id] = el; }}
-            src={item.video}
-            poster={item.poster}
-            preload="none"
-            loop
-            playsInline
-            muted={muted}
-            onEnded={() => setPlayingId(null)}
-            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 brightness-[0.85] group-hover:brightness-100"
-          />
-
-          {/* Tapa mientras no se reproduce */}
-          <AnimatePresence>
-            {!isPlaying && (
-              <motion.div
-                initial={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4 }}
-                className="absolute inset-0 bg-[#0D0D0D] z-10 overflow-hidden"
-              >
-                <div
-                  className="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700 pointer-events-none"
-                  style={{ backgroundImage: `url(${item.poster})` }}
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Degradado para leer los textos */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-300 z-10 pointer-events-none" />
-
-          {/* Marca */}
-          <div className={`absolute ${horizontal ? 'top-5' : 'top-10'} left-6 z-20 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-gray-mid/40`}>
-            <Sparkles size={12} className="text-accent" />
-            <span className="font-dm text-[11px] uppercase tracking-widest text-[#FFF]">{item.badge}</span>
+        {item.agency && (
+          <div className="mt-2.5 flex items-center justify-center gap-1 text-xs">
+            <span className="font-dm text-cream/40 uppercase tracking-widest text-[10px]">
+              {t('ugc.agency')}
+            </span>
+            <a
+              href={item.agency.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-dm text-accent hover:text-white underline font-extrabold uppercase tracking-widest text-[10px] transition-colors duration-300"
+            >
+              {item.agency.name}
+            </a>
           </div>
+        )}
 
-          {/* Sonido (solo mientras se reproduce) */}
-          <AnimatePresence>
-            {isPlaying && (
-              <motion.button
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={(e) => handleMuteToggle(e, item.id)}
-                className={`absolute ${horizontal ? 'top-5' : 'top-10'} right-6 z-30 w-8 h-8 rounded-full bg-black/70 hover:bg-black/95 backdrop-blur-md flex items-center justify-center border border-gray-mid/30 text-cream hover:text-accent transition-all duration-300`}
-                title={muted ? 'Unmute' : 'Mute'}
-              >
-                {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
-              </motion.button>
-            )}
-          </AnimatePresence>
-
-          {/* Botón de play */}
-          <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-            <AnimatePresence>
-              {!isPlaying && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  className="w-14 h-14 rounded-full bg-accent/90 text-black flex items-center justify-center pl-1 shadow-lg shadow-accent/20 border border-white/10"
-                >
-                  <Play size={20} fill="currentColor" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* Detalle que aparece al reproducir */}
-          <AnimatePresence>
-            {isPlaying && (
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 15 }}
-                transition={{ duration: 0.4 }}
-                className="absolute bottom-6 left-6 right-6 z-20"
-              >
-                {item.agency && (
-                  <span className="text-[10px] uppercase tracking-widest font-bold text-accent mb-2 block">
-                    {t('ugc.agency')}
-                    <a
-                      href={item.agency.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="underline text-white hover:text-accent transition-colors ml-1 font-extrabold"
-                    >
-                      {item.agency.name}
-                    </a>
-                  </span>
-                )}
-                <h3 className="font-bebas text-2xl text-white mb-2 leading-tight tracking-wider">
-                  {t(item.titleKey)}
-                </h3>
-                <p className="font-dm text-cream/70 text-xs leading-relaxed line-clamp-3">
-                  {t(item.descKey)}
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* Ficha debajo del celular */}
-        <div className={`mt-8 text-center px-4 mx-auto w-full group/info ${horizontal ? 'max-w-2xl' : 'max-w-sm'}`}>
-          <h3 className="font-barlow text-2xl text-cream group-hover/info:text-accent font-bold uppercase tracking-wide transition-colors duration-300">
-            {t(item.titleKey)}
-          </h3>
-
-          {item.agency && (
-            <div className="mt-2.5 flex items-center justify-center gap-1 text-xs">
-              <span className="font-dm text-cream/40 uppercase tracking-widest text-[10px]">
-                {t('ugc.agency')}
-              </span>
-              <a
-                href={item.agency.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-dm text-accent hover:text-white underline font-extrabold uppercase tracking-widest text-[10px] transition-colors duration-300"
-              >
-                {item.agency.name}
-              </a>
-            </div>
-          )}
-
-          <p className="font-dm text-sm text-cream/60 leading-relaxed mt-4">
-            {t(item.descKey)}
-          </p>
-          {item.noteKey && (
-            <p className="font-dm text-[11px] text-cream/35 italic mt-3">{t(item.noteKey)}</p>
-          )}
-        </div>
-      </motion.div>
-    );
-  };
+        <p className="font-dm text-sm text-cream/60 leading-relaxed mt-4">
+          {t(item.descKey)}
+        </p>
+        {item.noteKey && (
+          <p className="font-dm text-[11px] text-cream/35 italic mt-3">{t(item.noteKey)}</p>
+        )}
+      </div>
+    </motion.div>
+  );
 
   return (
     <section id="ugc" className="py-16 md:py-24 px-6 md:px-12 bg-black relative overflow-hidden">
@@ -310,14 +125,11 @@ export default function UGC() {
         <div className="space-y-16 md:space-y-24">
           {CATEGORIES.map((category, catIndex) => {
             const items = UGC_ITEMS.filter(item => item.category === category.id);
-            const hasHorizontal = items.some(item => item.format === 'horizontal');
-            const gridClass = hasHorizontal
-              ? 'lg:grid-cols-3 max-w-6xl items-start'
-              : items.length > 1 ? 'md:grid-cols-2 max-w-5xl' : 'max-w-sm';
+            const gridClass = items.length > 1 ? 'md:grid-cols-2 max-w-5xl' : 'max-w-sm';
             if (items.length === 0) return null;
             return (
               <div key={category.id}>
-                <div className={`flex items-center gap-4 mx-auto mb-8 md:mb-12 ${hasHorizontal ? 'max-w-6xl' : 'max-w-5xl'}`}>
+                <div className="flex items-center gap-4 max-w-5xl mx-auto mb-8 md:mb-12">
                   <span className="font-barlow font-bold text-sm md:text-base uppercase tracking-[0.2em] text-accent md:whitespace-nowrap">
                     <span className="text-cream/30">{String(catIndex + 1).padStart(2, '0')} · </span>
                     {t(category.labelKey, category.fallback)}
