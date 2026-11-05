@@ -113,7 +113,13 @@
     "hotel_emperador": "Hotel Emperador • Buenos Aires, Recoleta",
     "desc_hotel_emperador": "Contenido UGC de hotelería con estética aesthetic y ritmo dinámico, pensado para inspirar a viajeros y despertar ganas de reservar. Recorrido completo por la experiencia del hotel (lobby, habitación, desayuno buffet, amenities y propuesta nocturna) con textos claros que responden lo que todo viajero quiere saber: ubicación, cómo llegar y qué hay cerca.",
     "cat_beauty": "Productos · Belleza y cuidado de la piel",
-    "cat_hospitality": "Hotelería y turismo"
+    "cat_hospitality": "Hotelería y turismo",
+    "cat_ai": "Creación de contenido con IA · Spec ads",
+    "spec_plusbelle": "Plusbelle Esencia • Spec ad",
+    "desc_spec_plusbelle": "Spec ad para Plusbelle Esencia creado íntegramente con herramientas de IA. Una historia con humor protagonizada por un gato persa y un gato callejero, con estética cálida de publicidad argentina retro y cierre de producto en estudio. Concepto, guion, storyboard, generación de imágenes y animación con IA, y edición final.",
+    "spec_mostaza": "Mostaza • Nueva Doble Smash • Spec ad",
+    "desc_spec_mostaza": "Spec ad vertical para el lanzamiento de la Nueva Doble Smash de Mostaza, creado con IA. Fuego, cheddar derretido y la salsa de la casa en cámara lenta sobre fondo negro, con textos de ingredientes y cierre de lanzamiento, pensado para Reels y TikTok.",
+    "spec_note": "Pieza conceptual no oficial, sin vínculo con la marca."
   },
   "blog": {
     "show_more": "Ver más artículos",

@@ -113,7 +113,13 @@
     "hotel_emperador": "Hotel Emperador • Buenos Aires, Recoleta",
     "desc_hotel_emperador": "Hospitality UGC with an aesthetic look and dynamic pacing, designed to inspire travelers and spark the desire to book. A full walkthrough of the hotel experience (lobby, room, breakfast buffet, amenities and nightlife) with clear on-screen text answering what every traveler wants to know: location, how to get there and what is nearby.",
     "cat_beauty": "Products · Beauty & skincare",
-    "cat_hospitality": "Hospitality & travel"
+    "cat_hospitality": "Hospitality & travel",
+    "cat_ai": "AI-powered content creation · Spec ads",
+    "spec_plusbelle": "Plusbelle Esencia • Spec ad",
+    "desc_spec_plusbelle": "Spec ad for Plusbelle Esencia created entirely with AI tools. A humorous story starring a Persian cat and a street cat, with the warm look of retro Argentine advertising and a studio product close. Concept, script, storyboard, AI image generation and animation, and final edit.",
+    "spec_mostaza": "Mostaza • New Doble Smash • Spec ad",
+    "desc_spec_mostaza": "Vertical spec ad for the launch of Mostaza's New Doble Smash, created with AI. Flames, melted cheddar and the house sauce in slow motion on a black background, with ingredient callouts and a launch end card, made for Reels and TikTok.",
+    "spec_note": "Unofficial concept piece, not affiliated with the brand."
   },
   "blog": {
     "show_more": "Show more articles",
