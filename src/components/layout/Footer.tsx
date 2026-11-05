@@ -50,14 +50,14 @@ export default function Footer() {
         <ContactForm />
 
         {/* Social & Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-12 pt-24 border-t border-gray-mid/10">
-          <p className="font-dm text-[10px] uppercase tracking-widest text-cream/20 text-center md:text-left">
+        <div className="flex flex-col min-[1150px]:flex-row justify-between items-center gap-12 min-[1150px]:gap-0 pt-24 border-t border-gray-mid/10">
+          <p className="font-dm text-[10px] uppercase tracking-widest text-cream/20 text-center min-[1150px]:text-left min-[1150px]:whitespace-nowrap">
             © 2026 CREATE DIGITAL · BUENOS AIRES, AR · <Link to="/es/privacy" className="hover:text-accent uppercase">{t('footer.privacy')}</Link>
           </p>
           
-          <div className="hidden md:block flex-grow h-[1px] bg-cream/10 mx-12" />
+          <div className="hidden min-[1150px]:block flex-grow min-w-6 h-[1px] bg-cream/10 mx-6 xl:mx-12" />
 
-          <div className="grid grid-cols-4 gap-x-3 gap-y-4 w-full max-w-sm text-center md:flex md:w-auto md:max-w-none md:items-center md:justify-end md:gap-8">
+          <div className="grid grid-cols-4 gap-x-3 gap-y-4 w-full max-w-sm text-center md:flex md:w-auto md:max-w-none md:items-center md:justify-center min-[1150px]:justify-end md:gap-6 xl:gap-8">
             {socialLinks.map(link => (
               <a
                 key={link.name}
