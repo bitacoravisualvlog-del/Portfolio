@@ -44,6 +44,8 @@ export default function Admin() {
 
   useEffect(() => {
     if (isAdmin) {
+      // Marca este navegador como tráfico interno para que Analytics no cuente tus visitas.
+      try { localStorage.setItem('cd_internal', '1'); } catch { /* almacenamiento bloqueado */ }
       loadPosts();
       loadMessages();
       loadLeads();
