@@ -51,13 +51,13 @@ export default function Footer() {
 
         {/* Social & Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-12 pt-24 border-t border-gray-mid/10">
-          <p className="font-dm text-[10px] uppercase tracking-widest text-cream/20">
+          <p className="font-dm text-[10px] uppercase tracking-widest text-cream/20 text-center md:text-left">
             © 2026 CREATE DIGITAL · BUENOS AIRES, AR · <Link to="/es/privacy" className="hover:text-accent uppercase">{t('footer.privacy')}</Link>
           </p>
           
           <div className="hidden md:block flex-grow h-[1px] bg-cream/10 mx-12" />
 
-          <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-6 gap-y-3 md:gap-8">
+          <div className="grid grid-cols-4 gap-x-3 gap-y-4 w-full max-w-sm text-center md:flex md:w-auto md:max-w-none md:items-center md:justify-end md:gap-8">
             {socialLinks.map(link => (
               <a
                 key={link.name}
@@ -65,7 +65,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent('social_click', { network: link.name })}
-                className="font-barlow font-bold text-xs uppercase tracking-widest text-cream/60 hover:text-accent transition-colors interactive"
+                className="font-barlow font-bold text-[11px] md:text-xs uppercase tracking-wider md:tracking-widest text-cream/60 hover:text-accent transition-colors interactive whitespace-nowrap"
               >
                 {link.name}
               </a>
