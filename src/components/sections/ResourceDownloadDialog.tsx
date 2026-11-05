@@ -5,9 +5,11 @@ import { AnimatePresence, motion } from 'motion/react';
 import { Check, Download, X } from 'lucide-react';
 import type { Resource } from '../../data/resources';
 import { leadService, getSavedLead, saveLeadLocally } from '../../services/leadService';
+import { trackEvent } from '../../lib/analytics';
 
 // Inicia la descarga del archivo sin salir de la página.
 export function startDownload(resource: Resource) {
+  trackEvent('resource_download', { resource_id: resource.id, resource_title: resource.title });
   const a = document.createElement('a');
   a.href = resource.file;
   a.download = resource.file.split('/').pop() || '';
@@ -64,6 +66,7 @@ export default function ResourceDownloadDialog({ resource, onClose }: Props) {
     setStatus('sending');
     const data = { name, email, marketingOptIn: optIn };
     await recordLead(resource, data);
+    trackEvent('generate_lead', { lead_source: 'resource_download', resource_id: resource.id, marketing_opt_in: optIn });
     saveLeadLocally(data);
     startDownload(resource);
     setStatus('done');

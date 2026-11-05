@@ -56,8 +56,8 @@ export default function Privacy() {
             </h2>
             <p>
               {lang === 'es'
-                ? 'Podemos utilizar cookies técnicas esenciales para el funcionamiento básico del sitio y análisis de tráfico anónimo.'
-                : 'We may use essential technical cookies for the basic functioning of the site and anonymous traffic analysis.'}
+                ? 'Usamos cookies técnicas esenciales para el funcionamiento del sitio y Google Analytics para medir visitas de forma agregada (páginas vistas, origen del tráfico y acciones como descargas o envíos de formularios). Podés bloquear estas cookies desde la configuración de tu navegador.'
+                : 'We use essential technical cookies for the site to work and Google Analytics to measure visits in aggregate (page views, traffic sources and actions such as downloads or form submissions). You can block these cookies in your browser settings.'}
             </p>
           </section>
 

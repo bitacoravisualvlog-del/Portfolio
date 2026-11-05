@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { contactService } from '../../services/contactService';
+import { trackEvent } from '../../lib/analytics';
 
 export default function ContactForm() {
   const { t } = useTranslation();
@@ -21,6 +22,7 @@ export default function ContactForm() {
     try {
       await contactService.sendMessage(name, email, phone, subject, message);
       setStatus('success');
+      trackEvent('generate_lead', { lead_source: 'contact_form' });
       setName('');
       setEmail('');
       setPhone('');

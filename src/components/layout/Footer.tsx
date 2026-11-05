@@ -3,6 +3,7 @@ import { Instagram, Linkedin, Mail, Twitter, Video, Youtube } from 'lucide-react
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import ContactForm from '../sections/ContactForm';
+import { trackEvent } from '../../lib/analytics';
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -63,6 +64,7 @@ export default function Footer() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent('social_click', { network: link.name })}
                 className="font-barlow font-bold text-xs uppercase tracking-widest text-cream/60 hover:text-accent transition-colors interactive"
               >
                 {link.name}
