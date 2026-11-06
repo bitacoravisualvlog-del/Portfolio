@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { contactService } from '../../services/contactService';
@@ -13,6 +13,16 @@ export default function ContactForm() {
   const [message, setMessage] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  // Otras secciones (ej. "Consultar servicio") pueden precargar el asunto del mensaje.
+  useEffect(() => {
+    const onPrefill = (e: Event) => {
+      const detail = (e as CustomEvent<{ subject?: string }>).detail;
+      if (detail?.subject) setSubject(detail.subject);
+    };
+    window.addEventListener('cd:contact-prefill', onPrefill);
+    return () => window.removeEventListener('cd:contact-prefill', onPrefill);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
