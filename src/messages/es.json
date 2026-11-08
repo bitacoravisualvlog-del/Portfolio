@@ -156,5 +156,8 @@
   },
   "footer": {
     "privacy": "Política de Privacidad"
+  },
+  "whatsapp": {
+    "label": "Escribinos por WhatsApp"
   }
 }

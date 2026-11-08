@@ -24,6 +24,7 @@ import Recommendations from './components/sections/Recommendations';
 import BlogPost from './components/sections/BlogPost';
 import Admin from './components/sections/Admin';
 import { useSeo } from './lib/seo';
+import WhatsAppButton from './components/ui/WhatsAppButton';
 
 const HOME_SEO = {
   es: {
@@ -100,6 +101,7 @@ export default function App() {
         {/* Fallback for invalid locales */}
         <Route path="*" element={<Navigate to="/es" replace />} />
       </Routes>
+      <WhatsAppButton />
     </BrowserRouter>
   );
 }

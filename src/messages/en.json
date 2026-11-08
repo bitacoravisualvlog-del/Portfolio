@@ -156,5 +156,8 @@
   },
   "footer": {
     "privacy": "Privacy Policy"
+  },
+  "whatsapp": {
+    "label": "Message us on WhatsApp"
   }
 }
