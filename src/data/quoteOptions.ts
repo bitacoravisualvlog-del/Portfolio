@@ -81,6 +81,28 @@ export const QUOTE_GROUPS: QuoteGroup[] = [
     ],
   },
   {
+    id: 'branding',
+    title: 'Branding e identidad de marca',
+    options: [
+      { id: 'brief-marca', name: 'Briefing de marca', detail: 'Relevamiento de tu negocio, tu público y tu competencia para definir el punto de partida.' },
+      { id: 'plataforma-marca', name: 'Plataforma de marca', detail: 'Propósito, misión, visión, valores, personalidad y posicionamiento.' },
+      { id: 'identidad-visual', name: 'Identidad visual', detail: 'Logo, paleta de colores, tipografías y elementos gráficos.' },
+      { id: 'manual-marca', name: 'Manual de marca', detail: 'Cómo usar el logo, los colores y las tipografías en cada aplicación.' },
+      { id: 'tono-voz', name: 'Tono de voz y guía editorial', detail: 'Cómo habla tu marca, con ejemplos de qué decir y qué no.' },
+      { id: 'manual-redes', name: 'Manual de redes sociales', detail: 'Estilo visual, formatos, plantillas y criterios para publicar.' },
+      { id: 'manual-crisis', name: 'Manual de crisis', detail: 'Protocolo y respuestas modelo para comentarios negativos y situaciones delicadas.' },
+      { id: 'branding-completo', name: 'Branding completo', detail: 'Todo lo anterior en un solo proyecto, con los documentos listos para tu equipo.' },
+    ],
+  },
+  {
+    id: 'producto',
+    title: 'Diseño de producto',
+    options: [
+      { id: 'producto-digital', name: 'Diseño de producto digital', detail: 'Apps o plataformas: investigación, definición del MVP, prototipo y hoja de ruta.' },
+      { id: 'producto-fisico', name: 'Diseño de producto físico', detail: 'Packaging, etiquetas y presentación del producto.' },
+    ],
+  },
+  {
     id: 'web',
     title: 'Diseño web y tiendas',
     options: [
