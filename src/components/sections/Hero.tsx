@@ -49,6 +49,12 @@ export default function Hero() {
           >
             {t('hero.cta')}
           </a>
+          <a
+            href="#presupuesto"
+            className="group inline-flex items-center gap-2 border border-accent text-accent hover:bg-accent hover:text-black px-8 py-4 font-barlow font-bold uppercase tracking-widest transition-all interactive h-fit w-fit"
+          >
+            {t('quote.hero_cta', 'Pedí tu presupuesto')}
+          </a>
         </motion.div>
       </div>
 

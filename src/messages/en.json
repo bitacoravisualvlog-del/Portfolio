@@ -29,8 +29,8 @@
       "desc": "15 years of corporate analysis at a multinational. Behind every project, there is strategy, structure, and clear processes. Creativity with direction."
     },
     "three": {
-      "title": "Full Execution",
-      "desc": "Concept, design, and development in the same head. No intermediaries or communication noise. A coherent vision from the beginning down to the smallest detail."
+      "title": "One lead, the right team",
+      "desc": "I lead the strategy and I am your direct contact from start to finish. Depending on what your project needs, I bring in specialist collaborators who work with the same method and the same quality standards."
     }
   },
   "services": {
@@ -159,5 +159,103 @@
   },
   "whatsapp": {
     "label": "Message us on WhatsApp"
+  },
+  "method": {
+    "eyebrow": "Our own methodology",
+    "title_1": "The GUION",
+    "title_2": "Method",
+    "tagline": "From data to story, and from story to results.",
+    "intro": "In film, nothing is shot without a script (\"guion\"). At CREATE DIGITAL, neither: before designing a piece or launching an ad, we write your brand's script with real data, and then measure it week by week. It is how we work with every client, in every service.",
+    "stages_title": "Five stages, always the same",
+    "deliverable": "Deliverable",
+    "g": {
+      "name": "Gente · People",
+      "verb": "I listen",
+      "desc": "What you sell, to whom and where you want to go. Goals, ticket and what works today.",
+      "deliverable": "Kickoff meeting and questionnaire"
+    },
+    "u": {
+      "name": "Universo · Universe",
+      "verb": "I audit",
+      "desc": "Website, social media, campaigns and competitors, before proposing anything.",
+      "deliverable": "Audit and competitor analysis"
+    },
+    "i": {
+      "name": "Idea",
+      "verb": "I propose",
+      "desc": "Tailored positioning and strategy, with measurable goals. No canned formulas.",
+      "deliverable": "Proposal and 90-day plan"
+    },
+    "o": {
+      "name": "Obra · Work",
+      "verb": "I produce",
+      "desc": "Website, content, ads or video, with the team your project needs.",
+      "deliverable": "Calendar, pieces and campaigns"
+    },
+    "n": {
+      "name": "Números · Numbers",
+      "verb": "I measure and adjust",
+      "desc": "What worked, what I adjust and what comes next, in plain language.",
+      "deliverable": "Weekly report and quarterly review"
+    },
+    "benefits_title": "Why it works",
+    "benefits": {
+      "data": {
+        "title": "Data-driven decisions",
+        "desc": "15 years of analytical experience behind every recommendation. Nothing is decided on a hunch."
+      },
+      "cinema": {
+        "title": "The language of film",
+        "desc": "Script, storytelling and editing applied to every piece, so your brand is remembered."
+      },
+      "connected": {
+        "title": "Content and ads, connected",
+        "desc": "What performs best organically becomes an ad. Nothing is produced in isolation."
+      },
+      "measure": {
+        "title": "Measurement from day one",
+        "desc": "Pixel, Conversions API and clear goals before spending the first dollar."
+      },
+      "team": {
+        "title": "One lead, the right team",
+        "desc": "A single contact who coordinates the specialists your project requires."
+      },
+      "transparency": {
+        "title": "Full transparency",
+        "desc": "The accounts belong to your brand, reports are clear and the rules are in writing."
+      }
+    },
+    "cta_text": "Want us to write your brand's script?",
+    "cta": "Get your quote"
+  },
+  "quote": {
+    "eyebrow": "Custom quote",
+    "title": "Get your quote",
+    "intro": "Tell me what you need and I will put together a proposal tailored to your business. Select the services you are interested in, fill in a few basics and I will reply with a quote.",
+    "step1": "Which services do you need?",
+    "selected_one": "selected",
+    "selected_many": "selected",
+    "need_services": "Select at least one service so I can quote you.",
+    "step2": "Tell me about your business",
+    "business": "Business or brand name",
+    "industry": "Industry",
+    "website": "Website or Instagram (optional)",
+    "goal": "What do you want to achieve?",
+    "choose": "Choose an option",
+    "timeline": "When do you need it?",
+    "budget": "Approximate budget (optional)",
+    "details": "Tell me a bit more (optional)",
+    "details_ph": "What you sell, to whom, what you do today on social media or ads, and what you would like to improve.",
+    "step3": "How can I reach you?",
+    "name": "Your name",
+    "phone": "WhatsApp (optional)",
+    "submit": "Get a quote",
+    "sending": "Sending…",
+    "note": "No commitment. I reply with a tailored proposal, Monday to Friday, 9 am to 5 pm (Argentina).",
+    "error": "It could not be sent. Please try again or message me on WhatsApp.",
+    "thanks_title": "Request received!",
+    "thanks_body": "I will review what you need and send you a custom quote by email or WhatsApp. I reply Monday to Friday, 9 am to 5 pm (Argentina).",
+    "another": "Send another request",
+    "hero_cta": "Get your quote"
   }
 }

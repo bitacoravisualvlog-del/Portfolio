@@ -96,5 +96,31 @@ service cloud.firestore {
                       request.resource.data.createdAt == request.time;
       allow read, delete: if isAdmin();
     }
+
+    // Pedidos de presupuesto del cotizador
+    match /quotes/{quoteId} {
+      function isValidQuote(data) {
+        return data.keys().hasOnly(['name', 'email', 'phone', 'business', 'industry', 'website', 'goal', 'timeline', 'budget', 'details', 'services', 'lang', 'status', 'createdAt']) &&
+               data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
+               data.email is string && data.email.size() <= 100 &&
+               data.email.matches('^[^@ ]+@[^@ ]+[.][^@ ]+$') &&
+               data.phone is string && data.phone.size() <= 40 &&
+               data.business is string && data.business.size() > 0 && data.business.size() <= 120 &&
+               data.industry is string && data.industry.size() <= 120 &&
+               data.website is string && data.website.size() <= 200 &&
+               data.goal is string && data.goal.size() <= 80 &&
+               data.timeline is string && data.timeline.size() <= 80 &&
+               data.budget is string && data.budget.size() <= 80 &&
+               data.details is string && data.details.size() <= 2000 &&
+               data.services is list && data.services.size() >= 1 && data.services.size() <= 60 &&
+               data.lang is string && data.lang.size() <= 5 &&
+               data.status == 'nuevo' &&
+               data.createdAt is timestamp;
+      }
+
+      allow create: if isValidQuote(request.resource.data) &&
+                      request.resource.data.createdAt == request.time;
+      allow read, update, delete: if isAdmin();
+    }
   }
 }

@@ -12,6 +12,8 @@ import Hero from './components/sections/Hero';
 import Clients from './components/sections/Clients';
 import ValueProp from './components/sections/ValueProp';
 import Services from './components/sections/Services';
+import Method from './components/sections/Method';
+import Quote from './components/sections/Quote';
 import Projects from './components/sections/Projects';
 import UGC from './components/sections/UGC';
 import AIContent from './components/sections/AIContent';
@@ -70,6 +72,7 @@ function Root() {
         <Clients />
         <ValueProp />
         <Services />
+        <Method />
         <Projects />
         <UGC />
         <AIContent />
@@ -78,6 +81,7 @@ function Root() {
         <Blog />
         <Resources />
         <Recommendations />
+        <Quote />
       </main>
 
       <Footer />

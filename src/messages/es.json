@@ -29,8 +29,8 @@
       "desc": "15 años de análisis corporativo en una multinacional. Detrás de cada proyecto hay estrategia, estructura y procesos claros. Creatividad con dirección."
     },
     "three": {
-      "title": "Ejecución completa",
-      "desc": "Concepto, diseño y desarrollo en una misma cabeza. Sin intermediarios ni ruido en la comunicación. Una visión coherente desde el inicio hasta el último detalle."
+      "title": "Una responsable, el equipo justo",
+      "desc": "Dirijo la estrategia y soy tu contacto directo de principio a fin. Según lo que necesita tu proyecto, sumo colaboradores especialistas que trabajan con el mismo método y el mismo criterio de calidad."
     }
   },
   "services": {
@@ -159,5 +159,103 @@
   },
   "whatsapp": {
     "label": "Escribinos por WhatsApp"
+  },
+  "method": {
+    "eyebrow": "Metodología propia",
+    "title_1": "Método",
+    "title_2": "GUION",
+    "tagline": "Del dato a la historia, y de la historia al resultado.",
+    "intro": "En el cine nada se filma sin guion. En CREATE DIGITAL tampoco: antes de diseñar una pieza o lanzar un anuncio, escribimos el guion de tu marca con datos reales, y después lo medimos semana a semana. Es la forma en que trabajamos con cada cliente, en cada servicio.",
+    "stages_title": "Cinco etapas, siempre las mismas",
+    "deliverable": "Entregable",
+    "g": {
+      "name": "Gente",
+      "verb": "Escucho",
+      "desc": "Qué vendés, a quién y adónde querés llegar. Objetivos, ticket y lo que hoy funciona.",
+      "deliverable": "Reunión de inicio y cuestionario"
+    },
+    "u": {
+      "name": "Universo",
+      "verb": "Audito",
+      "desc": "Web, redes, campañas y competencia, antes de proponer nada.",
+      "deliverable": "Auditoría y análisis de competencia"
+    },
+    "i": {
+      "name": "Idea",
+      "verb": "Propongo",
+      "desc": "Posicionamiento y estrategia a medida, con objetivos medibles. Sin fórmulas enlatadas.",
+      "deliverable": "Propuesta y plan de 90 días"
+    },
+    "o": {
+      "name": "Obra",
+      "verb": "Produzco",
+      "desc": "Web, contenido, anuncios o video, con el equipo que tu proyecto necesita.",
+      "deliverable": "Calendario, piezas y campañas"
+    },
+    "n": {
+      "name": "Números",
+      "verb": "Mido y ajusto",
+      "desc": "Qué funcionó, qué ajusto y qué sigue, en lenguaje claro.",
+      "deliverable": "Informe semanal y balance trimestral"
+    },
+    "benefits_title": "Por qué funciona",
+    "benefits": {
+      "data": {
+        "title": "Decisiones con datos",
+        "desc": "15 años de experiencia analítica detrás de cada recomendación. Nada se decide por intuición."
+      },
+      "cinema": {
+        "title": "Lenguaje de cine",
+        "desc": "Guion, storytelling y edición aplicados a cada pieza, para que tu marca se recuerde."
+      },
+      "connected": {
+        "title": "Contenido y pauta conectados",
+        "desc": "Lo que mejor funciona en orgánico pasa a anuncios. Nada se produce aislado."
+      },
+      "measure": {
+        "title": "Medición desde el día uno",
+        "desc": "Píxel, API de conversiones y objetivos claros antes de invertir el primer peso."
+      },
+      "team": {
+        "title": "Una responsable, el equipo justo",
+        "desc": "Un solo contacto que coordina a los especialistas que tu proyecto requiere."
+      },
+      "transparency": {
+        "title": "Transparencia total",
+        "desc": "Las cuentas son de tu marca, los informes son claros y las reglas, por escrito."
+      }
+    },
+    "cta_text": "¿Querés que escribamos el guion de tu marca?",
+    "cta": "Pedí tu presupuesto"
+  },
+  "quote": {
+    "eyebrow": "Presupuesto personalizado",
+    "title": "Pedí tu presupuesto",
+    "intro": "Contame qué necesitás y armo una propuesta a medida de tu negocio. Marcá los servicios que te interesan, completá unos datos básicos y te respondo con el presupuesto.",
+    "step1": "¿Qué servicios necesitás?",
+    "selected_one": "seleccionado",
+    "selected_many": "seleccionados",
+    "need_services": "Marcá al menos un servicio para poder cotizarte.",
+    "step2": "Contame sobre tu negocio",
+    "business": "Nombre del negocio o marca",
+    "industry": "Rubro",
+    "website": "Web o Instagram (opcional)",
+    "goal": "¿Qué querés lograr?",
+    "choose": "Elegí una opción",
+    "timeline": "¿Para cuándo lo necesitás?",
+    "budget": "Presupuesto aproximado (opcional)",
+    "details": "Contame un poco más (opcional)",
+    "details_ph": "Qué vendés, a quién, qué hacés hoy en redes o publicidad y qué te gustaría mejorar.",
+    "step3": "¿Cómo te contacto?",
+    "name": "Tu nombre",
+    "phone": "WhatsApp (opcional)",
+    "submit": "Cotizar",
+    "sending": "Enviando…",
+    "note": "Sin compromiso. Te respondo con una propuesta a medida, de lunes a viernes de 9 a 17 h.",
+    "error": "No se pudo enviar. Probá de nuevo o escribime por WhatsApp.",
+    "thanks_title": "¡Recibí tu pedido!",
+    "thanks_body": "Voy a revisar lo que necesitás y te envío un presupuesto personalizado por mail o WhatsApp. Respondo de lunes a viernes de 9 a 17 h.",
+    "another": "Hacer otro pedido",
+    "hero_cta": "Pedí tu presupuesto"
   }
 }

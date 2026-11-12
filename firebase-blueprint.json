@@ -87,6 +87,10 @@
     "/leads/{leadId}": {
       "schema": "Lead",
       "description": "Collection of resource download leads."
+    },
+    "/quotes/{quoteId}": {
+      "schema": "Quote",
+      "description": "Collection of custom quote requests from the website quote form."
     }
   }
 }
