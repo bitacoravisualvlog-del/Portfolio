@@ -73,10 +73,10 @@ function Root() {
         <ValueProp />
         <Services />
         <Method />
+        <About />
         <Projects />
         <UGC />
         <AIContent />
-        <About />
         <Podcast />
         <Blog />
         <Resources />
