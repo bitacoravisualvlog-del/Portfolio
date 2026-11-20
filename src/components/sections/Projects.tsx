@@ -25,7 +25,7 @@ export default function Projects() {
     },
     {
       id: 'p3',
-      url: 'https://www.behance.net/veronicacarneiro',
+      url: 'https://www.behance.net/gallery/258790715/Estrategia-de-lanzamiento',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
       tags: ['Meta Ads', 'Data Analysis', 'Performance'],
       action: t('projects.view_project'),

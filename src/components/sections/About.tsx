@@ -44,7 +44,7 @@ export default function About() {
 
   const stats = [
     { value: '15', label: t('about.stats.exp') },
-    { value: '+5', label: t('about.stats.digital') },
+    { value: '+6', label: t('about.stats.digital') },
     { value: '+60', label: t('about.stats.countries') },
   ];
 
