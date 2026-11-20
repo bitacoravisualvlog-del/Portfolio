@@ -7,16 +7,16 @@ export default function Projects() {
   const projects = [
     {
       id: 'p1',
-      url: 'https://www.leyqueactiva.com',
+      url: 'https://www.behance.net/gallery/257239947/Ley-que-Activa-CM-y-diseno-web-en-WordPress',
       image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=800',
       tags: ['WordPress', 'UX/UI', 'SEO'],
-      action: t('projects.view_site'),
+      action: t('projects.view_project'),
       badge: 'Web',
       badgeColor: '#D278A6'
     },
     {
       id: 'p2',
-      url: 'https://desaburrite.vercel.app',
+      url: 'https://www.behance.net/gallery/257105513/Desa-Social-Discovery-App-UXUI',
       image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800',
       tags: ['App Concept', 'UX/UI', 'Figma'],
       action: t('projects.view_project'),
@@ -30,6 +30,15 @@ export default function Projects() {
       tags: ['Meta Ads', 'Data Analysis', 'Performance'],
       action: t('projects.view_project'),
       badge: t('projects.p3.badge'),
+      badgeColor: '#D278A6'
+    },
+    {
+      id: 'p4',
+      url: 'https://www.behance.net/gallery/257686115/Pulet-Diseno-de-producto-e-identidad-de-marca',
+      image: '',
+      tags: ['Diseño de producto', 'Branding', 'Packaging'],
+      action: t('projects.view_project'),
+      badge: t('projects.p4.badge'),
       badgeColor: '#D278A6'
     }
   ];
@@ -45,7 +54,7 @@ export default function Projects() {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-12 md:mb-24">
+      <div className="grid md:grid-cols-2 gap-8 md:gap-12 mb-12 md:mb-24">
         {projects.map((p, idx) => {
           return (
             <motion.a
@@ -114,7 +123,7 @@ export default function Projects() {
               {/* ZONA INFERIOR - CONTENIDO */}
               <div className="space-y-4">
                 <span className="text-cream/20 font-bebas text-2xl">{idx < 9 ? `0${idx + 1}` : idx + 1}</span>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   {p.tags.map(tag => (
                     <span key={tag} className="text-[10px] font-dm uppercase tracking-widest text-cream/30 border border-gray-mid/40 px-2 py-0.5">
                       {tag}

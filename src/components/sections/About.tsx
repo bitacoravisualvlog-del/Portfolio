@@ -96,7 +96,7 @@ export default function About() {
         </div>
       </div>
 
-      {/* CV animado */}
+      {/* Brand film */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -104,12 +104,12 @@ export default function About() {
         className="mt-14 md:mt-24 max-w-5xl mx-auto space-y-6"
       >
         <p className="font-dm text-xs uppercase tracking-[0.3em] text-cream/40">
-          Mi CV <span className="text-accent">animado</span>
+          Brand <span className="text-accent">film</span>
         </p>
-        <div className="relative w-full aspect-[16/10] border border-gray-mid/20 bg-gray-dark/30 overflow-hidden">
+        <div className="relative w-full aspect-video border border-gray-mid/20 bg-gray-dark/30 overflow-hidden">
           <AutoPlayVideo
-            src="/linkedin-video-2008kbps.mp4#t=0.8"
-            label="CV animado de Verónica Pereyra Carneiro"
+            src="/brand-film-create-digital.mp4"
+            label="Brand film de CREATE DIGITAL"
           />
         </div>
       </motion.div>
