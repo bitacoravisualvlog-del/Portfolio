@@ -13,6 +13,7 @@ export default function Recommendations() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [sent, setSent] = useState(false);
+  const [expanded, setExpanded] = useState<string | null>(null);
 
   const rowRef = useRef<HTMLDivElement>(null);
   const [edges, setEdges] = useState({ start: true, end: true });
@@ -161,13 +162,13 @@ export default function Recommendations() {
           <div
             ref={rowRef}
             onScroll={updateEdges}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar px-6 md:px-0 pb-2"
+            className="flex items-start gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar px-6 md:px-0 pb-2"
           >
             {recommendations.map((rec) => (
               <div
                 key={rec.id}
                 data-card
-                className="snap-start shrink-0 w-[85vw] sm:w-[360px] lg:w-[380px] bg-gray-dark/50 p-7 md:p-8 border-l-4 border-accent relative flex flex-col"
+                className="snap-start shrink-0 w-[85vw] sm:w-[360px] lg:w-[380px] min-h-[300px] bg-gray-dark/50 p-7 md:p-8 border-l-4 border-accent relative flex flex-col"
               >
                 <div className="absolute top-3 right-6 font-bebas text-6xl text-accent/15 pointer-events-none">"</div>
                 <div className="flex gap-1 mb-4">
@@ -175,7 +176,14 @@ export default function Recommendations() {
                     <Star key={i} size={14} className={i < (rec.rating || 5) ? 'fill-accent text-accent' : 'text-gray-mid/30'} />
                   ))}
                 </div>
-                <p className="font-dm text-cream/80 italic leading-relaxed flex-1">{rec.content}</p>
+                <div className="flex-1">
+                  <p className={`font-dm text-cream/80 italic leading-relaxed ${expanded === rec.id ? '' : 'line-clamp-6'}`}>{rec.content}</p>
+                  {rec.content.length > 220 && (
+                    <button type="button" onClick={() => setExpanded(expanded === rec.id ? null : rec.id || null)} className="mt-3 font-dm text-xs uppercase tracking-widest text-accent hover:text-white transition-colors">
+                      {expanded === rec.id ? 'Leer menos' : 'Leer más'}
+                    </button>
+                  )}
+                </div>
                 <span className="font-barlow font-bold uppercase text-cream mt-6">{rec.userName}</span>
               </div>
             ))}
