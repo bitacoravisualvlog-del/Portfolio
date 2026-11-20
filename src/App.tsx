@@ -27,6 +27,7 @@ import BlogPost from './components/sections/BlogPost';
 import Admin from './components/sections/Admin';
 import { useSeo } from './lib/seo';
 import WhatsAppButton from './components/ui/WhatsAppButton';
+import QuoteCTA from './components/ui/QuoteCTA';
 
 const HOME_SEO = {
   es: {
@@ -70,17 +71,19 @@ function Root() {
       <main>
         <Hero />
         <Clients />
-        <ValueProp />
         <Services />
-        <Method />
-        <About />
-        <Projects />
         <UGC />
         <AIContent />
-        <Podcast />
-        <Blog />
-        <Resources />
+        <ValueProp />
+        <Method />
+        <Projects />
+        <QuoteCTA textKey="cta_band.projects" fallback="¿Querés un proyecto así para tu marca?" />
         <Recommendations />
+        <About />
+        <QuoteCTA textKey="cta_band.about" fallback="Contame qué necesitás y armo tu propuesta." />
+        <Blog />
+        <Podcast />
+        <Resources />
         <Quote />
       </main>
 

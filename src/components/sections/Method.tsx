@@ -44,7 +44,7 @@ export default function Method() {
             </p>
           </div>
           <p className="font-dm text-sm md:text-base text-cream/60 leading-relaxed">
-            {t('method.intro', 'En el cine nada se filma sin guion. En CREATE DIGITAL tampoco: antes de diseñar una pieza o lanzar un anuncio, escribimos el guion de tu marca con datos reales, y después lo medimos semana a semana. Es la forma en que trabajamos con cada cliente, en cada servicio.')}
+            {t('method.intro', 'En el cine nada se filma sin guion. En CREATE DIGITAL tampoco: antes de diseñar una pieza o lanzar un anuncio, escribo el guion de tu marca con datos reales, y después lo mido semana a semana. Es la forma en que trabajo con cada cliente, en cada servicio.')}
           </p>
         </div>
 

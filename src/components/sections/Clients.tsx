@@ -24,7 +24,7 @@ export default function Clients() {
           <span className="text-accent font-dm text-[10px] uppercase tracking-[0.4em]">
             {t('clients.subtitle')}
           </span>
-          <h2 className="font-bebas text-2xl md:text-3xl text-white/40 italic">
+          <h2 className="font-bebas text-2xl md:text-3xl text-white/75 italic">
             {t('clients.title')}
           </h2>
         </motion.div>
@@ -35,7 +35,7 @@ export default function Clients() {
           {[...clients, ...clients, ...clients].map((client, idx) => (
             <span 
               key={idx} 
-              className="mx-12 font-bebas text-4xl md:text-6xl text-white/20 hover:text-accent transition-colors cursor-default"
+              className="mx-12 font-bebas text-4xl md:text-6xl text-cream/70 hover:text-accent transition-colors cursor-default"
             >
               {client}
             </span>

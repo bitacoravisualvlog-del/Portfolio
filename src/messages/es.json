@@ -7,7 +7,12 @@
     "ugc": "UGC",
     "contact": "Contacto",
     "blog": "Blog",
-    "resources": "Recursos"
+    "resources": "Recursos",
+    "free_resources": "Recursos gratis"
+  },
+  "cta_band": {
+    "projects": "¿Querés un proyecto así para tu marca?",
+    "about": "Contame qué necesitás y armo tu propuesta."
   },
   "clients": {
     "title": "Confían en mi visión",
@@ -177,7 +182,7 @@
     "title_1": "Método",
     "title_2": "GUION",
     "tagline": "Del dato a la historia, y de la historia al resultado.",
-    "intro": "En el cine nada se filma sin guion. En CREATE DIGITAL tampoco: antes de diseñar una pieza o lanzar un anuncio, escribimos el guion de tu marca con datos reales, y después lo medimos semana a semana. Es la forma en que trabajamos con cada cliente, en cada servicio.",
+    "intro": "En el cine nada se filma sin guion. En CREATE DIGITAL tampoco: antes de diseñar una pieza o lanzar un anuncio, escribo el guion de tu marca con datos reales, y después lo mido semana a semana. Es la forma en que trabajo con cada cliente, en cada servicio.",
     "stages_title": "Cinco etapas, siempre las mismas",
     "deliverable": "Entregable",
     "g": {

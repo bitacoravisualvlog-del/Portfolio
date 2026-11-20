@@ -7,7 +7,12 @@
     "ugc": "UGC",
     "contact": "Contact",
     "blog": "Blog",
-    "resources": "Resources"
+    "resources": "Resources",
+    "free_resources": "Free resources"
+  },
+  "cta_band": {
+    "projects": "Want a project like this for your brand?",
+    "about": "Tell me what you need and I will put together your proposal."
   },
   "clients": {
     "title": "They trust the vision",
@@ -170,14 +175,14 @@
     "privacy": "Privacy Policy"
   },
   "whatsapp": {
-    "label": "Message us on WhatsApp"
+    "label": "Message me on WhatsApp"
   },
   "method": {
-    "eyebrow": "Our own methodology",
+    "eyebrow": "My own methodology",
     "title_1": "The GUION",
     "title_2": "Method",
     "tagline": "From data to story, and from story to results.",
-    "intro": "In film, nothing is shot without a script (\"guion\"). At CREATE DIGITAL, neither: before designing a piece or launching an ad, we write your brand's script with real data, and then measure it week by week. It is how we work with every client, in every service.",
+    "intro": "In film, nothing is shot without a script (\"guion\"). At CREATE DIGITAL, neither: before designing a piece or launching an ad, I write your brand's script with real data, and then measure it week by week. It is how I work with every client, in every service.",
     "stages_title": "Five stages, always the same",
     "deliverable": "Deliverable",
     "g": {
