@@ -99,6 +99,38 @@ export default function UGC() {
     </motion.div>
   );
 
+  // Categoría con un solo video: celular a la izquierda y la ficha al costado (como los spec ads verticales)
+  const renderSolo = (item: UgcItem) => (
+    <motion.div
+      key={item.id}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-100px' }}
+      transition={{ duration: 0.6 }}
+      className="grid md:grid-cols-[minmax(0,340px)_1fr] gap-10 md:gap-16 items-center max-w-5xl mx-auto"
+    >
+      <VideoFrame item={item} {...frameProps(item.id)} />
+      <div className="space-y-4">
+        <span className="block font-dm text-[10px] uppercase tracking-[0.3em] text-accent">
+          {t('ugc.format_v', 'Formato vertical · 9:16 · Reels y TikTok')}
+        </span>
+        <h3 className="font-barlow text-3xl md:text-4xl text-cream font-bold uppercase tracking-wide leading-tight">
+          {t(item.titleKey)}
+        </h3>
+        {item.agency && (
+          <div className="flex items-center gap-1">
+            <span className="font-dm text-cream/40 uppercase tracking-widest text-[10px]">{t('ugc.agency')}</span>
+            <a href={item.agency.url} target="_blank" rel="noopener noreferrer" className="font-dm text-accent hover:text-white underline font-extrabold uppercase tracking-widest text-[10px] transition-colors duration-300">
+              {item.agency.name}
+            </a>
+          </div>
+        )}
+        <p className="font-dm text-sm md:text-base text-cream/60 leading-relaxed">{t(item.descKey)}</p>
+        {item.noteKey && <p className="font-dm text-[11px] text-cream/35 italic">{t(item.noteKey)}</p>}
+      </div>
+    </motion.div>
+  );
+
   return (
     <section id="ugc" className="py-16 md:py-24 px-6 md:px-12 bg-black relative overflow-hidden">
       {/* Resplandores decorativos */}
@@ -136,9 +168,13 @@ export default function UGC() {
                   </span>
                   <span className="flex-1 h-px bg-gray-mid/40" />
                 </div>
-                <div className={`grid grid-cols-1 gap-12 mx-auto ${gridClass}`}>
-                  {items.map(renderItem)}
-                </div>
+                {items.length === 1 ? (
+                  renderSolo(items[0])
+                ) : (
+                  <div className={`grid grid-cols-1 gap-12 mx-auto ${gridClass}`}>
+                    {items.map(renderItem)}
+                  </div>
+                )}
               </div>
             );
           })}
