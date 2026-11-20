@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 
-// Brand film: no se reproduce solo; arranca cuando la persona toca play.
+// Logo morph: no se reproduce solo; arranca cuando la persona toca play.
 function AutoPlayVideo({ src, label }: { src: string; label: string }) {
   return (
     <video
@@ -74,7 +74,7 @@ export default function About() {
         </div>
       </div>
 
-      {/* Brand film */}
+      {/* Logo morph */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -82,12 +82,12 @@ export default function About() {
         className="mt-14 md:mt-24 max-w-5xl mx-auto space-y-6"
       >
         <p className="font-dm text-xs uppercase tracking-[0.3em] text-cream/40">
-          Brand <span className="text-accent">film</span>
+          Logo <span className="text-accent">morph</span>
         </p>
         <div className="relative w-full aspect-video border border-gray-mid/20 bg-gray-dark/30 overflow-hidden">
           <AutoPlayVideo
             src="/brand-film-create-digital.mp4"
-            label="Brand film de CREATE DIGITAL"
+            label="Logo morph de CREATE DIGITAL"
           />
         </div>
       </motion.div>
