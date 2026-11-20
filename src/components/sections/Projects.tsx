@@ -33,6 +33,15 @@ export default function Projects() {
       badgeColor: '#D278A6'
     },
     {
+      id: 'p5',
+      url: 'https://www.behance.net/gallery/257846537/ARSUMO-Motion-Ad-de-Catalogo-para-Paid-Media',
+      image: '',
+      tags: ['Motion Graphics', 'Meta Ads', 'E-commerce'],
+      action: t('projects.view_project'),
+      badge: t('projects.p5.badge'),
+      badgeColor: '#D278A6'
+    },
+    {
       id: 'p4',
       url: 'https://www.behance.net/gallery/257686115/Pulet-Diseno-de-producto-e-identidad-de-marca',
       image: '',
@@ -54,7 +63,7 @@ export default function Projects() {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8 md:gap-12 mb-12 md:mb-24">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-12 md:mb-24">
         {projects.map((p, idx) => {
           return (
             <motion.a
