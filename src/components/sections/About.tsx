@@ -1,38 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
-import { useEffect, useRef } from 'react';
 
+// Brand film: no se reproduce solo; arranca cuando la persona toca play.
 function AutoPlayVideo({ src, label }: { src: string; label: string }) {
-  const ref = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = ref.current;
-    if (!video) return;
-    video.muted = true;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      },
-      { threshold: 0.5 }
-    );
-    observer.observe(video);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <video
-      ref={ref}
       className="absolute inset-0 w-full h-full object-contain"
       src={src}
-      muted
-      loop
+      poster="/brand-film-poster.webp"
       controls
       playsInline
-      preload="metadata"
+      preload="none"
       aria-label={label}
     />
   );
