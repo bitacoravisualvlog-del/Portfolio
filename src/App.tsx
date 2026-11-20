@@ -71,6 +71,7 @@ function Root() {
       <main>
         <Hero />
         <Clients />
+        <Recommendations />
         <Services />
         <UGC />
         <AIContent />
@@ -78,7 +79,6 @@ function Root() {
         <Method />
         <Projects />
         <QuoteCTA textKey="cta_band.projects" fallback="¿Querés un proyecto así para tu marca?" />
-        <Recommendations />
         <About />
         <QuoteCTA textKey="cta_band.about" fallback="Contame qué necesitás y armo tu propuesta." />
         <Blog />
