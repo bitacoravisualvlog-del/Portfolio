@@ -168,7 +168,7 @@ export default function Recommendations() {
               <div
                 key={rec.id}
                 data-card
-                className="snap-start shrink-0 w-[85vw] sm:w-[360px] lg:w-[380px] min-h-[300px] bg-gray-dark/50 p-7 md:p-8 border-l-4 border-accent relative flex flex-col"
+                className="snap-start shrink-0 w-[85vw] sm:w-[360px] lg:w-[380px] min-h-[330px] bg-gray-dark/50 p-7 md:p-8 border-l-4 border-accent relative flex flex-col"
               >
                 <div className="absolute top-3 right-6 font-bebas text-6xl text-accent/15 pointer-events-none">"</div>
                 <div className="flex gap-1 mb-4">
