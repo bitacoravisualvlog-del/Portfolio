@@ -63,7 +63,7 @@ export default function Projects() {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-12 md:mb-24">
+      <div className="flex flex-wrap justify-center gap-8 md:gap-12 mb-12 md:mb-24">
         {projects.map((p, idx) => {
           return (
             <motion.a
@@ -75,7 +75,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.8 }}
-              className="group relative flex flex-col interactive hover:-translate-y-2 transition-transform duration-300"
+              className="group relative flex flex-col interactive hover:-translate-y-2 transition-transform duration-300 w-full md:w-[calc(50%-1.5rem)] lg:w-[calc((100%-6rem)/3)]"
             >
               {/* ZONA SUPERIOR - PORTADA */}
               <div 
