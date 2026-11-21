@@ -290,15 +290,39 @@ export default function Admin() {
     try {
       const { default: TurndownService } = await import('turndown');
       const td = new TurndownService({ headingStyle: 'atx', bulletListMarker: '-', emDelimiter: '*' });
-      // Saca botones de suscripción y bloques propios de Substack
-      td.remove(['script', 'style', 'form', 'button']);
-      td.addRule('sinBotones', {
-        filter: (node: any) => /subscription-widget|button-wrapper|captioned-button|share/.test(node.className || ''),
+      // Limpia lo propio de Substack: suscripción, compartir y comentar se van;
+      // los botones con links útiles (descuentos, recursos) quedan como link en negrita.
+      td.remove(['script', 'style', 'form', 'button', 'svg', 'input'] as any);
+      const cls = (n: any) => String(n.getAttribute?.('class') || '');
+      td.addRule('suscripcion', {
+        filter: (n: any) => /subscription-widget|image-link-expand|icon-container/.test(cls(n)),
         replacement: () => '',
+      });
+      td.addRule('botones', {
+        filter: (n: any) => /button-wrapper|captioned-button/.test(cls(n)),
+        replacement: (_c: string, n: any) => {
+          const a = n.querySelector?.('a');
+          const href = a?.getAttribute('href') || '';
+          const text = (a?.textContent || '').trim();
+          if (!href || !text || /substack\.com/.test(href)) return '';
+          return `\n\n**[${text}](${href})**\n\n`;
+        },
+      });
+      td.addRule('figuras', {
+        filter: (n: any) => n.nodeName === 'FIGURE',
+        replacement: (_c: string, n: any) => {
+          const img = n.querySelector?.('img');
+          if (!img) return '';
+          const cap = (n.querySelector?.('figcaption')?.textContent || img.getAttribute('alt') || '').trim();
+          return `\n\n![${cap.replace(/[\[\]]/g, '')}](${img.getAttribute('src')})\n\n` + (cap ? `*${cap}*\n\n` : '');
+        },
       });
       td.addRule('h1aH2', { filter: ['h1'], replacement: (c: string) => `\n\n## ${c}\n\n` });
       for (const it of chosen) {
-        const content = td.turndown(it.html || '').replace(/\n{3,}/g, '\n\n').trim()
+        const content = td.turndown(it.html || '')
+          .replace(/^(\s*)([-*]|\d+\.)\s{2,}/gm, '$1$2 ')
+          .replace(/^[ \t]+$/gm, '')
+          .replace(/\n{3,}/g, '\n\n').trim()
           + `\n\n---\n\n*Este artículo también salió en mi newsletter. [Suscribite en Substack](https://createdigital.substack.com/subscribe) para recibir los próximos.*`;
         const description = (it.description || '').replace(/\s+/g, ' ').trim();
         await blogService.importPost({
