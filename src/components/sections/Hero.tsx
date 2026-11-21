@@ -45,13 +45,13 @@ export default function Hero() {
         >
           <a
             href="#projects"
-            className="group inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-black px-8 py-4 font-barlow font-bold uppercase tracking-widest transition-all interactive h-fit w-fit"
+            className="group inline-flex items-center gap-2 bg-accent hover:bg-accent-hover border border-accent hover:border-accent-hover text-black px-8 py-4 font-barlow font-bold uppercase tracking-widest transition-all interactive h-fit w-full md:w-fit justify-center text-center"
           >
             {t('hero.cta')}
           </a>
           <a
             href="#presupuesto"
-            className="group inline-flex items-center gap-2 border border-accent text-accent hover:bg-accent hover:text-black px-8 py-4 font-barlow font-bold uppercase tracking-widest transition-all interactive h-fit w-fit"
+            className="group inline-flex items-center gap-2 border border-accent text-accent hover:bg-accent hover:text-black px-8 py-4 font-barlow font-bold uppercase tracking-widest transition-all interactive h-fit w-full md:w-fit justify-center text-center"
           >
             {t('quote.hero_cta', 'Pedí tu presupuesto')}
           </a>
