@@ -83,6 +83,7 @@ export default function BlogPost() {
           path: `/es/blog/${post.slug}`,
           type: 'article',
           lang: 'es',
+          image: post.coverImage || undefined,
           publishedTime: publishedAt ? publishedAt.toISOString() : undefined,
         }
       : null
@@ -146,7 +147,11 @@ export default function BlogPost() {
             </h1>
           </div>
 
-          <div className="w-full h-[1px] bg-gray-mid/20" />
+          {post.coverImage ? (
+            <img src={post.coverImage} alt={post.title} className="w-full aspect-[16/9] object-cover border border-gray-mid/20" />
+          ) : (
+            <div className="w-full h-[1px] bg-gray-mid/20" />
+          )}
 
           <article className="font-dm text-lg leading-relaxed text-cream/80 py-8">
             <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>

@@ -12,6 +12,8 @@ interface SubstackPost {
   description: string;
   url: string;
   date: string;
+  slug?: string;
+  image?: string | null;
 }
 
 interface BlogItem {
@@ -21,18 +23,21 @@ interface BlogItem {
   date: Date | null;
   href: string;
   external: boolean;
+  image: string | null;
+  sourceUrl: string | null;
+  slug: string;
 }
 
 function CardLink({ item, children }: { item: BlogItem; children: ReactNode }) {
   if (item.external) {
     return (
-      <a href={item.href} target="_blank" rel="noopener noreferrer" className="block space-y-4">
+      <a href={item.href} target="_blank" rel="noopener noreferrer" className="block space-y-4 p-8">
         {children}
       </a>
     );
   }
   return (
-    <Link to={item.href} className="block space-y-4">
+    <Link to={item.href} className="block space-y-4 p-8">
       {children}
     </Link>
   );
@@ -56,6 +61,9 @@ export default function Blog() {
           date: post.createdAt?.toDate ? post.createdAt.toDate() : null,
           href: `/${lang}/blog/${post.slug}`,
           external: false,
+          image: post.coverImage || null,
+          sourceUrl: post.substackUrl || null,
+          slug: post.slug,
         }));
       } catch (error) {
         console.error("Failed to fetch posts", error);
@@ -74,6 +82,9 @@ export default function Blog() {
           date: new Date(post.date),
           href: post.url,
           external: true,
+          image: post.image || null,
+          sourceUrl: post.url,
+          slug: post.slug || '',
         }));
       } catch (error) {
         console.error("Failed to fetch Substack posts", error);
@@ -81,7 +92,13 @@ export default function Blog() {
       }
     };
 
-    Promise.all([fetchSitePosts(), fetchSubstackPosts()]).then(([site, substack]) => {
+    Promise.all([fetchSitePosts(), fetchSubstackPosts()]).then(([site, rawSubstack]) => {
+      // Si un artículo de Substack ya está publicado en la web, se muestra solo la versión de la web.
+      const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
+      const siteUrls = new Set(site.map(p => p.sourceUrl).filter(Boolean));
+      const siteSlugs = new Set(site.map(p => p.slug));
+      const siteTitles = new Set(site.map(p => norm(p.title)));
+      const substack = rawSubstack.filter(p => !siteUrls.has(p.sourceUrl) && !siteSlugs.has(p.slug) && !siteTitles.has(norm(p.title)));
       const all = [...site, ...substack].sort(
         (a, b) => (b.date?.getTime() || 0) - (a.date?.getTime() || 0)
       );
@@ -127,9 +144,14 @@ export default function Blog() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="group border border-gray-mid/20 p-8 hover:border-accent transition-all bg-gray-dark/30"
+                className="group border border-gray-mid/20 hover:border-accent transition-all bg-gray-dark/30 overflow-hidden"
               >
                 <CardLink item={post}>
+                  {post.image && (
+                    <div className="-mx-8 -mt-8 mb-6 aspect-[16/9] overflow-hidden bg-gray-dark">
+                      <img src={post.image} alt="" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    </div>
+                  )}
                   <span className="text-[10px] font-dm uppercase tracking-widest text-accent">
                     {post.date ? post.date.toLocaleDateString('es-AR') : ''}
                     {post.external && <span className="text-cream/40"> · Substack</span>}

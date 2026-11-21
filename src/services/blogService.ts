@@ -58,6 +58,8 @@ export interface Post {
   authorEmail: string;
   createdAt: any;
   metaDescription?: string;  // opcional: descripción para Google (≈155 caracteres)
+  coverImage?: string;       // opcional: URL de la foto de portada
+  substackUrl?: string;      // si vino de Substack: link al original (evita duplicados en la lista)
 }
 
 export interface Comment {
@@ -112,6 +114,22 @@ export const blogService = {
         ...post,
         authorEmail: auth.currentUser.email,
         createdAt: serverTimestamp(),
+      });
+      return docRef.id;
+    } catch (error) {
+      handleFirestoreError(error, OperationType.CREATE, path);
+    }
+  },
+
+  // Importa un artículo de Substack conservando su fecha original.
+  async importPost(post: Omit<Post, 'id' | 'createdAt' | 'authorEmail'>, date: Date) {
+    const path = 'posts';
+    try {
+      if (!auth.currentUser?.email) throw new Error("Auth required");
+      const docRef = await addDoc(collection(db, path), {
+        ...post,
+        authorEmail: auth.currentUser.email,
+        createdAt: Timestamp.fromDate(date),
       });
       return docRef.id;
     } catch (error) {

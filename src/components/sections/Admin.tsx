@@ -24,6 +24,10 @@ export default function Admin() {
   const [slug, setSlug] = useState('');
   const [content, setContent] = useState('');
   const [metaDescription, setMetaDescription] = useState('');
+  const [coverImage, setCoverImage] = useState('');
+  const [substackItems, setSubstackItems] = useState<{ slug: string; title: string; description: string; url: string; date: string; image: string | null; html: string }[] | null>(null);
+  const [substackPick, setSubstackPick] = useState<Record<string, boolean>>({});
+  const [isImporting, setIsImporting] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
@@ -216,6 +220,7 @@ export default function Admin() {
           slug,
           content,
           metaDescription: metaDescription.trim(),
+          coverImage: coverImage.trim(),
         });
         alert('Post actualizado con éxito!');
       } else {
@@ -224,6 +229,7 @@ export default function Admin() {
           slug,
           content,
           metaDescription: metaDescription.trim(),
+          coverImage: coverImage.trim(),
           published: true
         });
         alert('Post publicado con éxito!');
@@ -244,6 +250,7 @@ export default function Admin() {
     setSlug(post.slug);
     setContent(post.content);
     setMetaDescription(post.metaDescription || '');
+    setCoverImage(post.coverImage || '');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -253,6 +260,65 @@ export default function Admin() {
     setSlug('');
     setContent('');
     setMetaDescription('');
+    setCoverImage('');
+  };
+
+  // --- Importar artículos de Substack al blog de la web ---
+  const isImported = (item: { slug: string; url: string; title: string }) =>
+    posts.some(p => p.substackUrl === item.url || p.slug === item.slug || p.title.trim().toLowerCase() === item.title.trim().toLowerCase());
+
+  const loadSubstack = async () => {
+    try {
+      const res = await fetch('/api/substack?full=1');
+      const data = await res.json();
+      const items = data.posts || [];
+      setSubstackItems(items);
+      const pick: Record<string, boolean> = {};
+      items.forEach((it: any) => { pick[it.url] = !isImported(it); });
+      setSubstackPick(pick);
+    } catch (error) {
+      alert('No se pudo leer Substack: ' + (error instanceof Error ? error.message : String(error)));
+    }
+  };
+
+  const importSubstack = async () => {
+    if (!substackItems) return;
+    const chosen = substackItems.filter(it => substackPick[it.url] && !isImported(it));
+    if (chosen.length === 0) return;
+    if (!window.confirm(`¿Pasar ${chosen.length} artículo(s) de Substack al blog de la web?`)) return;
+    setIsImporting(true);
+    try {
+      const { default: TurndownService } = await import('turndown');
+      const td = new TurndownService({ headingStyle: 'atx', bulletListMarker: '-', emDelimiter: '*' });
+      // Saca botones de suscripción y bloques propios de Substack
+      td.remove(['script', 'style', 'form', 'button']);
+      td.addRule('sinBotones', {
+        filter: (node: any) => /subscription-widget|button-wrapper|captioned-button|share/.test(node.className || ''),
+        replacement: () => '',
+      });
+      td.addRule('h1aH2', { filter: ['h1'], replacement: (c: string) => `\n\n## ${c}\n\n` });
+      for (const it of chosen) {
+        const content = td.turndown(it.html || '').replace(/\n{3,}/g, '\n\n').trim()
+          + `\n\n---\n\n*Este artículo también salió en mi newsletter. [Suscribite en Substack](https://createdigital.substack.com/subscribe) para recibir los próximos.*`;
+        const description = (it.description || '').replace(/\s+/g, ' ').trim();
+        await blogService.importPost({
+          title: it.title,
+          slug: it.slug,
+          content,
+          metaDescription: description.length > 160 ? description.slice(0, 157).replace(/\s+\S*$/, '') + '…' : description,
+          coverImage: it.image || '',
+          substackUrl: it.url,
+          published: true,
+        }, new Date(it.date));
+      }
+      alert(`Listo: ${chosen.length} artículo(s) pasados al blog.`);
+      await loadPosts();
+      setSubstackItems(null);
+    } catch (error) {
+      alert('Error al importar: ' + (error instanceof Error ? error.message : String(error)));
+    } finally {
+      setIsImporting(false);
+    }
   };
 
   const handleDelete = async (postId: string) => {
@@ -449,6 +515,18 @@ export default function Admin() {
                 </div>
 
                 <div className="space-y-2">
+                  <label className="text-[10px] uppercase tracking-widest text-cream/40 font-dm">Foto de portada (URL)</label>
+                  <input
+                    type="url"
+                    value={coverImage}
+                    onChange={(e) => setCoverImage(e.target.value)}
+                    className="w-full bg-black border border-gray-mid/30 p-4 font-dm text-cream focus:border-accent outline-none"
+                    placeholder="Opcional. https://... Se ve arriba del artículo, en la tarjeta del blog y al compartir el link."
+                  />
+                  {coverImage && <img src={coverImage} alt="" className="mt-2 h-32 object-cover border border-gray-mid/30" />}
+                </div>
+
+                <div className="space-y-2">
                   <label className="text-[10px] uppercase tracking-widest text-cream/40 font-dm">Contenido (Markdown)</label>
                   <textarea
                     required
@@ -482,6 +560,50 @@ export default function Admin() {
                   )}
                 </div>
               </form>
+            </section>
+
+            <section className="space-y-6">
+              <div className="flex flex-wrap justify-between items-end gap-4 border-b border-accent/20 pb-2">
+                <h2 className="font-bebas text-3xl">Pasar artículos de Substack</h2>
+                {!substackItems && (
+                  <button onClick={loadSubstack} className="text-accent hover:text-white font-dm text-xs uppercase tracking-widest pb-1 transition-colors">
+                    Ver artículos de Substack
+                  </button>
+                )}
+              </div>
+              <p className="font-dm text-sm text-cream/50">Copia el artículo completo al blog de la web, con su foto, fecha y descripción. En la lista del blog se muestra solo la versión de la web, sin duplicados.</p>
+              {substackItems && (
+                <div className="bg-gray-dark border border-gray-mid/20 p-6 space-y-3">
+                  {substackItems.map(it => {
+                    const done = isImported(it);
+                    return (
+                      <label key={it.url} className={`flex items-start gap-3 font-dm text-sm ${done ? 'text-cream/35' : 'text-cream/85 cursor-pointer'}`}>
+                        <input
+                          type="checkbox"
+                          disabled={done}
+                          checked={!done && !!substackPick[it.url]}
+                          onChange={(e) => setSubstackPick(s => ({ ...s, [it.url]: e.target.checked }))}
+                          className="mt-1 accent-[#D27BA6]"
+                        />
+                        <span>
+                          {it.title}
+                          <span className="block text-[11px] text-cream/40">{new Date(it.date).toLocaleDateString('es-AR')}{done ? ' · ya está en la web' : ''}</span>
+                        </span>
+                      </label>
+                    );
+                  })}
+                  <div className="flex gap-4 pt-3">
+                    <button
+                      onClick={importSubstack}
+                      disabled={isImporting || !substackItems.some(it => substackPick[it.url] && !isImported(it))}
+                      className="bg-accent text-black px-6 py-3 font-barlow font-bold uppercase tracking-widest text-sm hover:bg-accent-hover transition-colors disabled:opacity-40"
+                    >
+                      {isImporting ? 'Pasando…' : 'Pasar los marcados'}
+                    </button>
+                    <button onClick={() => setSubstackItems(null)} className="font-dm text-xs uppercase tracking-widest text-cream/50 hover:text-cream">Cerrar</button>
+                  </div>
+                </div>
+              )}
             </section>
 
             <section className="space-y-8">
