@@ -56,7 +56,7 @@ export default function ContactForm() {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-widest text-cream/40 font-dm">
+            <label className="text-[10px] uppercase tracking-widest text-cream/60 font-dm">
               {t('contact.form.name')}
             </label>
             <input
@@ -69,7 +69,7 @@ export default function ContactForm() {
             />
           </div>
           <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-widest text-cream/40 font-dm">
+            <label className="text-[10px] uppercase tracking-widest text-cream/60 font-dm">
               {t('contact.form.email')}
             </label>
             <input
@@ -85,7 +85,7 @@ export default function ContactForm() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-widest text-cream/40 font-dm">
+            <label className="text-[10px] uppercase tracking-widest text-cream/60 font-dm">
               {t('contact.form.phone')}
             </label>
             <input
@@ -98,7 +98,7 @@ export default function ContactForm() {
             />
           </div>
           <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-widest text-cream/40 font-dm">
+            <label className="text-[10px] uppercase tracking-widest text-cream/60 font-dm">
               {t('contact.form.subject')}
             </label>
             <input
@@ -113,7 +113,7 @@ export default function ContactForm() {
         </div>
 
         <div className="space-y-2">
-          <label className="text-[10px] uppercase tracking-widest text-cream/40 font-dm">
+          <label className="text-[10px] uppercase tracking-widest text-cream/60 font-dm">
             {t('contact.form.message')}
           </label>
           <textarea

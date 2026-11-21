@@ -2,7 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { Instagram, Linkedin, Mail, Twitter, Video, Youtube } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import ContactForm from '../sections/ContactForm';
+import { lazy, Suspense } from 'react';
+const ContactForm = lazy(() => import('../sections/ContactForm'));
 import { trackEvent } from '../../lib/analytics';
 
 export default function Footer() {
@@ -47,11 +48,11 @@ export default function Footer() {
         </div>
 
         {/* Contact Form */}
-        <ContactForm />
+        <Suspense fallback={<div className="min-h-[420px]" />}><ContactForm /></Suspense>
 
         {/* Social & Bottom Bar */}
         <div className="flex flex-col min-[1150px]:flex-row justify-between items-center gap-12 min-[1150px]:gap-0 pt-24 border-t border-gray-mid/10">
-          <p className="font-dm text-[10px] uppercase tracking-widest text-cream/20 text-center min-[1150px]:text-left min-[1150px]:whitespace-nowrap">
+          <p className="font-dm text-[10px] uppercase tracking-widest text-cream/55 text-center min-[1150px]:text-left min-[1150px]:whitespace-nowrap">
             © 2026 CREATE DIGITAL · BUENOS AIRES, AR · <Link to="/es/privacy" className="hover:text-accent uppercase">{t('footer.privacy')}</Link>
           </p>
           

@@ -119,7 +119,7 @@ export default function ResourceDownloadDialog({ resource, onClose }: Props) {
 
                 <div className="space-y-5">
                   <div className="space-y-2">
-                    <label htmlFor="lead-email" className="text-[10px] uppercase tracking-widest text-cream/40 font-dm">
+                    <label htmlFor="lead-email" className="text-[10px] uppercase tracking-widest text-cream/60 font-dm">
                       Email *
                     </label>
                     <input
@@ -136,7 +136,7 @@ export default function ResourceDownloadDialog({ resource, onClose }: Props) {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="lead-name" className="text-[10px] uppercase tracking-widest text-cream/40 font-dm">
+                    <label htmlFor="lead-name" className="text-[10px] uppercase tracking-widest text-cream/60 font-dm">
                       {t('resources.name', 'Nombre')} <span className="normal-case tracking-normal">({t('resources.optional', 'opcional')})</span>
                     </label>
                     <input
@@ -173,7 +173,7 @@ export default function ResourceDownloadDialog({ resource, onClose }: Props) {
                   {status === 'sending' ? t('resources.preparing', 'Preparando…') : t('resources.download', 'Descargar gratis')}
                 </button>
 
-                <p className="font-dm text-[11px] text-cream/40 leading-relaxed">
+                <p className="font-dm text-[11px] text-cream/60 leading-relaxed">
                   {t('resources.privacy_note', 'Uso tus datos solo para enviarte este recurso y, si lo marcaste, novedades. Podés pedir la baja cuando quieras.')}{' '}
                   <Link to={`/${lang}/privacy`} onClick={onClose} className="underline hover:text-cream">
                     {t('footer.privacy', 'Política de privacidad')}

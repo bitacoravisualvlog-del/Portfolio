@@ -108,7 +108,7 @@ export default function Header() {
         >
           {i18n.language === 'es' ? 'EN' : 'ES'}
         </button>
-        <button onClick={() => setIsMenuOpen(true)}>
+        <button onClick={() => setIsMenuOpen(true)} aria-label="Abrir menú" aria-expanded={isMenuOpen}>
           <Menu size={24} />
         </button>
       </div>
@@ -124,7 +124,7 @@ export default function Header() {
           >
             <div className="flex justify-between items-center mb-12">
               <span className="font-sans text-[10px] font-medium text-cream uppercase tracking-widest whitespace-nowrap">Verónica Pereyra Carneiro</span>
-              <button onClick={() => setIsMenuOpen(false)} className="text-cream">
+              <button onClick={() => setIsMenuOpen(false)} className="text-cream" aria-label="Cerrar menú">
                 <X size={32} />
               </button>
             </div>

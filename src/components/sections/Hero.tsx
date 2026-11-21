@@ -13,10 +13,11 @@ export default function Hero() {
       </div>
 
       <div className="z-10 mb-12 md:mb-0 relative">
+        {/* El título se ve desde el primer instante (sin fundido) para que la portada cargue rápido en Google */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ y: 24 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-4"
         >
           <h1 className="text-[clamp(4.5rem,15vw,12rem)] leading-[0.85] text-cream flex flex-col font-bebas mb-2 md:mb-6">
@@ -29,9 +30,9 @@ export default function Hero() {
         </motion.div>
 
         <motion.p
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0.4 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 1 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
           className="text-xl md:text-2xl font-barlow text-cream/80 max-w-2xl mb-12 border-l-2 border-accent pl-6 py-2"
         >
           {t('hero.body')}

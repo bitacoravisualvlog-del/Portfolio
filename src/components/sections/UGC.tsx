@@ -75,7 +75,7 @@ export default function UGC() {
 
         {item.agency && (
           <div className="mt-2.5 flex items-center justify-center gap-1 text-xs">
-            <span className="font-dm text-cream/40 uppercase tracking-widest text-[10px]">
+            <span className="font-dm text-cream/60 uppercase tracking-widest text-[10px]">
               {t('ugc.agency')}
             </span>
             <a
@@ -93,7 +93,7 @@ export default function UGC() {
           {t(item.descKey)}
         </p>
         {item.noteKey && (
-          <p className="font-dm text-[11px] text-cream/35 italic mt-3">{t(item.noteKey)}</p>
+          <p className="font-dm text-[11px] text-cream/55 italic mt-3">{t(item.noteKey)}</p>
         )}
       </div>
     </motion.div>
@@ -119,14 +119,14 @@ export default function UGC() {
         </h3>
         {item.agency && (
           <div className="flex items-center gap-1">
-            <span className="font-dm text-cream/40 uppercase tracking-widest text-[10px]">{t('ugc.agency')}</span>
+            <span className="font-dm text-cream/60 uppercase tracking-widest text-[10px]">{t('ugc.agency')}</span>
             <a href={item.agency.url} target="_blank" rel="noopener noreferrer" className="font-dm text-accent hover:text-white underline font-extrabold uppercase tracking-widest text-[10px] transition-colors duration-300">
               {item.agency.name}
             </a>
           </div>
         )}
         <p className="font-dm text-sm md:text-base text-cream/60 leading-relaxed">{t(item.descKey)}</p>
-        {item.noteKey && <p className="font-dm text-[11px] text-cream/35 italic">{t(item.noteKey)}</p>}
+        {item.noteKey && <p className="font-dm text-[11px] text-cream/55 italic">{t(item.noteKey)}</p>}
       </div>
     </motion.div>
   );
@@ -148,7 +148,7 @@ export default function UGC() {
           <h2 className="font-bebas text-5xl md:text-8xl text-white leading-none tracking-tight">
             {t('ugc.title')}
           </h2>
-          <p className="font-dm text-cream/40 text-xs md:text-sm uppercase tracking-wider mt-3">
+          <p className="font-dm text-cream/60 text-xs md:text-sm uppercase tracking-wider mt-3">
             {t('ugc.formats')}
           </p>
         </div>
@@ -163,7 +163,7 @@ export default function UGC() {
               <div key={category.id}>
                 <div className="flex items-center gap-4 max-w-5xl mx-auto mb-8 md:mb-12">
                   <span className="font-barlow font-bold text-sm md:text-base uppercase tracking-[0.2em] text-accent md:whitespace-nowrap">
-                    <span className="text-cream/30">{String(catIndex + 1).padStart(2, '0')} · </span>
+                    <span className="text-cream/55">{String(catIndex + 1).padStart(2, '0')} · </span>
                     {t(category.labelKey, category.fallback)}
                   </span>
                   <span className="flex-1 h-px bg-gray-mid/40" />
@@ -192,7 +192,7 @@ export default function UGC() {
             <h3 className="font-bebas text-4xl md:text-6xl text-white tracking-wide uppercase leading-none">
               Planes y Propuestas UGC
             </h3>
-            <p className="font-dm text-cream/40 text-xs md:text-sm uppercase tracking-widest mt-4">
+            <p className="font-dm text-cream/60 text-xs md:text-sm uppercase tracking-widest mt-4">
               Encontrá el formato ideal para potenciar la presencia digital de tu marca
             </p>
           </motion.div>
@@ -285,7 +285,7 @@ export default function UGC() {
                 </p>
 
                 <div className="space-y-3.5 mb-8">
-                  <span className="text-[10px] font-dm tracking-widest uppercase text-cream/40 block font-bold">
+                  <span className="text-[10px] font-dm tracking-widest uppercase text-cream/60 block font-bold">
                     El plan incluye:
                   </span>
                   {prop.includes.map((item, i) => (
@@ -302,14 +302,14 @@ export default function UGC() {
               <div className="mt-auto border-t border-gray-mid/10 pt-6">
                 {/* Modality Section */}
                 <div className="mb-4">
-                  <span className="text-[10px] font-dm tracking-widest uppercase text-cream/40 block">Modalidad</span>
+                  <span className="text-[10px] font-dm tracking-widest uppercase text-cream/60 block">Modalidad</span>
                   <p className="font-dm text-xs md:text-sm font-bold text-cream mt-0.5">{prop.modality}</p>
                 </div>
 
                 {/* Price Section */}
                 {prop.price && (
                   <div className="mb-5">
-                    <span className="text-[10px] font-dm tracking-widest uppercase text-cream/40 block">Inversión</span>
+                    <span className="text-[10px] font-dm tracking-widest uppercase text-cream/60 block">Inversión</span>
                     <p className="font-barlow text-xl font-extrabold text-accent mt-0.5">{prop.price}</p>
                   </div>
                 )}

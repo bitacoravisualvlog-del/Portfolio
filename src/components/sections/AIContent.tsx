@@ -45,7 +45,7 @@ export default function AIContent() {
         {t(item.descKey)}
       </p>
       {item.noteKey && (
-        <p className="font-dm text-[11px] text-cream/35 italic">{t(item.noteKey)}</p>
+        <p className="font-dm text-[11px] text-cream/55 italic">{t(item.noteKey)}</p>
       )}
     </div>
   );
@@ -97,7 +97,7 @@ export default function AIContent() {
                       </div>
                       <div className="space-y-4 md:pt-7">
                         <p className="font-dm text-sm md:text-base text-cream/60 leading-relaxed">{t(item.descKey)}</p>
-                        {item.noteKey && <p className="font-dm text-[11px] text-cream/35 italic">{t(item.noteKey)}</p>}
+                        {item.noteKey && <p className="font-dm text-[11px] text-cream/55 italic">{t(item.noteKey)}</p>}
                       </div>
                     </div>
                   </div>

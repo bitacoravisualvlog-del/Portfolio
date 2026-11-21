@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from './components/layout/Header';
@@ -13,18 +13,18 @@ import Clients from './components/sections/Clients';
 import ValueProp from './components/sections/ValueProp';
 import Services from './components/sections/Services';
 import Method from './components/sections/Method';
-import Quote from './components/sections/Quote';
+const Quote = lazy(() => import('./components/sections/Quote'));
 import Projects from './components/sections/Projects';
 import UGC from './components/sections/UGC';
 import AIContent from './components/sections/AIContent';
 import About from './components/sections/About';
 import Podcast from './components/sections/Podcast';
-import Privacy from './components/sections/Privacy';
-import Blog from './components/sections/Blog';
-import Resources from './components/sections/Resources';
-import Recommendations from './components/sections/Recommendations';
-import BlogPost from './components/sections/BlogPost';
-import Admin from './components/sections/Admin';
+const Privacy = lazy(() => import('./components/sections/Privacy'));
+const Blog = lazy(() => import('./components/sections/Blog'));
+const Resources = lazy(() => import('./components/sections/Resources'));
+const Recommendations = lazy(() => import('./components/sections/Recommendations'));
+const BlogPost = lazy(() => import('./components/sections/BlogPost'));
+const Admin = lazy(() => import('./components/sections/Admin'));
 import { useSeo } from './lib/seo';
 import WhatsAppButton from './components/ui/WhatsAppButton';
 import QuoteCTA from './components/ui/QuoteCTA';
@@ -71,7 +71,7 @@ function Root() {
       <main>
         <Hero />
         <Clients />
-        <Recommendations />
+        <Suspense fallback={<div className="min-h-[520px] bg-black" />}><Recommendations /></Suspense>
         <Services />
         <UGC />
         <AIContent />
@@ -81,10 +81,10 @@ function Root() {
         <QuoteCTA textKey="cta_band.projects" fallback="¿Querés un proyecto así para tu marca?" />
         <About />
         <QuoteCTA textKey="cta_band.about" fallback="Contame qué necesitás y armo tu propuesta." />
-        <Blog />
+        <Suspense fallback={<div className="min-h-[600px] bg-black" />}><Blog /></Suspense>
         <Podcast />
-        <Resources />
-        <Quote />
+        <Suspense fallback={<div className="min-h-[800px] bg-black" />}><Resources /></Suspense>
+        <Suspense fallback={<div className="min-h-[900px] bg-black" />}><Quote /></Suspense>
       </main>
 
       <Footer />
@@ -95,6 +95,7 @@ function Root() {
 export default function App() {
   return (
     <BrowserRouter>
+      <Suspense fallback={<div className="min-h-screen bg-black" />}>
       <Routes>
         <Route path="/:lang" element={<Root />} />
         <Route path="/:lang/blog/:slug" element={<BlogPost />} />
@@ -108,6 +109,7 @@ export default function App() {
         {/* Fallback for invalid locales */}
         <Route path="*" element={<Navigate to="/es" replace />} />
       </Routes>
+      </Suspense>
       <WhatsAppButton />
     </BrowserRouter>
   );

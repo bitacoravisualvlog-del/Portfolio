@@ -56,9 +56,9 @@ export default function Projects() {
     <section id="projects" className="py-16 md:py-32 px-6 md:px-12 bg-black">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10 md:mb-20">
         <h2 className="font-bebas text-5xl md:text-7xl text-white tracking-tight leading-none">
-          Proyectos <span className="text-gray-mid">/</span> Projects
+          Proyectos <span className="text-cream/50">/</span> Projects
         </h2>
-        <p className="font-dm text-xs uppercase tracking-[0.3em] text-cream/40 max-w-xs md:text-right">
+        <p className="font-dm text-xs uppercase tracking-[0.3em] text-cream/60 max-w-xs md:text-right">
           Una selección de trabajos que definen una visión estética y estratégica.
         </p>
       </div>
@@ -131,10 +131,10 @@ export default function Projects() {
 
               {/* ZONA INFERIOR - CONTENIDO */}
               <div className="space-y-4">
-                <span className="text-cream/20 font-bebas text-2xl">{idx < 9 ? `0${idx + 1}` : idx + 1}</span>
+                <span className="text-cream/55 font-bebas text-2xl">{idx < 9 ? `0${idx + 1}` : idx + 1}</span>
                 <div className="flex flex-wrap gap-2">
                   {p.tags.map(tag => (
-                    <span key={tag} className="text-[10px] font-dm uppercase tracking-widest text-cream/30 border border-gray-mid/40 px-2 py-0.5">
+                    <span key={tag} className="text-[10px] font-dm uppercase tracking-widest text-cream/55 border border-gray-mid/40 px-2 py-0.5">
                       {tag}
                     </span>
                   ))}

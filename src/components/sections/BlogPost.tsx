@@ -198,7 +198,7 @@ export default function BlogPost() {
                 <div key={comment.id} className="border-l border-accent/30 pl-6 py-2">
                   <div className="flex justify-between items-center mb-2">
                     <span className="font-barlow font-bold uppercase text-cream">{comment.userName}</span>
-                    <span className="text-[10px] text-cream/30 font-dm">
+                    <span className="text-[10px] text-cream/55 font-dm">
                       {new Date(comment.createdAt?.toDate()).toLocaleDateString()}
                     </span>
                   </div>
@@ -208,7 +208,7 @@ export default function BlogPost() {
                 </div>
               ))}
               {comments.length === 0 && (
-                <p className="font-dm text-cream/30 italic text-sm">Sé el primero en comentar.</p>
+                <p className="font-dm text-cream/55 italic text-sm">Sé el primero en comentar.</p>
               )}
             </div>
           </section>

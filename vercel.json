@@ -1,1 +1,1 @@
-{"rewrites":[{"source":"/sitemap.xml","destination":"/api/sitemap"},{"source":"/((?!api/).*)","destination":"/index.html"}]}
+{"rewrites": [{"source": "/sitemap.xml", "destination": "/api/sitemap"}, {"source": "/((?!api/|\\.well-known/)(?!.*\\.[a-zA-Z0-9]{2,5}$).*)", "destination": "/index.html"}]}

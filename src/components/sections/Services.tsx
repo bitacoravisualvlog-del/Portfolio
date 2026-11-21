@@ -18,7 +18,7 @@ export default function Services() {
   return (
     <section id="services" className="py-16 md:py-32 px-6 md:px-12 bg-black">
       <h2 className="font-bebas text-5xl md:text-7xl mb-10 md:mb-20 text-white tracking-tight">
-        Servicios <span className="text-gray-mid">/</span> Services
+        Servicios <span className="text-cream/50">/</span> Services
       </h2>
       
       <div className="grid md:grid-cols-2 gap-x-20 gap-y-12">

@@ -73,7 +73,7 @@ export default function Method() {
               <span className="font-dm text-[10px] uppercase tracking-[0.3em] text-accent mt-1">{t(`method.${stage.key}.verb`)}</span>
               <p className="font-dm text-sm text-cream/60 leading-relaxed mt-4 flex-1">{t(`method.${stage.key}.desc`)}</p>
               <p className="font-dm text-xs text-cream/80 mt-5 pt-4 border-t border-gray-mid/25">
-                <span className="text-cream/40 uppercase tracking-widest text-[9px] block mb-1">{t('method.deliverable', 'Entregable')}</span>
+                <span className="text-cream/60 uppercase tracking-widest text-[9px] block mb-1">{t('method.deliverable', 'Entregable')}</span>
                 {t(`method.${stage.key}.deliverable`)}
               </p>
             </motion.div>

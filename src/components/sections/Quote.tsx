@@ -7,8 +7,8 @@ import { quoteService } from '../../services/quoteService';
 import { trackEvent } from '../../lib/analytics';
 
 const inputClass =
-  'w-full bg-transparent border-b border-gray-mid/40 py-3 font-dm text-cream placeholder:text-cream/25 focus:border-accent outline-none transition-colors';
-const labelClass = 'text-[10px] uppercase tracking-widest text-cream/45 font-dm';
+  'w-full bg-transparent border-b border-gray-mid/40 py-3 font-dm text-cream placeholder:text-cream/55 focus:border-accent outline-none transition-colors';
+const labelClass = 'text-[10px] uppercase tracking-widest text-cream/65 font-dm';
 
 // Espera una promesa como máximo `ms` milisegundos (para no dejar a nadie esperando).
 const withTimeout = <T,>(p: Promise<T>, ms: number) =>
@@ -109,7 +109,7 @@ export default function Quote() {
                   <h3 className="font-barlow font-bold text-lg md:text-xl uppercase tracking-[0.15em] text-cream">
                     <span className="text-accent">01 · </span>{t('quote.step1', '¿Qué servicios necesitás?')}
                   </h3>
-                  <span className={`font-dm text-xs uppercase tracking-widest ${selected.length ? 'text-accent' : 'text-cream/35'}`}>
+                  <span className={`font-dm text-xs uppercase tracking-widest ${selected.length ? 'text-accent' : 'text-cream/55'}`}>
                     {selected.length} {selected.length === 1 ? t('quote.selected_one', 'seleccionado') : t('quote.selected_many', 'seleccionados')}
                   </span>
                 </div>
@@ -167,7 +167,7 @@ export default function Quote() {
                                       </span>
                                       <span className="space-y-1">
                                         <span className="block font-dm text-sm text-cream leading-snug">{option.name}</span>
-                                        <span className="block font-dm text-xs text-cream/45 leading-snug">{option.detail}</span>
+                                        <span className="block font-dm text-xs text-cream/65 leading-snug">{option.detail}</span>
                                       </span>
                                     </label>
                                   );
@@ -266,7 +266,7 @@ export default function Quote() {
                   <Send size={18} />
                   {status === 'sending' ? t('quote.sending', 'Enviando…') : t('quote.submit', 'Cotizar')}
                 </button>
-                <p className="font-dm text-xs text-cream/40 leading-relaxed max-w-md">
+                <p className="font-dm text-xs text-cream/60 leading-relaxed max-w-md">
                   {status === 'error'
                     ? <span className="text-accent">{t('quote.error', 'No se pudo enviar. Probá de nuevo o escribime por WhatsApp.')}</span>
                     : t('quote.note', 'Sin compromiso. Te respondo con una propuesta a medida, de lunes a viernes de 9 a 17 h.')}

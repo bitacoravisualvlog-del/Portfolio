@@ -19,8 +19,17 @@
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <!-- Google tag (gtag.js) · GA4 · CREATE DIGITAL -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XDVEXEFLP3"></script>
     <script>
+      // gtag.js se descarga recién cuando la página terminó de cargar, para no frenar la primera vista.
+      // Los eventos anteriores quedan guardados en dataLayer y se envían igual.
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-XDVEXEFLP3';
+          document.head.appendChild(s);
+        }, 1500);
+      });
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());

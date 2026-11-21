@@ -113,10 +113,10 @@ export default function Blog() {
     <section id="blog" className="py-16 md:py-32 px-6 md:px-12 bg-black">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10 md:mb-20">
         <h2 className="font-bebas text-5xl md:text-7xl text-white tracking-tight leading-none">
-          Blog <span className="text-gray-mid">/</span> Artículos
+          Blog <span className="text-cream/50">/</span> Artículos
         </h2>
         <div className="space-y-3 md:text-right">
-          <p className="font-dm text-xs uppercase tracking-[0.3em] text-cream/40 max-w-xs md:ml-auto">
+          <p className="font-dm text-xs uppercase tracking-[0.3em] text-cream/60 max-w-xs md:ml-auto">
             Pensamientos sobre diseño, marketing y estrategia digital.
           </p>
           <a
@@ -149,7 +149,7 @@ export default function Blog() {
                 <CardLink item={post}>
                   <span className="text-[10px] font-dm uppercase tracking-widest text-accent">
                     {post.date ? post.date.toLocaleDateString('es-AR') : ''}
-                    {post.external && <span className="text-cream/40"> · Substack</span>}
+                    {post.external && <span className="text-cream/60"> · Substack</span>}
                   </span>
                   <h3 className="font-barlow text-2xl text-cream group-hover:text-white transition-colors leading-tight uppercase">
                     {post.title}
@@ -157,7 +157,7 @@ export default function Blog() {
                   <p className="font-dm text-sm text-cream/50 line-clamp-3">
                     {post.excerpt}
                   </p>
-                  <span className="inline-block pt-4 text-xs font-dm uppercase tracking-[0.2em] text-white/50 group-hover:text-white transition-colors">
+                  <span className="inline-block pt-4 text-xs font-dm uppercase tracking-[0.2em] text-white/65 group-hover:text-white transition-colors">
                     {post.external ? 'Leer en Substack →' : 'Leer más →'}
                   </span>
                 </CardLink>
@@ -178,7 +178,7 @@ export default function Blog() {
         </div>
       ) : (
         <div className="text-center py-20 border border-dashed border-gray-mid/30">
-          <p className="font-dm text-cream/40 uppercase tracking-widest">Aún no hay artículos publicados.</p>
+          <p className="font-dm text-cream/60 uppercase tracking-widest">Aún no hay artículos publicados.</p>
         </div>
       )}
     </section>

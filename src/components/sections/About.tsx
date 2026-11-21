@@ -73,7 +73,7 @@ export default function About() {
               <span className="font-bebas text-8xl md:text-9xl text-accent leading-none select-none tabular-nums transition-[text-shadow] duration-500 group-hover:[text-shadow:0_0_28px_rgba(210,123,166,0.55)]">
                 <CountUp value={stat.value} />
               </span>
-              <p className="font-barlow text-sm md:text-base text-cream/40 uppercase tracking-widest max-w-[180px] md:max-w-[240px] leading-tight">
+              <p className="font-barlow text-sm md:text-base text-cream/60 uppercase tracking-widest max-w-[180px] md:max-w-[240px] leading-tight">
                 {stat.label}
               </p>
             </motion.div>
@@ -88,7 +88,7 @@ export default function About() {
         viewport={{ once: true }}
         className="mt-14 md:mt-24 max-w-5xl mx-auto space-y-6"
       >
-        <p className="font-dm text-xs uppercase tracking-[0.3em] text-cream/40">
+        <p className="font-dm text-xs uppercase tracking-[0.3em] text-cream/60">
           Logo <span className="text-accent">morph</span>
         </p>
         <div className="relative w-full aspect-video border border-gray-mid/20 bg-gray-dark/30 overflow-hidden">

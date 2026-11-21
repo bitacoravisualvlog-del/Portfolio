@@ -121,7 +121,7 @@ export default function Recommendations() {
                       className="w-full bg-black border border-gray-mid/40 p-4 font-dm text-sm focus:border-accent outline-none transition-colors"
                     />
                     <div className="flex items-center gap-3">
-                      <span className="font-dm text-xs uppercase tracking-widest text-cream/40">Calificación</span>
+                      <span className="font-dm text-xs uppercase tracking-widest text-cream/60">Calificación</span>
                       <div className="flex gap-1">
                         {[1, 2, 3, 4, 5].map((star) => (
                           <button key={star} type="button" onClick={() => setRating(star)} aria-label={`${star} estrellas`} className="transition-transform hover:scale-110">
@@ -189,7 +189,7 @@ export default function Recommendations() {
             ))}
           </div>
         ) : (
-          <p className="text-center font-dm text-cream/20 py-16 uppercase tracking-widest">Aún no hay recomendaciones.</p>
+          <p className="text-center font-dm text-cream/55 py-16 uppercase tracking-widest">Aún no hay recomendaciones.</p>
         )}
       </div>
     </section>

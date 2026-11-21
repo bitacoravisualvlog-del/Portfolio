@@ -38,7 +38,7 @@ export default function Resources() {
   const GroupTitle = ({ n, label }: { n: string; label: string }) => (
     <div className="flex items-center gap-4 mb-8 md:mb-12">
       <span className="font-barlow font-bold text-sm md:text-base uppercase tracking-[0.2em] text-accent md:whitespace-nowrap">
-        <span className="text-cream/30">{n} · </span>{label}
+        <span className="text-cream/55">{n} · </span>{label}
       </span>
       <span className="flex-1 h-px bg-gray-mid/40" />
     </div>
@@ -48,9 +48,9 @@ export default function Resources() {
     <section id="recursos" className="py-16 md:py-32 px-6 md:px-12 bg-black border-t border-gray-mid/10">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8 mb-10 md:mb-20">
         <h2 className="font-bebas text-5xl md:text-7xl text-white tracking-tight leading-none">
-          {t('resources.title', 'Recursos')} <span className="text-gray-mid">/</span> {t('resources.subtitle_tools', 'Herramientas')}
+          {t('resources.title', 'Recursos')} <span className="text-cream/50">/</span> {t('resources.subtitle_tools', 'Herramientas')}
         </h2>
-        <p className="font-dm text-xs uppercase tracking-[0.3em] text-cream/40 max-w-xs md:text-right">
+        <p className="font-dm text-xs uppercase tracking-[0.3em] text-cream/60 max-w-xs md:text-right">
           {t('resources.tagline_mixed', 'Recursos gratuitos y servicios para que hagas crecer tu marca.')}
         </p>
       </div>
@@ -91,11 +91,11 @@ export default function Resources() {
               <div className="space-y-4">
                 <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] font-dm uppercase tracking-widest text-accent">
                   <span>{resource.type}</span>
-                  <span className="text-cream/30">·</span>
+                  <span className="text-cream/55">·</span>
                   <span className="text-cream/50">{resource.topic}</span>
                   {isEnglish && (
                     <>
-                      <span className="text-cream/30">·</span>
+                      <span className="text-cream/55">·</span>
                       <span className="text-cream/50">{t('resources.spanish', 'In Spanish')}</span>
                     </>
                   )}
@@ -109,7 +109,7 @@ export default function Resources() {
               </div>
 
               <div className="space-y-4">
-                <span className="flex items-center gap-2 font-dm text-[11px] uppercase tracking-widest text-cream/40">
+                <span className="flex items-center gap-2 font-dm text-[11px] uppercase tracking-widest text-cream/60">
                   <FileText size={14} />
                   {resource.format}
                   {resource.pages ? ` · ${resource.pages} ${t('resources.pages', 'páginas')}` : ''}
@@ -149,11 +149,11 @@ export default function Resources() {
                   <div className="space-y-4">
                     <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] font-dm uppercase tracking-widest text-accent">
                       <span>{service.type}</span>
-                      <span className="text-cream/30">·</span>
+                      <span className="text-cream/55">·</span>
                       <span className="text-cream/50">{service.topic}</span>
                       {isEnglish && (
                         <>
-                          <span className="text-cream/30">·</span>
+                          <span className="text-cream/55">·</span>
                           <span className="text-cream/50">{t('resources.spanish', 'In Spanish')}</span>
                         </>
                       )}
