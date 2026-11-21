@@ -147,11 +147,6 @@ export default function Blog() {
                 className="group border border-gray-mid/20 hover:border-accent transition-all bg-gray-dark/30 overflow-hidden"
               >
                 <CardLink item={post}>
-                  {post.image && (
-                    <div className="-mx-8 -mt-8 mb-6 aspect-[16/9] overflow-hidden bg-gray-dark">
-                      <img src={post.image} alt="" loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                    </div>
-                  )}
                   <span className="text-[10px] font-dm uppercase tracking-widest text-accent">
                     {post.date ? post.date.toLocaleDateString('es-AR') : ''}
                     {post.external && <span className="text-cream/40"> · Substack</span>}
