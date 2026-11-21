@@ -20,7 +20,7 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-4"
         >
-          <h1 className="text-[clamp(4.5rem,15vw,12rem)] leading-[0.85] text-cream flex flex-col font-bebas mb-2 md:mb-6">
+          <h1 className="text-[clamp(4.5rem,23vw,6.5rem)] md:text-[clamp(4.5rem,15vw,12rem)] leading-[0.85] text-cream flex flex-col font-bebas mb-2 md:mb-6">
             <span className="block">CREATE</span>
             <span className="block text-accent">DIGITAL</span>
           </h1>
