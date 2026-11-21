@@ -59,7 +59,7 @@ export default function Resources() {
       {resources.length > 0 && (
       <div>
       <GroupTitle n="01" label={t('resources.group_free', 'Gratuitos')} />
-      <div className={`grid gap-8 ${resources.length === 1 ? 'max-w-5xl' : 'lg:grid-cols-2'}`}>
+      <div className={`grid gap-8 ${resources.length === 1 ? 'max-w-5xl mx-auto' : 'lg:grid-cols-2'}`}>
         {resources.map((resource, idx) => (
           <motion.article
             key={resource.id}
