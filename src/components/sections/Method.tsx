@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
+import PosterVideo from '../ui/PosterVideo';
 import { BarChart3, Clapperboard, Link2, Gauge, Users, ShieldCheck } from 'lucide-react';
 
 // Método GUION: la metodología propia de trabajo de CREATE DIGITAL.
@@ -105,6 +106,25 @@ export default function Method() {
             ))}
           </div>
         </div>
+
+        {/* Brand film */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-14 md:mt-20 max-w-5xl mx-auto space-y-6"
+        >
+          <p className="font-dm text-xs uppercase tracking-[0.3em] text-cream/60">
+            Brand <span className="text-accent">film</span>
+          </p>
+          <div className="relative w-full aspect-video border border-gray-mid/20 bg-gray-dark/30 overflow-hidden">
+            <PosterVideo
+              src="/brand-film-create-digital-2.mp4"
+              poster="/brand-film-2-poster.webp"
+              label="Brand film de CREATE DIGITAL"
+            />
+          </div>
+        </motion.div>
 
         {/* Llamado a la acción */}
         <div className="mt-14 md:mt-20 flex flex-col md:flex-row md:items-center justify-between gap-6 border border-accent/30 bg-gray-dark/30 p-7 md:p-10">

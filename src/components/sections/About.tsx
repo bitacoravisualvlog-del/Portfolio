@@ -1,27 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
 import { motion } from 'motion/react';
 import CountUp from '../ui/CountUp';
-
-// Logo morph: no se reproduce solo; arranca cuando la persona toca play.
-// Como los videos de UGC, la tapa está en blanco y negro y toma color al pasar el mouse o al reproducir.
-function AutoPlayVideo({ src, label }: { src: string; label: string }) {
-  const [playing, setPlaying] = useState(false);
-  return (
-    <video
-      className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ${playing ? '' : 'grayscale brightness-[0.85] hover:grayscale-0 hover:brightness-100'}`}
-      src={src}
-      poster="/brand-film-poster.webp"
-      controls
-      playsInline
-      preload="none"
-      aria-label={label}
-      onPlay={() => setPlaying(true)}
-      onPause={() => setPlaying(false)}
-      onEnded={() => setPlaying(false)}
-    />
-  );
-}
+import PosterVideo from '../ui/PosterVideo';
 
 
 export default function About() {
@@ -92,8 +72,9 @@ export default function About() {
           Logo <span className="text-accent">morph</span>
         </p>
         <div className="relative w-full aspect-video border border-gray-mid/20 bg-gray-dark/30 overflow-hidden">
-          <AutoPlayVideo
+          <PosterVideo
             src="/brand-film-create-digital.mp4"
+            poster="/brand-film-poster.webp"
             label="Logo morph de CREATE DIGITAL"
           />
         </div>
