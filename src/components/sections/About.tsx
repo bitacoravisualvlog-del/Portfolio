@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
+import CountUp from '../ui/CountUp';
 
 // Logo morph: no se reproduce solo; arranca cuando la persona toca play.
 function AutoPlayVideo({ src, label }: { src: string; label: string }) {
@@ -59,12 +60,12 @@ export default function About() {
               key={idx}
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.5 }}
               transition={{ delay: idx * 0.2 }}
-              className="flex items-center gap-8"
+              className="group flex items-center gap-8"
             >
-              <span className="font-bebas text-8xl md:text-9xl text-accent leading-none select-none">
-                {stat.value}
+              <span className="font-bebas text-8xl md:text-9xl text-accent leading-none select-none tabular-nums transition-[text-shadow] duration-500 group-hover:[text-shadow:0_0_28px_rgba(210,123,166,0.55)]">
+                <CountUp value={stat.value} />
               </span>
               <p className="font-barlow text-sm md:text-base text-cream/40 uppercase tracking-widest max-w-[180px] md:max-w-[240px] leading-tight">
                 {stat.label}

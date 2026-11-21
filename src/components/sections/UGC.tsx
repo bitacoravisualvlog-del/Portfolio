@@ -28,7 +28,7 @@ const UGC_ITEMS: UgcItem[] = [
     titleKey: 'ugc.loreal1',
     descKey: 'ugc.desc1',
     video: '/loreal1.mp4',
-    poster: '/loreal1.png',
+    poster: '/loreal1.webp',
     agency: WILDFI,
   },
   {
@@ -38,7 +38,7 @@ const UGC_ITEMS: UgcItem[] = [
     titleKey: 'ugc.loreal2',
     descKey: 'ugc.desc2',
     video: '/loreal2.mp4',
-    poster: '/loreal2.png',
+    poster: '/loreal2.webp',
     agency: WILDFI,
   },
   {
